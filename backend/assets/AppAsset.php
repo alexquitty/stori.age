@@ -22,4 +22,7 @@ class AppAsset extends AssetBundle
         'yii\bootstrap\BootstrapAsset',
 	    'yiister\gentelella\assets\Asset',
     ];
+    public $publishOptions = [
+    	// 'forceCopy' => true,
+    ];
 }

@@ -5,9 +5,12 @@
  * @var \yii\web\View $this
  */
 
+use backend\assets\AppAsset;
 use yii\helpers\Html;
 
-$bundle = yiister\gentelella\assets\Asset::register($this);
+AppAsset::register($this);
+
+// $bundle = yiister\gentelella\assets\Asset::register($this);
 
 ?>
 <?php $this->beginPage(); ?>
@@ -54,16 +57,16 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                 <!-- /menu prile quick info -->
 
                 <!-- sidebar menu -->
-                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu clearfix">
 
                     <div class="menu_section">
-                        <h3>Меню</h3>
+                        <!--<h3>Меню</h3>-->
                         <?=
                         \yiister\gentelella\widgets\Menu::widget(
                             [
                                 "items" => [
 	                                ['label' => 'Вернуться на сайт', 'url' => '/', 'icon' => 'globe'],
-                                    ["label" => "На главную", "url" => "/cpanel", "icon" => "home"],
+                                    ["label" => 'Администрирование', "url" => "/cpanel", "icon" => "home"],
                                     // ["label" => "Layout", "url" => ["site/layout"], "icon" => "files-o"],
                                     // ["label" => "Error page", "url" => ["site/error-page"], "icon" => "close"],
                                     // [
@@ -134,20 +137,20 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                 <!-- /sidebar menu -->
 
                 <!-- /menu footer buttons -->
-                <div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Settings">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Lock">
-                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                    </a>
-                </div>
+                <!--<div class="sidebar-footer hidden-small">-->
+                <!--    <a data-toggle="tooltip" data-placement="top" title="Settings">-->
+                <!--        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>-->
+                <!--    </a>-->
+                <!--    <a data-toggle="tooltip" data-placement="top" title="FullScreen">-->
+                <!--        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>-->
+                <!--    </a>-->
+                <!--    <a data-toggle="tooltip" data-placement="top" title="Lock">-->
+                <!--        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>-->
+                <!--    </a>-->
+                <!--    <a data-toggle="tooltip" data-placement="top" title="Logout">-->
+                <!--        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>-->
+                <!--    </a>-->
+                <!--</div>-->
                 <!-- /menu footer buttons -->
             </div>
         </div>
@@ -157,15 +160,15 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
 
             <div class="nav_menu">
                 <nav class="" role="navigation">
-                    <div class="nav toggle">
-                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                    </div>
+                    <!--<div class="nav toggle">-->
+                    <!--    <a id="menu_toggle"><i class="fa fa-bars"></i></a>-->
+                    <!--</div>-->
 
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="http://placehold.it/128x128" alt="">John Doe
-                                <span class=" fa fa-angle-down"></span>
+                                <img src="http://placehold.it/128x128" alt=""><?=\Yii::$app->user->identity->username?>
+                                <span class="fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
                                 <li><a href="javascript:;">  Profile</a>
