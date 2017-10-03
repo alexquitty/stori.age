@@ -55,9 +55,6 @@ return [
 	    	'translations' => [
 	    		'cpanel' => [
 	    			'class' => 'yii\i18n\PhpMessageSource',
-				    'fileMap' => [
-				    	'backend' => 'backend.php',
-				    ],
 			    ],
 		    ],
 	    ],

@@ -20,6 +20,7 @@ class AppAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
+	    'rmrevin\yii\fontawesome\AssetBundle',
     ];
     public $publishOptions = [
     	'forceCopy' => true,

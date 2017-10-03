@@ -49,6 +49,15 @@ return [
 	            '<action>' => 'site/<action>',
             ],
         ],
+	    'i18n' => [
+		    'translations' => [
+			    'site' => [
+				    'class' => 'yii\i18n\PhpMessageSource',
+			    ],
+		    ],
+	    ],
     ],
     'params' => $params,
+	'language' => 'ru-RU',
+	'sourceLanguage' => 'en-US',
 ];
