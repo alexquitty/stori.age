@@ -10,8 +10,6 @@ use yii\helpers\Html;
 
 AppAsset::register($this);
 
-// $bundle = yiister\gentelella\assets\Asset::register($this);
-
 ?>
 <?php $this->beginPage(); ?>
 <!DOCTYPE html>
