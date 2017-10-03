@@ -12,4 +12,5 @@ return [
 	'Search' => 'Искать',
 	'Update' => 'Обновить',
 	'Update Entity: {nameAttribute}' => 'Обновить сущность "{nameAttribute}"',
+	'Update Entity Type: {nameAttribute}' => 'Обновить тип сущности "{nameAttribute}"',
 ];
