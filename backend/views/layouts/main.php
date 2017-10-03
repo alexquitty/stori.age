@@ -65,7 +65,21 @@ AppAsset::register($this);
                                 "items" => [
 	                                ['label' => 'Вернуться на сайт', 'url' => '/', 'icon' => 'globe'],
                                     ["label" => 'Администрирование', "url" => "/cpanel", "icon" => "home"],
-                                    ['label' => 'test', 'url' => '/cpanel/entity/', 'icon' => 'table'],
+                                    [
+                                    	'label' => Yii::t('cpanel', 'Entities'),
+	                                    'url' => '#',
+	                                    'icon' => 'table',
+	                                    'items' => [
+	                                    	[
+	                                    		'label' => 'Элементы',
+			                                    'url' => '/cpanel/entity/',
+		                                    ],
+		                                    [
+		                                    	'label' => 'Типы сущностей',
+			                                    'url' => '/cpanel/entity-type/',
+		                                    ],
+	                                    ],
+                                    ],
                                     // ["label" => "Layout", "url" => ["site/layout"], "icon" => "files-o"],
                                     // ["label" => "Error page", "url" => ["site/error-page"], "icon" => "close"],
                                     // [
@@ -77,55 +91,55 @@ AppAsset::register($this);
                                     //         ["label" => "Panel", "url" => ["site/panel"]],
                                     //     ],
                                     // ],
-                                    [
-                                        "label" => "Badges",
-                                        "url" => "#",
-                                        "icon" => "table",
-                                        "items" => [
-                                            [
-                                                "label" => "Default",
-                                                "url" => "#",
-                                                "badge" => "123",
-                                            ],
-                                            [
-                                                "label" => "Success",
-                                                "url" => "#",
-                                                "badge" => "new",
-                                                "badgeOptions" => ["class" => "label-success"],
-                                            ],
-                                            [
-                                                "label" => "Danger",
-                                                "url" => "#",
-                                                "badge" => "!",
-                                                "badgeOptions" => ["class" => "label-danger"],
-                                            ],
-                                        ],
-                                    ],
-                                    [
-                                        "label" => "Multilevel",
-                                        "url" => "#",
-                                        "icon" => "table",
-                                        "items" => [
-                                            [
-                                                "label" => "Second level 1",
-                                                "url" => "#",
-                                            ],
-                                            [
-                                                "label" => "Second level 2",
-                                                "url" => "#",
-                                                "items" => [
-                                                    [
-                                                        "label" => "Third level 1",
-                                                        "url" => "#",
-                                                    ],
-                                                    [
-                                                        "label" => "Third level 2",
-                                                        "url" => "#",
-                                                    ],
-                                                ],
-                                            ],
-                                        ],
-                                    ],
+                                    // [
+                                    //     "label" => "Badges",
+                                    //     "url" => "#",
+                                    //     "icon" => "table",
+                                    //     "items" => [
+                                    //         [
+                                    //             "label" => "Default",
+                                    //             "url" => "#",
+                                    //             "badge" => "123",
+                                    //         ],
+                                    //         [
+                                    //             "label" => "Success",
+                                    //             "url" => "#",
+                                    //             "badge" => "new",
+                                    //             "badgeOptions" => ["class" => "label-success"],
+                                    //         ],
+                                    //         [
+                                    //             "label" => "Danger",
+                                    //             "url" => "#",
+                                    //             "badge" => "!",
+                                    //             "badgeOptions" => ["class" => "label-danger"],
+                                    //         ],
+                                    //     ],
+                                    // ],
+                                    // [
+                                    //     "label" => "Multilevel",
+                                    //     "url" => "#",
+                                    //     "icon" => "table",
+                                    //     "items" => [
+                                    //         [
+                                    //             "label" => "Second level 1",
+                                    //             "url" => "#",
+                                    //         ],
+                                    //         [
+                                    //             "label" => "Second level 2",
+                                    //             "url" => "#",
+                                    //             "items" => [
+                                    //                 [
+                                    //                     "label" => "Third level 1",
+                                    //                     "url" => "#",
+                                    //                 ],
+                                    //                 [
+                                    //                     "label" => "Third level 2",
+                                    //                     "url" => "#",
+                                    //                 ],
+                                    //             ],
+                                    //         ],
+                                    //     ],
+                                    // ],
                                 ],
                             ]
                         )

@@ -18,7 +18,7 @@ class EntityTypeSearch extends EntityType
     public function rules()
     {
         return [
-            [['code', 'name'], 'safe'],
+            [['code', 'parent_code', 'name'], 'safe'],
         ];
     }
 
@@ -58,6 +58,7 @@ class EntityTypeSearch extends EntityType
 
         // grid filtering conditions
         $query->andFilterWhere(['like', 'code', $this->code])
+            ->andFilterWhere(['like', 'parent_code', $this->parent_code])
             ->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
