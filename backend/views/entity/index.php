@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             	'attribute' => 'description',
 	            'contentOptions' => [ 'class' => 'trunc' ],
             ],
+            // 'description:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -11,7 +11,7 @@ use Yii;
  * @property string $parent_code Код родителя
  * @property string $name Название
  *
- * @property Entity $code0
+ * @property Entity[] $entities
  * @property EntityType $parentCode
  * @property EntityType[] $entityTypes
  */
@@ -35,7 +35,6 @@ class EntityType extends \yii\db\ActiveRecord
             [['code', 'parent_code'], 'string', 'max' => 150],
             [['name'], 'string', 'max' => 250],
             [['code'], 'unique'],
-            [['code'], 'exist', 'skipOnError' => true, 'targetClass' => Entity::className(), 'targetAttribute' => ['code' => 'type_code']],
             [['parent_code'], 'exist', 'skipOnError' => true, 'targetClass' => EntityType::className(), 'targetAttribute' => ['parent_code' => 'code']],
         ];
     }
@@ -55,9 +54,9 @@ class EntityType extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCode0()
+    public function getEntities()
     {
-        return $this->hasOne(Entity::className(), ['type_code' => 'code']);
+        return $this->hasMany(Entity::className(), ['type_code' => 'code']);
     }
 
     /**

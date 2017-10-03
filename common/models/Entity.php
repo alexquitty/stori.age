@@ -12,7 +12,7 @@ use Yii;
  * @property string $name Название
  * @property string $description Описание
  *
- * @property User $id0
+ * @property EntityType $typeCode
  */
 class Entity extends \yii\db\ActiveRecord
 {
@@ -33,7 +33,7 @@ class Entity extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['type_code'], 'string', 'max' => 150],
             [['name'], 'string', 'max' => 250],
-            [['id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id' => 'id']],
+            [['type_code'], 'exist', 'skipOnError' => true, 'targetClass' => EntityType::className(), 'targetAttribute' => ['type_code' => 'code']],
         ];
     }
 
@@ -53,8 +53,8 @@ class Entity extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getId0()
+    public function getTypeCode()
     {
-        return $this->hasOne(User::className(), ['id' => 'id']);
+        return $this->hasOne(EntityType::className(), ['code' => 'type_code']);
     }
 }

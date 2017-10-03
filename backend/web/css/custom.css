@@ -4,7 +4,7 @@
 }
 
 .trunc {
-	max-width: 900px !important;
+	max-width: 1000px !important;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
