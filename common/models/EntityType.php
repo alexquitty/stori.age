@@ -35,6 +35,7 @@ class EntityType extends \yii\db\ActiveRecord
             [['code', 'parent_code'], 'string', 'max' => 150],
             [['name'], 'string', 'max' => 250],
             [['code'], 'unique'],
+	        [['parent_code'], 'default'],
             [['parent_code'], 'exist', 'skipOnError' => true, 'targetClass' => EntityType::className(), 'targetAttribute' => ['parent_code' => 'code']],
         ];
     }
