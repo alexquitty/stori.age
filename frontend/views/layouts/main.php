@@ -37,21 +37,24 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+        // ['label' => 'About', 'url' => ['/site/about']],
+        // ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
+        // $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
         $menuItems[] = '<li>'
+	        . '<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown">'.Yii::$app->user->identity->username.' ▼</a>'
+	        . '<ul class="dropdown-menu dropdown-usermenu pull-right"><li><a href="/cpanel/">Администрирование</a></li>'
+	        . '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                'Выйти <span class="logout">⇥</span>',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
-            . '</li>';
+            . '</li></ul></li>';
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],

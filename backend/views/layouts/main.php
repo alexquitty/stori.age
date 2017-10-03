@@ -187,8 +187,8 @@ AppAsset::register($this);
 		                ?><ul class="nav navbar-nav navbar-right">
 			                <li>
 				                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					                <img src="http://placehold.it/128x128" alt=""><?=\Yii::$app->user->identity->username?>
-					                <span class="fa fa-angle-down"></span>
+					                <img src="http://placehold.it/128x128" alt=""><?=\Yii::$app->user->identity->username?> ▼
+					                <!--<span class="fa fa-angle-down"></span>-->
 				                </a>
 				                <ul class="dropdown-menu dropdown-usermenu pull-right">
 					                <li><a href="javascript:;">Профиль</a></li>
