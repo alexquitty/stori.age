@@ -44,12 +44,25 @@ return [
             'rules' => [
             	'' => 'site/index',
             	'<action>' => 'site/<action>',
+	            '<controller>/<action>' => '<controller>/<action>',
             ],
         ],
 	    'assetManager' => [
 		    'basePath' => '@webroot/assets',
 		    'baseUrl' => '@web/assets',
 	    ],
+	    'i18n' => [
+	    	'translations' => [
+	    		'cpanel' => [
+	    			'class' => 'yii\i18n\PhpMessageSource',
+				    'fileMap' => [
+				    	'backend' => 'backend.php',
+				    ],
+			    ],
+		    ],
+	    ],
     ],
     'params' => $params,
+	'language' => 'ru-RU',
+	'sourceLanguage' => 'en-US',
 ];
