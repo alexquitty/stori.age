@@ -44,10 +44,8 @@ $this->beginPage();
                 <div class="navbar nav_title" style="border: 0;">
                     <a href="/" class="site_title"><i class="fa fa-globe"></i> <span><?=\Yii::$app->params['name']?></span></a>
                 </div>
-                <div class="clearfix"></div>
+                <div class="clearfix"></div><?php
 
-                <!-- menu prile quick info -->
-	            <?php
 	            if(!Yii::$app->user->isGuest)
 	            {
 	            	?><div class="profile">
@@ -60,19 +58,14 @@ $this->beginPage();
 			            </div>
 		            </div><?php
 	            }
-	            ?>
-                <!-- /menu prile quick info -->
 
-                <!-- sidebar menu -->
+	            ?><!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu clearfix">
 
-	                <!--<pre>--><?//var_dump($this->context)?><!--</pre>-->
+                    <div class="menu_section"><?php
 
-                    <div class="menu_section">
-                        <!--<h3>Меню</h3>-->
-                        <?=
-                        \yiister\gentelella\widgets\Menu::widget([
-	                        "items" => array_merge(
+	                    echo \yiister\gentelella\widgets\Menu::widget([
+	                        'items' => array_merge(
                             [
 	                            [
 	                            	'label' => 'Вернуться на сайт',
@@ -172,7 +165,10 @@ $this->beginPage();
                                     //         ],
                                     //     ],
                                     // ],
-                        ])
+                        ]);
+
+	                    echo '<pre>',var_dump(\common\classes\MenuList::get($this->context->id)),'</pre>';
+
                         ?>
                     </div>
 

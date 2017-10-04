@@ -74,6 +74,7 @@ class Menu extends \yii\db\ActiveRecord
      */
     public function getMenus()
     {
-        return $this->hasMany(Menu::className(), ['parent_code' => 'code']);
+        return $this->hasMany(Menu::className(), ['parent_code' => 'code'])
+	        ->orderBy(['ord' => SORT_ASC]);
     }
 }
