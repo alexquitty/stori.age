@@ -13,6 +13,12 @@ class MenuList
 {
 	private static $contextId;
 
+	/**
+	 * @param $menu
+	 * @param array $result
+	 *
+	 * @return array
+	 */
 	private static function __fillMenu($menu, &$result = [])
 	{
 		foreach($menu as $item)
@@ -30,7 +36,7 @@ class MenuList
 			if(empty($item['menus']) && isset(self::$contextId))
 				$data['active'] = $item['code'] == self::$contextId;
 			else
-				$data['items'] = self::__fillMenu($item['menus'], $data);
+				$data['items'] = self::__fillMenu($item['menus'], $data['items']);
 
 			$result[] = $data;
 		}
@@ -38,6 +44,11 @@ class MenuList
 		return $result;
 	}
 
+	/**
+	 * @param null $contextId
+	 *
+	 * @return array
+	 */
 	public static function get($contextId = null)
 	{
 		self::$contextId = $contextId;

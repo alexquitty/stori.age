@@ -80,32 +80,13 @@ $this->beginPage();
 				                        'icon' => 'home',
 			                        ],
 	                            ],
-		                        [
-		                            [
-		                                'label' => Yii::t('cpanel', 'Entities'),
-		                                'url' => '#',
-		                                'icon' => 'table',
-		                                'items' => [
-		                                    [
-		                                        'label' => 'Меню',
-				                                'url' => '/cpanel/menu/',
-				                                'active' => 'menu' == $this->context->id,
-			                                ],
-		                                    [
-		                                        'label' => 'Элементы',
-			                                    'url' => '/cpanel/entity/',
-			                                    'active' => 'entity' == $this->context->id
-		                                    ],
-		                                    [
-		                                        'label' => 'Типы сущностей',
-			                                    'url' => '/cpanel/entity-type/',
-			                                    'active' => 'entity-type' == $this->context->id
-		                                    ],
-		                                ],
-		                            ],
-		                        ]
+	                            \common\classes\MenuList::get($this->context->id)
 	                        )),
-                                    // ["label" => "Layout", "url" => ["site/layout"], "icon" => "files-o"],
+
+
+
+
+		                            // ["label" => "Layout", "url" => ["site/layout"], "icon" => "files-o"],
                                     // ["label" => "Error page", "url" => ["site/error-page"], "icon" => "close"],
                                     // [
                                     //     "label" => "Widgets",
@@ -166,11 +147,7 @@ $this->beginPage();
                                     //     ],
                                     // ],
                         ]);
-
-	                    echo '<pre>',var_dump(\common\classes\MenuList::get($this->context->id)),'</pre>';
-
-                        ?>
-                    </div>
+                    ?></div>
 
                 </div>
                 <!-- /sidebar menu -->
