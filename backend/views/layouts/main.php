@@ -51,7 +51,7 @@ AppAsset::register($this);
 	            {
 	            	?><div class="profile">
 			            <div class="profile_pic">
-				            <img src="http://placehold.it/128x128" alt="..." class="img-circle profile_img">
+				            <img src="/cpanel/image/user-icon.png" class="img-circle profile_img">
 			            </div>
 			            <div class="profile_info">
 				            <span>Welcome,</span>
@@ -216,7 +216,7 @@ AppAsset::register($this);
 		                ?><ul class="nav navbar-nav navbar-right">
 			                <li>
 				                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					                <img src="http://placehold.it/128x128" alt=""><?=\Yii::$app->user->identity->username?> ▼
+					                <img src="/cpanel/image/user-icon.png" alt=""><?=\Yii::$app->user->identity->username?> ▼
 					                <!--<span class="fa fa-angle-down"></span>-->
 				                </a>
 				                <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -308,23 +308,23 @@ AppAsset::register($this);
 
         <!-- page content -->
         <div class="right_col" role="main">
-            <?php if (isset($this->params['h1'])): ?>
-                <div class="page-title">
-                    <div class="title_left">
-                        <h1><?= $this->params['h1'] ?></h1>
-                    </div>
-                    <div class="title_right">
-                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php endif; ?>
+            <?php //if (isset($this->params['h1'])): ?>
+            <!--    <div class="page-title">-->
+            <!--        <div class="title_left">-->
+            <!--            <h1>--><?//= $this->params['h1'] ?><!--</h1>-->
+            <!--        </div>-->
+            <!--        <div class="title_right">-->
+            <!--            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">-->
+            <!--                <div class="input-group">-->
+            <!--                    <input type="text" class="form-control" placeholder="Search for...">-->
+            <!--                    <span class="input-group-btn">-->
+            <!--                    <button class="btn btn-default" type="button">Go!</button>-->
+            <!--                </span>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <?php //endif; ?>
             <div class="clearfix"></div>
 
             <?= $content ?>
