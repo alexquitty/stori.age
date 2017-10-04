@@ -53,8 +53,8 @@ return [
 	    ],
 	    'i18n' => [
 	    	'translations' => [
-	    		'cpanel' => [
-	    			'class' => 'yii\i18n\PhpMessageSource',
+	    		'*' => [
+	    			'class' => 'yii\i18n\DbMessageSource',
 			    ],
 		    ],
 	    ],
