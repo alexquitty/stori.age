@@ -6,15 +6,16 @@
  */
 
 use backend\assets\AppAsset;
-use common\widgets\Alert;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 
 AppAsset::register($this);
 
-?>
-<?php $this->beginPage(); ?>
-<!DOCTYPE html>
+$url = '/cpanel/';
+
+$this->beginPage();
+
+?><!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -41,7 +42,7 @@ AppAsset::register($this);
             <div class="left_col scroll-view">
 
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/" class="site_title"><i class="fa fa-globe"></i> <span>Storiage</span></a>
+                    <a href="/" class="site_title"><i class="fa fa-globe"></i> <span><?=\Yii::$app->params['name']?></span></a>
                 </div>
                 <div class="clearfix"></div>
 
@@ -51,7 +52,7 @@ AppAsset::register($this);
 	            {
 	            	?><div class="profile">
 			            <div class="profile_pic">
-				            <img src="/cpanel/image/user-icon.png" class="img-circle profile_img">
+				            <img src="<?=$url?>image/user-icon.png" class="img-circle profile_img">
 			            </div>
 			            <div class="profile_info">
 				            <span>Welcome,</span>
@@ -82,7 +83,7 @@ AppAsset::register($this);
 	                            [
 			                        [
 			                            'label' => 'Администрирование',
-				                        'url' => '/cpanel',
+				                        'url' => $url,
 				                        'icon' => 'home',
 			                        ],
 	                            ],
@@ -216,12 +217,12 @@ AppAsset::register($this);
 		                ?><ul class="nav navbar-nav navbar-right">
 			                <li>
 				                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					                <img src="/cpanel/image/user-icon.png" alt=""><?=\Yii::$app->user->identity->username?> ▼
+					                <img src="<?=$url?>image/user-icon.png" alt=""><?=\Yii::$app->user->identity->username?> ▼
 					                <!--<span class="fa fa-angle-down"></span>-->
 				                </a>
 				                <ul class="dropdown-menu dropdown-usermenu pull-right">
 					                <li><a href="javascript:;">Профиль</a></li>
-					                <li><a href="/cpanel/logout"><i class="fa fa-sign-out pull-right"></i>Выход</a>
+					                <li><a href="<?=$url?>logout"><i class="fa fa-sign-out pull-right"></i>Выход</a>
 					                </li>
 				                </ul>
 			                </li>
