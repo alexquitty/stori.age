@@ -6,7 +6,9 @@
  */
 
 use backend\assets\AppAsset;
+use common\widgets\Alert;
 use yii\helpers\Html;
+use yii\widgets\Breadcrumbs;
 
 AppAsset::register($this);
 
@@ -207,6 +209,10 @@ AppAsset::register($this);
 	                <?php
 	                if(!Yii::$app->user->isGuest)
 	                {
+		                echo Breadcrumbs::widget([
+			                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+		                ]);
+
 		                ?><ul class="nav navbar-nav navbar-right">
 			                <li>
 				                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
