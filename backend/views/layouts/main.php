@@ -19,7 +19,7 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="icon" type="image/png" href="/favicon.ico">
+	<link rel="icon" type="image/png" href="/favicon.ico?v=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Yii::$app->params['title'] ?></title>
     <?php $this->head() ?>
@@ -63,30 +63,52 @@ AppAsset::register($this);
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu clearfix">
 
+	                <!--<pre>--><?//var_dump($this->context)?><!--</pre>-->
+
                     <div class="menu_section">
                         <!--<h3>Меню</h3>-->
                         <?=
                         \yiister\gentelella\widgets\Menu::widget([
-	                        "items" => array_merge([
-	                            ['label' => 'Вернуться на сайт', 'url' => '/', 'icon' => 'globe'],
-                            ], Yii::$app->user->isGuest ? [] : [
-		                        ["label" => 'Администрирование', "url" => "/cpanel", "icon" => "home"],
-	                        	[
-	                                'label' => Yii::t('cpanel', 'Entities'),
-	                                'url' => '#',
-	                                'icon' => 'table',
-	                                'items' => [
-	                                    [
-	                                        'label' => 'Элементы',
-		                                    'url' => '/cpanel/entity/',
-	                                    ],
-	                                    [
-	                                        'label' => 'Типы сущностей',
-		                                    'url' => '/cpanel/entity-type/',
-	                                    ],
-	                                ],
+	                        "items" => array_merge(
+                            [
+	                            [
+	                            	'label' => 'Вернуться на сайт',
+		                            'url' => '/',
+		                            'icon' => 'globe',
 	                            ],
-                            ]),
+                            ], Yii::$app->user->isGuest ? [] : array_merge(
+	                            [
+			                        [
+			                            'label' => 'Администрирование',
+				                        'url' => '/cpanel',
+				                        'icon' => 'home',
+			                        ],
+	                            ],
+		                        [
+		                            [
+		                                'label' => Yii::t('cpanel', 'Entities'),
+		                                'url' => '#',
+		                                'icon' => 'table',
+		                                'items' => [
+		                                    [
+		                                        'label' => 'Меню',
+				                                'url' => '/cpanel/menu/',
+				                                'active' => 'menu' == $this->context->id,
+			                                ],
+		                                    [
+		                                        'label' => 'Элементы',
+			                                    'url' => '/cpanel/entity/',
+			                                    'active' => 'entity' == $this->context->id
+		                                    ],
+		                                    [
+		                                        'label' => 'Типы сущностей',
+			                                    'url' => '/cpanel/entity-type/',
+			                                    'active' => 'entity-type' == $this->context->id
+		                                    ],
+		                                ],
+		                            ],
+		                        ]
+	                        )),
                                     // ["label" => "Layout", "url" => ["site/layout"], "icon" => "files-o"],
                                     // ["label" => "Error page", "url" => ["site/error-page"], "icon" => "close"],
                                     // [
