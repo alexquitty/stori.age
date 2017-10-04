@@ -40,6 +40,8 @@ class Menu extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 250],
             [['code'], 'unique'],
             [['parent_code'], 'exist', 'skipOnError' => true, 'targetClass' => Menu::className(), 'targetAttribute' => ['parent_code' => 'code']],
+	        [['parent_code', 'icon'], 'default'],
+	        [['ord', 'content', 'access'], 'default', 'value' => 0],
         ];
     }
 
