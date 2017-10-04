@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'icon',
             'ord',
-            //'content',
+            'content',
             //'access',
 
             ['class' => 'yii\grid\ActionColumn'],
