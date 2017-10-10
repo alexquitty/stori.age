@@ -31,11 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             // 'category',
             'message:ntext',
-	        [
-	        	'attribute' => 'translation',
-		        'value' => 'translation.translation',
-	        ],
         ],
+    ]), DetailView::widget([
+    	'model' => $model2,
+	    'attributes' => [
+	    	'translation:ntext',
+	    ],
     ]) ?>
 
 </div>

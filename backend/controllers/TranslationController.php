@@ -59,6 +59,7 @@ class TranslationController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+	        'model2' => $this->findModel2($id),
         ]);
     }
 
@@ -124,9 +125,9 @@ class TranslationController extends Controller
      * @return SourceMessage the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($id, $modelClass = 'SourceMessage')
     {
-        if (($model = SourceMessage::findOne($id)) !== null) {
+        if (($model = ${$modelClass}::findOne($id)) !== null) {
             return $model;
         }
 
