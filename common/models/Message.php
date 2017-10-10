@@ -35,6 +35,7 @@ class Message extends \yii\db\ActiveRecord
             [['language'], 'string', 'max' => 16],
             [['id', 'language'], 'unique', 'targetAttribute' => ['id', 'language']],
             [['id'], 'exist', 'skipOnError' => true, 'targetClass' => SourceMessage::className(), 'targetAttribute' => ['id' => 'id']],
+	        [['language'], 'default', 'value' => 'ru'],
         ];
     }
 
