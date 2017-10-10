@@ -69,9 +69,9 @@ class LogContentController extends Controller
             return $this->redirect(['view', 'id' => $model->log_id]);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        // return $this->render('create', [
+        //     'model' => $model,
+        // ]);
     }
 
     /**
