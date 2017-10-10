@@ -52,4 +52,17 @@ class Log extends \yii\db\ActiveRecord
             'action' => 'Действие',
         ];
     }
+
+	public function getContent()
+	{
+		return $this->hasOne(LogContent::className(), ['id' => 'log_id']);
+	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getUsers()
+	{
+		return $this->hasMany(User::className(), ['id' => 'user_id']);
+	}
 }
