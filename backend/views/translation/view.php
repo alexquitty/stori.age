@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="source-message-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title),($model->message ? ' <small>('.$model->message.')</small>' : '') ?></h1>
 
     <p>
         <?= Html::a(Yii::t('cpanel', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -31,12 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             // 'category',
             'message:ntext',
+	        'translation.translation',
         ],
-    ]), DetailView::widget([
-    	'model' => $model2,
-	    'attributes' => [
-	    	'translation:ntext',
-	    ],
     ]) ?>
 
 </div>
