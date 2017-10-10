@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\EntityType;
 use backend\models\EntityTypeSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -20,12 +21,22 @@ class EntityTypeController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
+	        'verbs' => [
+		        'class' => VerbFilter::className(),
+		        'actions' => [
+			        'delete' => ['POST'],
+		        ],
+	        ],
+	        'access' => [
+		        'class' => AccessControl::className(),
+		        'rules' => [
+			        [
+				        'actions' => ['index','view','create','update','delete'],
+				        'allow' => true,
+				        'roles' => ['@'],
+			        ],
+		        ],
+	        ],
         ];
     }
 
