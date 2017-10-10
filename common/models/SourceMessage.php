@@ -44,6 +44,7 @@ class SourceMessage extends \yii\db\ActiveRecord
             'id' => 'ID',
             'category' => 'Категория',
             'message' => 'Сообщение',
+	        'translation' => 'Перевод',
         ];
     }
 
@@ -54,4 +55,12 @@ class SourceMessage extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Message::className(), ['id' => 'id']);
     }
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getTranslation()
+	{
+		return $this->hasOne(Message::className(), ['id' => 'id'])->andWhere(['message.language' => 'ru']);
+	}
 }

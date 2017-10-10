@@ -12,6 +12,8 @@ use common\models\SourceMessage;
  */
 class TranslationSearch extends SourceMessage
 {
+	public $translation;
+
     /**
      * @inheritdoc
      */
@@ -19,7 +21,8 @@ class TranslationSearch extends SourceMessage
     {
         return [
             [['id'], 'integer'],
-            [['category', 'message'], 'safe'],
+            [['category', 'message', 'translation'], 'safe'],
+	        [['translation'], 'safe'],
         ];
     }
 
@@ -41,13 +44,18 @@ class TranslationSearch extends SourceMessage
      */
     public function search($params)
     {
-        $query = SourceMessage::find();
+        $query = SourceMessage::find()->joinWith('translation');
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['translation'] = [
+        	'asc' => ['message.translation' => SORT_ASC],
+	        'desc' => ['message.translation' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -63,7 +71,8 @@ class TranslationSearch extends SourceMessage
         ]);
 
         $query->andFilterWhere(['like', 'category', $this->category])
-            ->andFilterWhere(['like', 'message', $this->message]);
+            ->andFilterWhere(['like', 'message', $this->message])
+            ->andFilterWhere(['like', 'message.translation', $this->translation]);
 
         return $dataProvider;
     }

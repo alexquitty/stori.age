@@ -16,11 +16,14 @@ use yii\widgets\ActiveForm;
         'options' => [
             'data-pjax' => 1
         ],
-    ]); ?>
+    ]);
+    ?>
 
     <?//= $form->field($model, 'id') ?>
 
     <?//= $form->field($model, 'category') ?>
+
+	<?//= $form->field($messages, 'translation') ?>
 
     <?= $form->field($model, 'message') ?>
 

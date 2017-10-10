@@ -9,6 +9,8 @@ use yii\widgets\Pjax;
 
 $this->title = Yii::t('cpanel', 'Source Messages');
 $this->params['breadcrumbs'][] = $this->title;
+
+// echo '<pre>',var_dump($dataProvider),'</pre>';
 ?>
 <div class="source-message-index">
 
@@ -29,6 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'id',
             // 'category',
             'message:ntext',
+            [
+            	'attribute' => 'translation',
+	            'value' => 'translation.translation',
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
