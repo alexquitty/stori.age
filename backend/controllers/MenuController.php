@@ -51,6 +51,7 @@ class MenuController extends Controller
         $dataProvider->setSort([
         	'defaultOrder' => [
 	            'parent_code' => SORT_ASC,
+		        'code' => SORT_ASC,
 		        'ord' => SORT_ASC,
 	        ]
         ]);

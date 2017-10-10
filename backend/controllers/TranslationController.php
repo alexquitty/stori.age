@@ -37,6 +37,11 @@ class TranslationController extends Controller
     {
         $searchModel = new TranslationSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->setSort([
+        	'defaultOrder' => [
+        		'message' => SORT_ASC,
+	        ],
+        ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
