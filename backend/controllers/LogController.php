@@ -3,17 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Menu;
-use backend\models\MenuSearch;
-use yii\filters\AccessControl;
+use common\models\Log;
+use backend\models\LogSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * MenuController implements the CRUD actions for Menu model.
+ * LogController implements the CRUD actions for Log model.
  */
-class MenuController extends Controller
+class LogController extends Controller
 {
     /**
      * @inheritdoc
@@ -21,39 +20,23 @@ class MenuController extends Controller
     public function behaviors()
     {
         return [
-	        'verbs' => [
-		        'class' => VerbFilter::className(),
-		        'actions' => [
-			        'delete' => ['POST'],
-		        ],
-	        ],
-	        'access' => [
-		        'class' => AccessControl::className(),
-		        'rules' => [
-			        [
-				        'actions' => ['index','view','create','update','delete'],
-				        'allow' => true,
-				        'roles' => ['@'],
-			        ],
-		        ],
-	        ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
         ];
     }
 
     /**
-     * Lists all Menu models.
+     * Lists all Log models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new MenuSearch();
+        $searchModel = new LogSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->setSort([
-        	'defaultOrder' => [
-	            'parent_code' => SORT_ASC,
-		        'ord' => SORT_ASC,
-	        ]
-        ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -62,7 +45,7 @@ class MenuController extends Controller
     }
 
     /**
-     * Displays a single Menu model.
+     * Displays a single Log model.
      * @param string $id
      * @return mixed
      */
@@ -74,16 +57,16 @@ class MenuController extends Controller
     }
 
     /**
-     * Creates a new Menu model.
+     * Creates a new Log model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Menu();
+        $model = new Log();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->code]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -92,7 +75,7 @@ class MenuController extends Controller
     }
 
     /**
-     * Updates an existing Menu model.
+     * Updates an existing Log model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
@@ -102,7 +85,7 @@ class MenuController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->code]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -111,7 +94,7 @@ class MenuController extends Controller
     }
 
     /**
-     * Deletes an existing Menu model.
+     * Deletes an existing Log model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -124,15 +107,15 @@ class MenuController extends Controller
     }
 
     /**
-     * Finds the Menu model based on its primary key value.
+     * Finds the Log model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return Menu the loaded model
+     * @return Log the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Menu::findOne($id)) !== null) {
+        if (($model = Log::findOne($id)) !== null) {
             return $model;
         }
 
