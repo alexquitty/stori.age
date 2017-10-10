@@ -94,13 +94,18 @@ class TranslationController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model2 = $this->findModel2($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if($model->load($params = Yii::$app->request->post()) && $model->save())
+        {
+	        $params[ucfirst(Message::tableName())]['id'] = $model->id;
+	        if($model2->load($params)&& $model2->save())
+                return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+	        'model2' => $model2,
         ]);
     }
 
@@ -132,4 +137,13 @@ class TranslationController extends Controller
 
         throw new NotFoundHttpException(Yii::t('cpanel', 'The requested page does not exist.'));
     }
+
+	protected function findModel2($id)
+	{
+		if (($model = Message::findOne($id)) !== null) {
+			return $model;
+		}
+
+		throw new NotFoundHttpException(Yii::t('cpanel', 'The requested page does not exist.'));
+	}
 }

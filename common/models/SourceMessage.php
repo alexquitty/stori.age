@@ -43,7 +43,7 @@ class SourceMessage extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'category' => 'Категория',
-            'message' => 'Сообщение',
+            'message' => 'Оригинал',
 	        'translation' => 'Перевод',
         ];
     }
