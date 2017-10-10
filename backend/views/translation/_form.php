@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\SourceMessage */
+/* @var $model2 common\models\Message */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -16,7 +17,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'message')->textarea(['rows' => 6]) ?>
 
-	<?= $form->field($model, 'translation.translation')->textarea(['rows' => 6]) ?>
+	<?= $form->field($model2, 'translation')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('cpanel', 'Save'), ['class' => 'btn btn-success']) ?>

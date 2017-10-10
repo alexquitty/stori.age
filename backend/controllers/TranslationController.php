@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
+use common\models\Message;
 use common\models\SourceMessage;
 use backend\models\TranslationSearch;
 use yii\web\Controller;
@@ -69,13 +70,21 @@ class TranslationController extends Controller
     public function actionCreate()
     {
         $model = new SourceMessage();
+	    $model2 = new Message();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if($model->load($params = Yii::$app->request->post()) && $model->save())
+        {
+        	$params[ucfirst(Message::tableName())]['id'] = $model->id;
+	        \common\func::d($params);
+	        if($model2->load($params)&& $model2->save())
+                return $this->redirect(['view', 'id' => $model->id]);
+	        else
+	        	\common\func::d($model2->getErrors());
         }
 
         return $this->render('create', [
             'model' => $model,
+	        'model2' => $model2,
         ]);
     }
 
