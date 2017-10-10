@@ -75,11 +75,8 @@ class TranslationController extends Controller
         if($model->load($params = Yii::$app->request->post()) && $model->save())
         {
         	$params[ucfirst(Message::tableName())]['id'] = $model->id;
-	        \common\func::d($params);
 	        if($model2->load($params)&& $model2->save())
                 return $this->redirect(['view', 'id' => $model->id]);
-	        else
-	        	\common\func::d($model2->getErrors());
         }
 
         return $this->render('create', [
