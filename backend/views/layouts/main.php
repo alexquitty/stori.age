@@ -64,6 +64,7 @@ $this->beginPage();
 
                     <div class="menu_section"><?php
 
+
 	                    echo \yiister\gentelella\widgets\Menu::widget([
 	                        'items' => array_merge(
                             [
