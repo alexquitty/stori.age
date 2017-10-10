@@ -30,10 +30,12 @@ class Entity extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['description'], 'string'],
+            [['letter', 'description'], 'string'],
+	        [['letter'], 'string', 'max' => 1],
             [['type_code'], 'string', 'max' => 150],
             [['name'], 'string', 'max' => 250],
-            [['type_code'], 'exist', 'skipOnError' => true, 'targetClass' => EntityType::className(), 'targetAttribute' => ['type_code' => 'code']],
+            [['type_code'], 'exist', 'skipOnError' => false, 'targetClass' => EntityType::className(), 'targetAttribute' => ['type_code' => 'code']],
+	        [['letter'], 'default'],
         ];
     }
 
@@ -44,6 +46,7 @@ class Entity extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+	        'letter' => 'Буква',
             'type_code' => 'Тип сущности',
             'name' => 'Название',
             'description' => 'Описание',

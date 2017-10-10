@@ -75,8 +75,12 @@ class EntityController extends Controller
     public function actionCreate()
     {
         $model = new Entity();
+	    $className = ucfirst($model::tableName());
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $params = Yii::$app->request->post();
+        $params[$className]['letter'] = mb_substr($params[$className]['name'], 0, 1);
+
+        if ($model->load($params) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -94,8 +98,12 @@ class EntityController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+	    $className = ucfirst($model::tableName());
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+	    $params = Yii::$app->request->post();
+	    $params[$className]['letter'] = mb_substr($params[$className]['name'], 0, 1);
+
+        if ($model->load($params) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

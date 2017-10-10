@@ -19,7 +19,7 @@ class EntitySearch extends Entity
     {
         return [
             [['id'], 'integer'],
-            [['type_code', 'name', 'description'], 'safe'],
+            [['letter', 'type_code', 'name', 'description'], 'safe'],
         ];
     }
 
@@ -62,7 +62,8 @@ class EntitySearch extends Entity
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'type_code', $this->type_code])
+        $query->andFilterWhere(['like', 'letter', $this->letter])
+	        ->andFilterWhere(['like', 'type_code', $this->type_code])
             ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'description', $this->description]);
 
