@@ -54,7 +54,7 @@ class Message extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getId0()
+    public function getSource()
     {
         return $this->hasOne(SourceMessage::className(), ['id' => 'id']);
     }
