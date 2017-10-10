@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Log;
 use backend\models\LogSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -19,14 +20,29 @@ class LogController extends Controller
      */
     public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
+	    return [
+		    'verbs' => [
+			    'class' => VerbFilter::className(),
+			    'actions' => [
+				    'delete' => ['POST'],
+			    ],
+		    ],
+		    'access' => [
+			    'class' => AccessControl::className(),
+			    'rules' => [
+				    [
+					    'actions' => ['index','view'],
+					    'allow' => true,
+					    'roles' => ['@'],
+				    ],
+				    [
+				    	'actions' => ['update','delete','create'],
+					    'allow' => true,
+					    'roles' => ['admin'],
+				    ],
+			    ],
+		    ],
+	    ];
     }
 
     /**
@@ -37,6 +53,11 @@ class LogController extends Controller
     {
         $searchModel = new LogSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->setSort([
+        	'defaultOrder' => [
+        		'date' => SORT_DESC,
+	        ],
+        ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
