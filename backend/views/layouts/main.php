@@ -80,7 +80,7 @@ $this->beginPage();
 				                        'icon' => 'home',
 			                        ],
 	                            ],
-	                            \common\classes\MenuList::get($this->context->id)
+	                            \backend\classes\MenuList::get($this->context->id)
 	                        )),
 
 

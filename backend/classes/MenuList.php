@@ -6,8 +6,10 @@
  * Time: 18:26
  */
 
-namespace common\classes;
+namespace backend\classes;
 
+
+use common\models\Menu;
 
 class MenuList
 {
@@ -53,7 +55,7 @@ class MenuList
 	{
 		self::$contextId = $contextId;
 
-		$menu = \common\models\Menu::find()->alias('m')
+		$menu = Menu::find()->alias('m')
 			->joinWith('menus as m2')
 			->where(array_merge([
 				'm.parent_code' => null,
