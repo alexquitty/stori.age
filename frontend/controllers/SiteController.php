@@ -88,7 +88,8 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            // return $this->goBack();
+            return $this->goAdminPanel();
         } else {
             return $this->render('login', [
                 'model' => $model,
@@ -210,4 +211,9 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+	public function goAdminPanel()
+	{
+		return Yii::$app->getResponse()->redirect(\yii\helpers\Url::to(['cpanel']));
+	}
 }
