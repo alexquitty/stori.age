@@ -50,6 +50,7 @@ class MenuController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->setSort([
         	'defaultOrder' => [
+        		'content' => SORT_DESC,
 	            'parent_code' => SORT_ASC,
 		        'code' => SORT_ASC,
 		        'ord' => SORT_ASC,

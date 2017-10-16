@@ -57,6 +57,7 @@ class MenuList
 			->joinWith('menus as m2')
 			->where(array_merge([
 				'm.parent_code' => null,
+				'm.content' => 0,
 			], \Yii::$app->user->can('admin') ? [] : [
 				'm.access' => 0,
 			]))
