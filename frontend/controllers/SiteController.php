@@ -72,7 +72,23 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+	    $snowflake = \common\models\Snowflake::find()
+		    ->asArray()
+		    ->all();
+
+	    $data = [];
+	    while(count($data) < 3)
+	    {
+	    	$idx = rand(0, 9);
+		    if(false == array_key_exists($idx, $data))
+		    	$data[$idx] = $snowflake[$idx];
+	    }
+
+	    sort($data);
+
+        return $this->render('index', [
+	        'data' => $data,
+        ]);
     }
 
     /**
