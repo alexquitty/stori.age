@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\LogContent;
+use backend\models\LogContent;
 use backend\models\LogContentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

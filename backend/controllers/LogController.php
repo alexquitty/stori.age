@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Log;
+use backend\models\Log;
 use backend\models\LogSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
