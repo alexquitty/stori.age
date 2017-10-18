@@ -26,11 +26,9 @@ trait CRUDTrait
 
 
 	/**
-	 * @param string $primaryKey
-	 *
 	 * @return mixed
 	 */
-	protected function __actionCreate($primaryKey = 'id')
+	protected function __actionCreate()
 	{
 		/**
 		 * @var $model \yii\db\ActiveRecord
@@ -38,7 +36,7 @@ trait CRUDTrait
 		$model = new $this->model();
 
 		if($model->load(\Yii::$app->request->post()) && $model->save())
-			return $this->redirect(['view', 'id' => $model->$primaryKey]);
+			return $this->redirect(['view', 'id' => $model->primaryKey()]);
 		else
 			\func::d($model->errors);
 
@@ -69,11 +67,10 @@ trait CRUDTrait
 
 	/**
 	 * @param $id
-	 * @param string $primaryKey
 	 *
 	 * @return mixed
 	 */
-	protected function __actionUpdate($id, $primaryKey = 'id')
+	protected function __actionUpdate($id)
 	{
 		/**
 		 * @var $model \yii\db\ActiveRecord
@@ -84,7 +81,7 @@ trait CRUDTrait
 			$this->__logAction($model); // save to log & content
 
 		if($model->load(\Yii::$app->request->post()) && $model->save())
-			return $this->redirect(['view', 'id' => $model->$primaryKey]);
+			return $this->redirect(['view', 'id' => $model->primaryKey()]);
 
 		return $this->render('update', [
 			'model' => $model,
@@ -155,13 +152,21 @@ trait CRUDTrait
 		return [
 			'access' => [
 				'class' => AccessControl::className(),
-				'rules' => empty($rules = $this->__getBehaviorAccessRules())
-					? [
-						'actions' => ['index','view','create','update','delete'],
-						'allow' => true,
-						'roles' => ['@'],
-					]
-					: $rules,
+				'rules' => $this->__getBehaviorAccessRules(),
+			],
+		];
+	}
+
+	/**
+	 * @return array
+	 */
+	protected function __getBehaviorAccessRules()
+	{
+		return [
+			[
+				'actions' => ['index','view','create','update','delete'],
+				'allow' => true,
+				'roles' => ['@'],
 			],
 		];
 	}
@@ -216,6 +221,9 @@ trait CRUDTrait
 	 */
 	public function actionView($id)
 	{
+		/**
+		 * @var $model \yii\db\ActiveRecord
+		 */
 		$model = $this->findModel($id);
 
 		if(isset($model))
