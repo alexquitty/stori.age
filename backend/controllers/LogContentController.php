@@ -5,8 +5,6 @@ namespace backend\controllers;
 
 use backend\traits\CRUDTrait;
 
-use backend\models\LogContentSearch;
-
 /**
  * LogContentController implements the CRUD actions for LogContent model.
  */
@@ -17,6 +15,25 @@ class LogContentController extends \yii\web\Controller
 
 	public $model = '\LogContent';
 	public $searchModel = 'LogContentSearch';
+
+	/**
+	 * @inheritdoc
+	 */
+	protected function __getBehaviorAccessRules()
+	{
+		return [
+			[
+				'actions' => ['index','view'],
+				'allow' => true,
+				'roles' => ['@'],
+			],
+			[
+				'actions' => ['create','update','delete'],
+				'allow' => true,
+				'roles' => ['admin'],
+			],
+		];
+	}
 
     /**
      * Lists all LogContent models.
@@ -92,21 +109,6 @@ class LogContentController extends \yii\web\Controller
 
         return $this->redirect(['index']);
     }
-
-	/**
-	 * @inheritdoc
-	 */
-	public function behaviors()
-	{
-		return [
-			'verbs' => [
-				'class' => \yii\filters\VerbFilter::className(),
-				'actions' => [
-					'delete' => ['POST'],
-				],
-			],
-		];
-	}
 
     /**
      * Finds the LogContent model based on its primary key value.

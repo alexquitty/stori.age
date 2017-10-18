@@ -34,9 +34,7 @@ class MenuController extends \yii\web\Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->findModel($id)->delete();
-
-		return $this->redirect(['index']);
+		return $this->__actionDelete($id);
 	}
 
 	/**

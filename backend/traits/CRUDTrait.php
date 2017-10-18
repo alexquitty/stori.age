@@ -48,13 +48,39 @@ trait CRUDTrait
 	}
 
 	/**
+	 * @param $id
+	 *
+	 * @return mixed
+	 */
+	protected function __actionDelete($id)
+	{
+		/**
+		 * @var $model \yii\db\ActiveRecord
+		 */
+		$model = $this->findModel($id);
+
+		if(isset($model))
+			$this->__logAction($model);
+
+		$model->delete();
+
+		return $this->redirect(['index']);
+	}
+
+	/**
 	 * @param null $params
 	 *
 	 * @return mixed
 	 */
 	protected function __actionIndexWithSearch($params = null)
 	{
+		/**
+		 * @var $searchModel \backend\models\MenuSearch or any search model really =)
+		 */
 		$searchModel = new $this->searchModel();
+		/**
+		 * @var $dataProvider \yii\data\ActiveDataProvider
+		 */
 		$dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
 		if(isset($params))
 			$dataProvider->setSort($params);
@@ -98,6 +124,40 @@ trait CRUDTrait
 	}
 
 	/**
+	 * @return array
+	 */
+	protected function __getBehaviorAccess()
+	{
+		return [
+			'access' => [
+				'class' => AccessControl::className(),
+				'rules' => empty($rules = $this->__getBehaviorAccessRules())
+					? [
+						'actions' => ['index','view','create','update','delete'],
+						'allow' => true,
+						'roles' => ['@'],
+					]
+					: $rules,
+			],
+		];
+	}
+
+	/**
+	 * @return array
+	 */
+	protected function __getBehaviorVerbs()
+	{
+		return [
+			'verbs' => [
+				'class' => VerbFilter::className(),
+				'actions' => [
+					'delete' => ['POST'],
+				],
+			],
+		];
+	}
+
+	/**
 	 * Displays a single %{tableName} model.
 	 * @param string $id
 	 * @return mixed
@@ -106,8 +166,8 @@ trait CRUDTrait
 	{
 		$model = $this->findModel($id);
 
-		if(isset($model))
-			$this->__logAction($model);
+		// if(isset($model))
+		// 	$this->__logAction($model);
 
 		return $this->render('view', [
 			'model' => $model,
@@ -119,24 +179,7 @@ trait CRUDTrait
 	 */
 	public function behaviors()
 	{
-		return [
-			'verbs' => [
-				'class' => VerbFilter::className(),
-				'actions' => [
-					'delete' => ['POST'],
-				],
-			],
-			'access' => [
-				'class' => AccessControl::className(),
-				'rules' => [
-					[
-						'actions' => ['index','view','create','update','delete'],
-						'allow' => true,
-						'roles' => ['@'],
-					],
-				],
-			],
-		];
+		return array_merge($this->__getBehaviorVerbs(), $this->__getBehaviorAccess());
 	}
 
 	/**
