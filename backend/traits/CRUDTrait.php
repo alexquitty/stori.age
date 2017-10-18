@@ -25,6 +25,8 @@ trait CRUDTrait
 
 
 	/**
+	 * @param null $params
+	 *
 	 * @return mixed
 	 */
 	protected function __actionIndexWithSearch($params = null)
