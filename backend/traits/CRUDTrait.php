@@ -60,11 +60,35 @@ trait CRUDTrait
 		$model = $this->findModel($id);
 
 		if(isset($model))
-			$this->__logAction($model);
+			$this->__logAction($model); // save to log & content
 
 		$model->delete();
 
 		return $this->redirect(['index']);
+	}
+
+	/**
+	 * @param $id
+	 * @param string $primaryKey
+	 *
+	 * @return mixed
+	 */
+	protected function __actionUpdate($id, $primaryKey = 'id')
+	{
+		/**
+		 * @var $model \yii\db\ActiveRecord
+		 */
+		$model = $this->findModel($id);
+
+		if(isset($model))
+			$this->__logAction($model); // save to log & content
+
+		if($model->load(\Yii::$app->request->post()) && $model->save())
+			return $this->redirect(['view', 'id' => $model->$primaryKey]);
+
+		return $this->render('update', [
+			'model' => $model,
+		]);
 	}
 
 	/**
@@ -158,6 +182,34 @@ trait CRUDTrait
 	}
 
 	/**
+	 * @return mixed
+	 */
+	public function actionCreate()
+	{
+		return $this->__actionCreate();
+	}
+
+	/**
+	 * @param $id
+	 *
+	 * @return mixed
+	 */
+	public function actionDelete($id)
+	{
+		return $this->__actionDelete($id);
+	}
+
+	/**
+	 * @param $id
+	 *
+	 * @return mixed
+	 */
+	public function actionUpdate($id)
+	{
+		return $this->__actionUpdate($id);
+	}
+
+	/**
 	 * Displays a single %{tableName} model.
 	 * @param string $id
 	 * @return mixed
@@ -166,8 +218,8 @@ trait CRUDTrait
 	{
 		$model = $this->findModel($id);
 
-		// if(isset($model))
-		// 	$this->__logAction($model);
+		if(isset($model))
+			$this->__logAction(); // save to log only
 
 		return $this->render('view', [
 			'model' => $model,
@@ -198,6 +250,9 @@ trait CRUDTrait
 		throw new \yii\web\NotFoundHttpException(\Yii::t('cpanel', 'The requested page does not exist.'));
 	}
 
+	/**
+	 * Compiles paths to model and searchModel.
+	 */
 	public function init()
 	{
 		if('\\' != $this->model[0])
