@@ -29,7 +29,7 @@ class LogContent extends \yii\db\ActiveRecord
         return [
             [['log_id'], 'required'],
             [['log_id'], 'integer'],
-            [['before', 'after'], 'string'],
+            [['content'], 'string'],
             [['log_id'], 'unique'],
         ];
     }
@@ -41,8 +41,7 @@ class LogContent extends \yii\db\ActiveRecord
     {
         return [
             'log_id' => 'Log ID',
-            'before' => 'До',
-            'after' => 'После',
+            'content' => 'Контент',
         ];
     }
 }

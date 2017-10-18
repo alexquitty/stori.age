@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\LogContent */
+/* @var $model \LogContent */
 
 $this->title = $model->log_id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('cpanel', 'Log Contents'), 'url' => ['index']];
@@ -29,8 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'log_id',
-            'before:ntext',
-            'after:ntext',
+            'content:ntext',
         ],
     ]) ?>
 

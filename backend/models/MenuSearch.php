@@ -32,13 +32,15 @@ class MenuSearch extends \common\models\Menu
     {
 	    $this->__search($params);
 
-	    $this->query->andFilterWhere([
-		    'ord' => $this->ord,
-		    'content' => $this->content,
-		    'access' => $this->access,
-	    ]);
+	    $this->query
+		    ->andFilterWhere([
+			    'ord' => $this->ord,
+			    'content' => $this->content,
+			    'access' => $this->access,
+		    ]);
 
-	    $this->query->andFilterWhere([ 'like', 'code', $this->code ])
+	    $this->query
+		    ->andFilterWhere([ 'like', 'code', $this->code ])
 		    ->andFilterWhere([ 'like', 'parent_code', $this->parent_code ])
 		    ->andFilterWhere([ 'like', 'name', $this->name ])
 		    ->andFilterWhere([ 'like', 'icon', $this->icon ]);

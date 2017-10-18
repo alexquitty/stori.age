@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\LogContent */
+/* @var $model \LogContent */
 
 $this->title = Yii::t('cpanel', 'Update Log Content: {nameAttribute}', [
     'nameAttribute' => $model->log_id,

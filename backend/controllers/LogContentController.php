@@ -2,31 +2,21 @@
 
 namespace backend\controllers;
 
-use Yii;
+
+use backend\traits\CRUDTrait;
+
 use backend\models\LogContentSearch;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * LogContentController implements the CRUD actions for LogContent model.
  */
-class LogContentController extends Controller
+class LogContentController extends \yii\web\Controller
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
+	use CRUDTrait;
+
+
+	public $model = '\LogContent';
+	public $searchModel = 'LogContentSearch';
 
     /**
      * Lists all LogContent models.
@@ -34,13 +24,11 @@ class LogContentController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new LogContentSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+    	return $this->__actionIndexWithSearch([
+    		'defaultOrder' => [
+    			'date' => SORT_DESC,
+		    ],
+	    ]);
     }
 
     /**
@@ -104,6 +92,21 @@ class LogContentController extends Controller
 
         return $this->redirect(['index']);
     }
+
+	/**
+	 * @inheritdoc
+	 */
+	public function behaviors()
+	{
+		return [
+			'verbs' => [
+				'class' => \yii\filters\VerbFilter::className(),
+				'actions' => [
+					'delete' => ['POST'],
+				],
+			],
+		];
+	}
 
     /**
      * Finds the LogContent model based on its primary key value.

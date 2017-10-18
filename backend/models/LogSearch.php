@@ -9,7 +9,7 @@ use yii\data\ActiveDataProvider;
 /**
  * LogSearch represents the model behind the search form of `common\models\Log`.
  */
-class LogSearch extends Log
+class LogSearch extends \Log
 {
     /**
      * @inheritdoc

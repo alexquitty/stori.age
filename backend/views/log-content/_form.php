@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\LogContent */
+/* @var $model \LogContent */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -14,9 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'log_id')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'before')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'after')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('cpanel', 'Save'), ['class' => 'btn btn-success']) ?>

@@ -20,9 +20,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'log_id') ?>
 
-    <?= $form->field($model, 'before') ?>
-
-    <?= $form->field($model, 'after') ?>
+    <?= $form->field($model, 'content') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('cpanel', 'Search'), ['class' => 'btn btn-primary']) ?>
