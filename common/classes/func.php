@@ -6,8 +6,6 @@
  * Time: 10:43
  */
 
-namespace common;
-
 /**
  * Class func
  *

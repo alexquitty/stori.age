@@ -3,7 +3,6 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Log;
 use backend\models\LogSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -84,7 +83,7 @@ class LogController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Log();
+        $model = new \Log();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

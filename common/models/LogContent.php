@@ -1,8 +1,8 @@
 <?php
 
-namespace backend\models;
+// namespace common\models;
 
-use Yii;
+// use Yii;
 
 /**
  * This is the model class for table "log_content".
