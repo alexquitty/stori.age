@@ -9,9 +9,13 @@
 namespace backend\traits;
 
 
+use Yii;
+use yii\data\ActiveDataProvider;
+use yii\db\ActiveRecord;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\Json;
+use yii\web\NotFoundHttpException;
 
 trait CRUDTrait
 {
@@ -31,11 +35,13 @@ trait CRUDTrait
 	protected function __actionCreate()
 	{
 		/**
-		 * @var $model \yii\db\ActiveRecord
+		 * @var $model ActiveRecord
 		 */
 		$model = new $this->model();
+		$params = Yii::$app->request->post();
+		$this->__beforeActionChange($model, $params);
 
-		if($model->load(\Yii::$app->request->post()) && $model->save())
+		if($model->load($params) && $model->save())
 		{
 			$this->__logAction(); // save to log only info (content will in model itself)
 			$primaryKey = $model->primaryKey();
@@ -58,7 +64,7 @@ trait CRUDTrait
 	protected function __actionDelete($id)
 	{
 		/**
-		 * @var $model \yii\db\ActiveRecord
+		 * @var $model ActiveRecord
 		 */
 		$model = $this->findModel($id);
 
@@ -78,9 +84,11 @@ trait CRUDTrait
 	protected function __actionUpdate($id)
 	{
 		/**
-		 * @var $model \yii\db\ActiveRecord
+		 * @var $model ActiveRecord
 		 */
 		$model = $this->findModel($id);
+		$params = Yii::$app->request->post();
+		$this->__beforeActionChange($model, $params);
 
 		if($model->load(\Yii::$app->request->post()))
 		{
@@ -101,14 +109,14 @@ trait CRUDTrait
 	 *
 	 * @return mixed
 	 */
-	protected function __actionIndexWithSearch($params = null)
+	protected function __actionIndex($params = null)
 	{
 		/**
 		 * @var $searchModel \backend\models\MenuSearch or any search model really =)
 		 */
 		$searchModel = new $this->searchModel();
 		/**
-		 * @var $dataProvider \yii\data\ActiveDataProvider
+		 * @var $dataProvider ActiveDataProvider
 		 */
 		$dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
 		if(isset($params))
@@ -118,6 +126,14 @@ trait CRUDTrait
 			'searchModel' => $searchModel,
 			'dataProvider' => $dataProvider,
 		]);
+	}
+
+	/**
+	 * @param $model \yii\
+	 * @param $params
+	 */
+	protected function __beforeActionChange(&$model, &$params)
+	{
 	}
 
 	/**
@@ -213,6 +229,14 @@ trait CRUDTrait
 	}
 
 	/**
+	 * @return mixed
+	 */
+	public function actionIndex()
+	{
+		return $this->__actionIndex();
+	}
+
+	/**
 	 * @param $id
 	 *
 	 * @return mixed
@@ -263,7 +287,7 @@ trait CRUDTrait
 		if(($model = $modelName::findOne($id)) !== null)
 			return $model;
 
-		throw new \yii\web\NotFoundHttpException(\Yii::t('cpanel', 'The requested page does not exist.'));
+		throw new NotFoundHttpException(Yii::t('cpanel', 'The requested page does not exist.'));
 	}
 
 	/**

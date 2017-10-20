@@ -1,11 +1,12 @@
 <?php
+
 namespace backend\controllers;
 
+
+use common\models\LoginForm;
 use Yii;
 use yii\web\Controller;
-// use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\models\LoginForm;
 
 /**
  * Site controller
@@ -32,12 +33,6 @@ class SiteController extends Controller
                     ],
                 ],
             ],
-            // 'verbs' => [
-            //     'class' => VerbFilter::className(),
-            //     'actions' => [
-            //         'logout' => ['post'],
-            //     ],
-            // ],
         ];
     }
 
@@ -63,6 +58,9 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+	/**
+	 * CAN BE USED! DO NOT REMOVE!!!
+	 */
 	// public function actionInitRole()
 	// {
 	// 	$auth = Yii::$app->authManager;
