@@ -36,7 +36,12 @@ trait CRUDTrait
 		$model = new $this->model();
 
 		if($model->load(\Yii::$app->request->post()) && $model->save())
-			return $this->redirect(['view', 'id' => $model->primaryKey()]);
+		{
+			$this->__logAction(); // save to log & content
+			$primaryKey = $model->primaryKey();
+
+			return $this->redirect([ 'view', 'id' => $model->$primaryKey ]);
+		}
 		else
 			\func::d($model->errors);
 
@@ -77,11 +82,13 @@ trait CRUDTrait
 		 */
 		$model = $this->findModel($id);
 
-		if(isset($model))
+		if($model->load(\Yii::$app->request->post()))
+		{
 			$this->__logAction($model); // save to log & content
-
-		if($model->load(\Yii::$app->request->post()) && $model->save())
-			return $this->redirect(['view', 'id' => $model->primaryKey()]);
+			$primaryKey = $model->primaryKey()[0];
+			if($model->save())
+				return $this->redirect([ 'view', 'id' => $model->$primaryKey ]);
+		}
 
 		return $this->render('update', [
 			'model' => $model,
