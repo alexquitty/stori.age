@@ -86,6 +86,7 @@ trait CRUDTrait
 		{
 			$this->__logAction($model); // save to log & content
 			$primaryKey = $model->primaryKey()[0];
+
 			if($model->save())
 				return $this->redirect([ 'view', 'id' => $model->$primaryKey ]);
 		}
