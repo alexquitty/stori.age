@@ -2,9 +2,8 @@
 
 namespace backend\models;
 
-use Yii;
-use yii\base\Model;
-use yii\data\ActiveDataProvider;
+
+use backend\traits\CRUDSearchTrait;
 use common\models\SourceMessage;
 
 /**
@@ -12,6 +11,8 @@ use common\models\SourceMessage;
  */
 class TranslationSearch extends SourceMessage
 {
+	use CRUDSearchTrait;
+
 	public $translation;
 
     /**
@@ -27,32 +28,20 @@ class TranslationSearch extends SourceMessage
     }
 
     /**
-     * @inheritdoc
-     */
-    public function scenarios()
-    {
-        // bypass scenarios() implementation in the parent class
-        return Model::scenarios();
-    }
-
-    /**
      * Creates data provider instance with search query applied
      *
      * @param array $params
      *
-     * @return ActiveDataProvider
+     * @return \yii\data\ActiveDataProvider
      */
     public function search($params)
     {
-        $query = SourceMessage::find()->joinWith('translation');
+        $this->query = self::find()->joinWith('translation');
 
-        // add conditions that should always apply here
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
+        $this->dataProvider = new \yii\data\ActiveDataProvider([
+            'query' => $this->query,
         ]);
-
-        $dataProvider->sort->attributes['translation'] = [
+        $this->dataProvider->sort->attributes['translation'] = [
         	'asc' => ['message.translation' => SORT_ASC],
 	        'desc' => ['message.translation' => SORT_DESC],
         ];
@@ -62,18 +51,17 @@ class TranslationSearch extends SourceMessage
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
-            return $dataProvider;
+            return $this->dataProvider;
         }
 
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-        ]);
-
-        $query->andFilterWhere(['like', 'category', $this->category])
+        $this->query
+	        ->andFilterWhere([
+	            'id' => $this->id,
+	        ])
+	        ->andFilterWhere(['like', 'category', $this->category])
             ->andFilterWhere(['like', 'message', $this->message])
             ->andFilterWhere(['like', 'message.translation', $this->translation]);
 
-        return $dataProvider;
+        return $this->dataProvider;
     }
 }
