@@ -61,9 +61,18 @@ class LogSearch extends Log
 	        ->andFilterWhere([
 	            'id' => $this->id,
 	            // 'user_id' => $this->user_id,
-	            'date' => $this->date,
+	            // 'date' => $this->date,
 	        ])
 	        ->andFilterWhere(['like', 'user.username', $this->username])
+	        ->andFilterWhere(['or',
+	        	['like', 'YEAR(`date`)', $this->date],
+		        ['like', 'MONTH(`date`)', $this->date],
+		        ['like', 'DAY(`date`)', $this->date],
+		        ['like', 'HOUR(`date`)', $this->date],
+		        ['like', 'MINUTE(`date`)', $this->date],
+		        ['like', 'SECOND(`date`)', $this->date],
+		        ['like', 'DATE(`date`)', $this->date],
+	        ])
 	        ->andFilterWhere(['like', 'table_name', $this->table_name])
             ->andFilterWhere(['like', 'item_key', $this->item_key])
             ->andFilterWhere(['like', 'action', $this->action]);

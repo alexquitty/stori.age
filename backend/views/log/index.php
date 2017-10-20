@@ -32,9 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
 	        	'attribute' => 'username',
 		        'value' => 'user.username',
 	        ],
+            // 'date',
             [
             	'attribute' => 'date',
-	            'format' => ['date', 'php:d.m.Y H:i:s'],
+	            'format' => ['date', 'php:M. d, H:i:s'],
+	            // 'format' => ['date', 'php:d.m.Y H:i:s'],
             ],
             'table_name',
             'item_key',
