@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\traits\CRUDTrait;
 use Yii;
 use common\models\Message;
 use common\models\SourceMessage;
@@ -15,20 +16,11 @@ use yii\filters\VerbFilter;
  */
 class TranslationController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
+	use CRUDTrait;
+
+
+	public $model = '';
+	public $searchModel = 'TranslationSearch';
 
     /**
      * Lists all SourceMessage models.
@@ -36,30 +28,11 @@ class TranslationController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new TranslationSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->setSort([
-        	'defaultOrder' => [
-        		'message' => SORT_ASC,
-	        ],
-        ]);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Displays a single SourceMessage model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $model = $this->findModel($id),
-        ]);
+    	return $this->__actionIndex([
+		    'defaultOrder' => [
+			    'message' => SORT_ASC,
+		    ],
+	    ]);
     }
 
     /**
@@ -74,7 +47,7 @@ class TranslationController extends Controller
 
         if($model->load($params = Yii::$app->request->post()) && $model->save())
         {
-        	$params[ucfirst(Message::tableName())]['id'] = $model->id;
+        	$params[ucfirst($model2::tableName())]['id'] = $model->id;
 	        if($model2->load($params)&& $model2->save())
                 return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -120,22 +93,6 @@ class TranslationController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the SourceMessage model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return SourceMessage the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = SourceMessage::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException(Yii::t('cpanel', 'The requested page does not exist.'));
     }
 
 	protected function findModel2($id)
