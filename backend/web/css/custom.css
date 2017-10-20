@@ -34,3 +34,8 @@
 {
 	min-width: 65px;
 }
+
+select.form-control
+{
+	width: auto;
+}

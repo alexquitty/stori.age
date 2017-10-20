@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 
 use backend\traits\CRUDTrait;
+use common\models\EntityType;
 use yii\web\Controller;
 
 /**
@@ -23,6 +24,15 @@ class EntityController extends Controller
 	 */
 	protected function __beforeActionChange(&$model, &$params)
 	{
+		$entityType = EntityType::find()
+			->select('name')
+			->indexBy('code')
+			->asArray()
+			->column();
+		$this->viewParams = [
+			'entityType' => $entityType,
+		];
+
 		$className = ucfirst($model::tableName());
 		$params[$className]['letter'] = mb_substr($params[$className]['name'], 0, 1);
 	}
