@@ -2,12 +2,16 @@
 
 namespace backend\models;
 
+
+use backend\traits\CRUDSearchTrait;
+use LogContent;
+
 /**
  * LogContentSearch represents the model behind the search form of `common\models\LogContent`.
  */
-class LogContentSearch extends \LogContent
+class LogContentSearch extends LogContent
 {
-	use \backend\traits\CRUDSearchTrait;
+	use CRUDSearchTrait;
 
     /**
      * @inheritdoc

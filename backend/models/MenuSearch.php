@@ -3,12 +3,15 @@
 namespace backend\models;
 
 
+use backend\traits\CRUDSearchTrait;
+use common\models\Menu;
+
 /**
  * MenuSearch represents the model behind the search form of `common\models\Menu`.
  */
-class MenuSearch extends \common\models\Menu
+class MenuSearch extends Menu
 {
-	use \backend\traits\CRUDSearchTrait;
+	use CRUDSearchTrait;
 
     /**
      * @inheritdoc
@@ -37,9 +40,7 @@ class MenuSearch extends \common\models\Menu
 			    'ord' => $this->ord,
 			    'content' => $this->content,
 			    'access' => $this->access,
-		    ]);
-
-	    $this->query
+		    ])
 		    ->andFilterWhere([ 'like', 'code', $this->code ])
 		    ->andFilterWhere([ 'like', 'parent_code', $this->parent_code ])
 		    ->andFilterWhere([ 'like', 'name', $this->name ])

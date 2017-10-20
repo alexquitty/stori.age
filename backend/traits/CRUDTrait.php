@@ -37,7 +37,7 @@ trait CRUDTrait
 
 		if($model->load(\Yii::$app->request->post()) && $model->save())
 		{
-			$this->__logAction(); // save to log & content
+			$this->__logAction(); // save to log only info (content will in model itself)
 			$primaryKey = $model->primaryKey();
 
 			return $this->redirect([ 'view', 'id' => $model->$primaryKey ]);
