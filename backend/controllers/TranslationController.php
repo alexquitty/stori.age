@@ -3,9 +3,7 @@
 namespace backend\controllers;
 
 use backend\traits\CRUDTrait;
-use Yii;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
 
 /**
  * TranslationController implements the CRUD actions for SourceMessage model.
@@ -49,10 +47,24 @@ class TranslationController extends Controller
 	}
 
 	/**
+	 * @param $model
+	 * @param $params
+	 */
+	protected function __beforeActionChange(&$model, &$params)
+	{
+		$model2 = $this->findModel2($model->id);
+		if(empty($model2))
+			$model2 = new $this->model2();
+
+		$this->viewParams = [
+			'model2' => $model2,
+		];
+	}
+
+	/**
 	 * @param $id
 	 *
 	 * @return mixed
-	 * @throws NotFoundHttpException
 	 */
 	protected function findModel2($id)
 	{

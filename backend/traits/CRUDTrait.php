@@ -50,8 +50,6 @@ trait CRUDTrait
 
 			return $this->redirect([ 'view', 'id' => $model->$primaryKey ]);
 		}
-		else
-			\func::d($model->errors);
 
 		return $this->render('create', array_merge(
 			[

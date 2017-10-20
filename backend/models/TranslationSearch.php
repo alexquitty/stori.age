@@ -5,6 +5,7 @@ namespace backend\models;
 
 use backend\traits\CRUDSearchTrait;
 use common\models\SourceMessage;
+use yii\data\ActiveDataProvider;
 
 /**
  * TranslationSearch represents the model behind the search form of `common\models\SourceMessage`.
@@ -12,6 +13,7 @@ use common\models\SourceMessage;
 class TranslationSearch extends SourceMessage
 {
 	use CRUDSearchTrait;
+
 
 	public $translation;
 
@@ -32,16 +34,16 @@ class TranslationSearch extends SourceMessage
      *
      * @param array $params
      *
-     * @return \yii\data\ActiveDataProvider
+     * @return ActiveDataProvider
      */
     public function search($params)
     {
-        $this->query = self::find()->joinWith('translation');
+        $query = self::find()->joinWith('translation');
 
-        $this->dataProvider = new \yii\data\ActiveDataProvider([
-            'query' => $this->query,
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
         ]);
-        $this->dataProvider->sort->attributes['translation'] = [
+        $dataProvider->sort->attributes['translation'] = [
         	'asc' => ['message.translation' => SORT_ASC],
 	        'desc' => ['message.translation' => SORT_DESC],
         ];
@@ -51,17 +53,15 @@ class TranslationSearch extends SourceMessage
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
-            return $this->dataProvider;
+            return $dataProvider;
         }
 
-        $this->query
-	        ->andFilterWhere([
-	            'id' => $this->id,
-	        ])
+        $query
+	        ->andFilterWhere(['id' => $this->id])
 	        ->andFilterWhere(['like', 'category', $this->category])
             ->andFilterWhere(['like', 'message', $this->message])
             ->andFilterWhere(['like', 'message.translation', $this->translation]);
 
-        return $this->dataProvider;
+        return $dataProvider;
     }
 }
