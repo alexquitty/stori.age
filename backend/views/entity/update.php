@@ -4,6 +4,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Entity */
+/* @var $entityType array */
 
 $this->title = Yii::t('cpanel', 'Update Entity: {nameAttribute}', [
     'nameAttribute' => $model->name,
@@ -17,6 +18,7 @@ $this->params['breadcrumbs'][] = Yii::t('cpanel', 'Update');
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
+	    'entityType' => $entityType,
         'model' => $model,
     ]) ?>
 
