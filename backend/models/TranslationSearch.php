@@ -38,7 +38,7 @@ class TranslationSearch extends SourceMessage
      */
     public function search($params)
     {
-        $query = self::find()->joinWith('translation');
+	    $query = SourceMessage::find()->joinWith('translation');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
