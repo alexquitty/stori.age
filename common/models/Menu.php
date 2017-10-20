@@ -54,7 +54,7 @@ class Menu extends \yii\db\ActiveRecord
             'name' => 'Название',
             'icon' => 'Иконка',
             'ord' => 'Порядок',
-            'content' => 'Контент',
+            'content' => 'На сайте',
             'access' => 'Доступ',
         ];
     }
