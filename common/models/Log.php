@@ -48,6 +48,7 @@ class Log extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'user_id' => 'ID пользователя',
+	        'username' => 'Пользователь',
             'date' => 'Дата и время',
             'table_name' => 'Таблица',
             'item_key' => 'Запись',
@@ -63,8 +64,8 @@ class Log extends \yii\db\ActiveRecord
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
-	public function getUsers()
+	public function getUser()
 	{
-		return $this->hasMany(User::className(), ['id' => 'user_id']);
+		return $this->hasOne(User::className(), ['id' => 'user_id']);
 	}
 }

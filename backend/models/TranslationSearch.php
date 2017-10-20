@@ -25,7 +25,6 @@ class TranslationSearch extends SourceMessage
         return [
             [['id'], 'integer'],
             [['category', 'message', 'translation'], 'safe'],
-	        [['translation'], 'safe'],
         ];
     }
 

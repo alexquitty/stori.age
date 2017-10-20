@@ -9,18 +9,27 @@
 namespace backend\traits;
 
 
+use yii\base\Model;
+use yii\data\ActiveDataProvider;
+
 trait CRUDSearchTrait
 {
 	private $query;
 	private $dataProvider;
 
 
+	/**
+	 * @param $params
+	 *
+	 * @return ActiveDataProvider
+	 */
 	private function __search($params)
 	{
-		$this->query = self::find();
+		if(empty($this->query))
+			$this->query = self::find();
 
 		// add conditions that should always apply here
-		$this->dataProvider = new \yii\data\ActiveDataProvider([
+		$this->dataProvider = new ActiveDataProvider([
 			'query' => $this->query,
 		]);
 
@@ -40,6 +49,6 @@ trait CRUDSearchTrait
 	public function scenarios()
 	{
 		// bypass scenarios() implementation in the parent class
-		return \yii\base\Model::scenarios();
+		return Model::scenarios();
 	}
 }
