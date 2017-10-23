@@ -2,6 +2,8 @@
 
 /* @var $this yii\web\View */
 
+use common\classes\WordHelper;
+
 ?>
 <div class="site-index">
 
@@ -24,14 +26,14 @@
 			        if(0 == $idx % 3)
 			        	echo '</div><div class="row">';
 
-			        ?><div class="col-lg-4 accurate" data-length="<?=mb_strlen($item['description'])?>">
+			        ?><div class="col-lg-4 accurate">
 
-			            <h2>Шаг <?=$item['id']?></h2><?php
+			            <h2><?= empty($item['name']) ? 'Снежинка: Шаг '.$item['id'] : $item['name']?></h2><?php
 
-			            echo \common\classes\WordHelper::truncate($item['description'], 350, [
+			            echo WordHelper::truncate($item['description'], 300, [
 			            	'href' => ['site/contact'],
-				            'text' => 'Подробнее',
-			            ], null, true);
+				            'text' => 'читать далее',
+			            ], null, true) ?: '<i>Нет описания.</i>';
 
 			        ?></div><?php
 		        }

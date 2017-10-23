@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Entity;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -73,19 +74,62 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-	    $snowflake = Snowflake::find()
-		    ->asArray()
-		    ->all();
+    	$glossary = Entity::find();
+    	$snowflake = Snowflake::find();
 
-	    $data = [];
-	    while(count($data) < 6)
+    	// compile id
+    	$snowflakeName = Snowflake::tableName();
+    	$entityName = Entity::tableName();
+
+    	$ids = [];
+	    while(count($ids) < 9)
 	    {
-	    	$idx = rand(0, 9);
-		    if(false == array_key_exists($idx, $data))
-		    	$data[$idx] = $snowflake[$idx];
+		    if(empty(rand(0, 5))) // 1 chance out of 6
+		    {
+			    $id = rand(1, $snowflake->count());
+			    if(false == array_key_exists($id, $ids))
+			    	$ids[$id] = $snowflakeName;
+		    }
+		    else
+		    {
+			    $id = rand(1, $glossary->count());
+			    if(false == array_key_exists($id, $ids))
+				    $ids[$id] = $entityName;
+		    }
 	    }
-	    sort($data);
 
+	    // compile data
+	    $snowflakeId = [];
+	    $entityId = [];
+	    foreach($ids as $id => $type)
+	    {
+	    	if($snowflakeName == $type)
+			    $snowflakeId[] = $id;
+	    	else
+	    		$entityId[] = $id;
+	    }
+	    if(false == empty($snowflakeId))
+	    	$snowflake = $snowflake
+			    ->where(['id' => $snowflakeId])
+			    ->indexBy('id')
+			    ->asArray()
+			    ->all();
+	    if(false == empty($entityId))
+	    	$glossary = $glossary
+			    ->where(['id' => $entityId])
+			    ->indexBy('id')
+			    ->asArray()
+			    ->all();
+
+	    // final compile
+	    $data = [];
+	    foreach($ids as $id => $item)
+		    if($entityName == $item)
+		    	$data[] = $glossary[$id];
+		    else
+		        $data[] = $snowflake[$id];
+
+	    // output
         return $this->render('index', [
 	        'data' => $data,
         ]);

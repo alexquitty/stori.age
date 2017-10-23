@@ -32,7 +32,7 @@ class WordHelper extends StringHelper
 
 		$result = parent::truncate($string, $length, isset($customSuffix) ? null : $suffix, $encoding, $asHtml);
 
-		if($prettyCut)
+		if(false == empty($result) && $prettyCut && $length <= strlen($result))
 			$result = trim(substr($result, 0, strrpos($result, ' ')), ',.').$customSuffix;
 
 		return $result;
