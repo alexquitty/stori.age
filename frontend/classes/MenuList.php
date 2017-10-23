@@ -2,11 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: a.chernov
- * Date: 04.10.2017
- * Time: 18:26
+ * Date: 23.10.2017
+ * Time: 12:49
  */
 
-namespace backend\classes;
+namespace frontend\classes;
 
 
 use common\models\Menu;
@@ -28,13 +28,13 @@ class MenuList
 		{
 			$data = [
 				'label' => $item['name'],
-				'url' => empty($item['menus'])
-					? '/cpanel/'.$item['code'].'/'
+				'url' => empty($items['menus'])
+					? '/'.$item['code'].'/'
 					: 'javascript:;',
 			];
 
-			if(false == empty($item['icon']))
-				$data['icon'] = $item['icon'];
+			// if(false == empty($item['icon']))
+			// 	$data['icon'] = $item['icon'];
 
 			if(empty($item['menus']) && isset(self::$contextId))
 				$data['active'] = $item['code'] == self::$contextId;
@@ -58,14 +58,11 @@ class MenuList
 
 		$menu = Menu::find()->alias('m')
 			->joinWith('menus as m2')
-			->where(array_merge([
+			->where([
 				'm.parent_code' => null,
-				'm.content' => 0,
-			], \Yii::$app->user->can('admin') ? [] : [
-				'm.access' => 0,
-			]))
+				'm.content' => 1,
+			])
 			->orderBy('m.ord ASC')
-			// ->indexBy('code')
 			->asArray()
 			->all();
 

@@ -5,7 +5,7 @@
 ?>
 <div class="site-index">
 
-    <div class="jumbotron">
+    <div class="jumbotron shortened">
         <h1>Добро пожаловать!</h1>
 
         <p class="lead">Самая выдающаяся энциклопедия по мирам Отсечённого</p>
@@ -19,14 +19,19 @@
 	    {
 		    ?><div class="row"><?php
 
-		        foreach($data as $item)
+		        foreach($data as $idx => $item)
 		        {
+			        if(0 == $idx % 3)
+			        	echo '</div><div class="row">';
 
-			        ?><div class="col-lg-4">
+			        ?><div class="col-lg-4 accurate" data-length="<?=mb_strlen($item['description'])?>">
 
 			            <h2>Шаг <?=$item['id']?></h2><?php
 
-			            echo $item['description'];
+			            echo \common\classes\WordHelper::truncate($item['description'], 350, [
+			            	'href' => ['site/contact'],
+				            'text' => 'Подробнее',
+			            ], null, true);
 
 			        ?></div><?php
 		        }

@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use common\models\Snowflake;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -72,18 +73,17 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-	    $snowflake = \common\models\Snowflake::find()
+	    $snowflake = Snowflake::find()
 		    ->asArray()
 		    ->all();
 
 	    $data = [];
-	    while(count($data) < 3)
+	    while(count($data) < 6)
 	    {
 	    	$idx = rand(0, 9);
 		    if(false == array_key_exists($idx, $data))
 		    	$data[$idx] = $snowflake[$idx];
 	    }
-
 	    sort($data);
 
         return $this->render('index', [

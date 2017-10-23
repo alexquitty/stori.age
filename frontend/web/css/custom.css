@@ -1,3 +1,9 @@
+.container .jumbotron.shortened
+{
+	padding-bottom: 0;
+	padding-top: 0;
+}
+
 .dropdown-menu li a, .dropdown-menu li > form > button.logout
 {
 	color: #262626;

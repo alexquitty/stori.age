@@ -36,11 +36,12 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
+    $menuItems = \frontend\classes\MenuList::get($this->context->id);
+    //[
         // ['label' => 'Home', 'url' => ['/site/index']],
         // ['label' => 'About', 'url' => ['/site/about']],
         // ['label' => 'Contact', 'url' => ['/site/contact']],
-    ];
+    // ];
     if (Yii::$app->user->isGuest) {
         // $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Войти', 'url' => ['/site/login']];
