@@ -16,7 +16,7 @@ class EntityController extends Controller
 
 
 	public $model = 'Entity';
-	public $searchModel = 'EntitySearch';
+	public $searchModel = '\common\models\EntitySearch';
 
 	/**
 	 * @param $model \yii\db\ActiveRecord

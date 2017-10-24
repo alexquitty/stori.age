@@ -1,10 +1,9 @@
 <?php
 
-namespace backend\models;
+namespace common\models;
 
 
 use backend\traits\CRUDSearchTrait;
-use common\models\Entity;
 
 /**
  * EntitySearch represents the model behind the search form of `common\models\Entity`.
