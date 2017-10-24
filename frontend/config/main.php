@@ -51,8 +51,8 @@ return [
         ],
 	    'i18n' => [
 		    'translations' => [
-			    'site' => [
-				    'class' => 'yii\i18n\PhpMessageSource',
+			    '*' => [
+				    'class' => 'yii\i18n\DbMessageSource',
 			    ],
 		    ],
 	    ],

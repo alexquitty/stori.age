@@ -31,7 +31,9 @@ use common\classes\WordHelper;
 			            <h2><?= empty($item['name']) ? 'Снежинка: Шаг '.$item['id'] : $item['name']?></h2><?php
 
 			            echo WordHelper::truncate($item['description'], 300, [
-			            	'href' => ['site/contact'],
+			            	'href' => empty($item['name'])
+					            ? ['snowflake/view', 'id' => $item['id']]
+					            : ['entity/view', 'id' => $item['id']],
 				            'text' => 'читать далее',
 			            ], null, true) ?: '<i>Нет описания.</i>';
 
