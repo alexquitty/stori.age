@@ -21,26 +21,30 @@ $this->params['breadcrumbs'][] = $this->title;
 		?><p><?=Html::a(Yii::t('cpanel', 'Create Entity'), ['create'], ['class' => 'btn btn-success'])?></p><?php
 	}
 
-	echo GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'layout' => "{items}{summary}\n{pager}",
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+	echo $this->render('_search', [
+		'model' => $searchModel,
+	]);
 
-            'id',
-            'letter',
-            'type_code',
-            'name',
-            [
-            	'attribute' => 'description',
-	            'contentOptions' => [ 'class' => 'trunc' ],
-            ],
-            // 'description:ntext',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]);
+    // echo GridView::widget([
+    //     'dataProvider' => $dataProvider,
+    //     'filterModel' => $searchModel,
+    //     'layout' => "{items}{summary}\n{pager}",
+    //     'columns' => [
+    //         ['class' => 'yii\grid\SerialColumn'],
+    //
+    //         'id',
+    //         'letter',
+    //         'type_code',
+    //         'name',
+    //         [
+    //         	'attribute' => 'description',
+	 //            'contentOptions' => [ 'class' => 'trunc' ],
+    //         ],
+    //         // 'description:ntext',
+    //
+    //         ['class' => 'yii\grid\ActionColumn'],
+    //     ],
+    // ]);
 
 	Pjax::end();
 
