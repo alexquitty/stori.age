@@ -29,7 +29,7 @@ class SourceMessage extends \yii\db\ActiveRecord
         return [
             [['message'], 'string'],
             [['category'], 'string', 'max' => 255],
-	        [['category'], 'default', 'value' => 'cpanel'],
+	        [['category'], 'default', 'value' => 'website'],
         ];
     }
 

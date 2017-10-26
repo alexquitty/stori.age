@@ -47,11 +47,13 @@ class TranslationController extends Controller
 	}
 
 	/**
-	 * @param $model
+	 * @param $model \common\models\SourceMessage
 	 * @param $params
 	 */
 	protected function __beforeActionChange(&$model, &$params)
 	{
+		$model->loadDefaultValues();
+
 		$model2 = $this->findModel2($model->id);
 		if(empty($model2))
 			$model2 = new $this->model2();
