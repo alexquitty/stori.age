@@ -36,7 +36,7 @@ use yii\widgets\ActiveForm;
 	    <?= $form->field($model, 'type_code', [
 	        'options' => ['class' => 'col-md-2']
 	    ])->label(false)->dropDownList($items ?: [], [
-	        'prompt' => $model->getAttributeLabel('type_code')
+	        'prompt' => 'Тип'
 	    ]);
 	    ?>
 
