@@ -17,7 +17,7 @@ class WordHelper extends StringHelper
 	private static function getProperCase($number, $string)
 	{
 		$femaleHard = ['а'];
-		$femaleSoft = ['ь'];
+		$femaleSoft = ['ь', 'я'];
 		$maleSoft = ['ж'];
 		$maleMedium = ['ц'];
 
