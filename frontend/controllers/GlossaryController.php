@@ -34,7 +34,7 @@ class GlossaryController extends Controller
 			->asArray()
 			->column();
 
-		$items = EntityType::find()
+		$types = EntityType::find()
 			->select('name')
 			->indexBy('code')
 			->orderBy(['name' => SORT_ASC])
@@ -44,7 +44,7 @@ class GlossaryController extends Controller
 		return $this->render('index', [
 			'searchModel' => $searchModel,
 			'dataProvider' => $dataProvider,
-			'items' => $items,
+			'types' => $types,
 			'letters' => $letters,
 		]);
 	}

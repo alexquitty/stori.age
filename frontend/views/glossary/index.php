@@ -6,8 +6,8 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\EntitySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-/* @var $items */
-
+/* @var $types */
+/* @var $letters */
 $this->title = Yii::t('website', 'Entities');
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -19,16 +19,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	if(!\Yii::$app->user->isGuest)
 	{
-		?><p><?=Html::a(Yii::t('cpanel', 'Create Entity'), ['create'], ['class' => 'btn btn-success'])?></p><?php
+		// ?><!--<p>--><?//=Html::a(Yii::t('cpanel', 'Create Entity'), ['create'], ['class' => 'btn btn-success'])?><!--</p>--><?php
 	}
-
-	echo $this->render('_letterPanel', [
-		'items' => $letters,
-	]);
 
 	echo $this->render('_search', [
 		'model' => $searchModel,
-		'items' => $items,
+		'items' => $types,
+	]);
+
+	echo $this->render('_letterPanel', [
+		'model' => $searchModel,
+		'items' => $letters,
+	]);
+
+	echo $this->render('_definitionView', [
+		'dataProvider' => $dataProvider,
+		'model' => $searchModel,
+		'types' => $types,
 	]);
 
     // echo GridView::widget([

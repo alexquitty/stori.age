@@ -9,13 +9,13 @@ use yii\widgets\ActiveForm;
 /* @var $items */
 ?>
 
-<div class="entity-search panel panel-default">
+<div class="entity-search panel panel-info">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
         'options' => [
-	        'class' => 'one-liner-search panel-body',
+	        'class' => 'one-liner-search panel-heading',
             'data-pjax' => 1,
         ],
     ]);

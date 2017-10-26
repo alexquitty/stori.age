@@ -42,6 +42,12 @@ form.one-liner-search .help-block
 	display: none;
 }
 
+.panel .btn-link.active
+{
+	border: dotted 1px;
+	border-radius: 3px;
+}
+
 ul
 {
 	padding-left: 1em;

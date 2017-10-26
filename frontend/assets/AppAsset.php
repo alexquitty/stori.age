@@ -16,11 +16,15 @@ class AppAsset extends AssetBundle
 	    'css/custom.css?v=1',
     ];
     public $js = [
+    	'js/func.js',
+    	'js/script.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
 	    'rmrevin\yii\fontawesome\AssetBundle',
+
+	    'yii\web\JqueryAsset',
     ];
     public $publishOptions = [
     	'forceCopy' => true,
