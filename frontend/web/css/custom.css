@@ -48,6 +48,11 @@
 	border-radius: 3px;
 }
 
+.w-100
+{
+	width: 100%;
+}
+
 form.one-liner-search .help-block
 {
 	display: none;

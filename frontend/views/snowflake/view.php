@@ -6,11 +6,12 @@
  * Time: 18:28
  */
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Snowflake */
+/* @var $bookModel */
 /* @var $books array */
 
 $this->title = 'Шаг '.$model->id;
@@ -30,34 +31,33 @@ $this->params['breadcrumbs'][] = $this->title;
 		Pjax::begin();
 
 		$form = ActiveForm::begin([
+			'layout' => 'horizontal',
 			'action' => [ 'index' ],
 			'method' => 'get',
 			'options' => [
 				'data-pjax' => 1,
+			],
+			'fieldConfig' => [
+				'horizontalCssClasses' => [
+					'label' => 'pull-left',
+					'offset' => 'col-md-offset-1',
+					'wrapper' => 'col-md-3',
+				],
 			],
 		]);
 
 		?>
 		<div class="panel panel-info">
 			<div class="panel-heading">
-				<div class="row">
-					<?=$form
-						->field($model, 'id', [
-							'options' => [ 'class' => 'col-md-2' ]
-						])
-						->label('Заполнить для книги:', [
-							'class' => 'pull-left'
-						])
-						->dropDownList($books ? : [], [
-							'prompt' => 'Выберите книгу',
-						])?>
-				</div>
+				<?=$form
+					->field($bookModel, 'id', [
+						'options' => ['class' => 'input-group w-100'],
+					])
+					->label('Просмотреть для книги:')
+					->dropDownList($books ?: [], ['prompt' => 'Выберите книгу'])?>
 			</div>
 			<div class="panel-body">
-				<?=$form
-					->field($model, 'description')
-					->label(false)
-					->textarea()?>
+				Для просмотра аннотации выберите книгу.
 			</div>
 		</div><?
 

@@ -30,8 +30,11 @@ class SnowflakeController extends Controller
 	{
 		$model = Snowflake::findOne(['id' => $id]);
 
+		$bookModel = Book::find();
+
 		return $this->render('view', [
 			'model' => $model,
+			'bookModel' => $bookModel,
 		]);
 	}
 }
