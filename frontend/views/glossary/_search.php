@@ -22,41 +22,43 @@ use yii\widgets\ActiveForm;
 
     ?><div class="row">
 
-    <?= $form->field($model, 'id', [
-    	'options' => ['class' => 'col-md-2']
-    ])->label(false)->textInput([
-	    'placeholder' => $model->getAttributeLabel('id')
-    ]);
-    ?>
+	    <?= $form->field($model, 'id', [
+	        'options' => ['class' => 'col-md-2']
+	    ])->label(false)->textInput([
+		    'placeholder' => $model->getAttributeLabel('id')
+	    ]);
+	    ?>
 
-	<?= $form->field($model, 'letter', [
-		'options' => ['class' => 'none']
-	])->label(false)->hiddenInput() ?>
+		<?= $form->field($model, 'letter', [
+			'options' => ['class' => 'none']
+		])->label(false)->hiddenInput() ?>
 
-    <?= $form->field($model, 'type_code', [
-    	'options' => ['class' => 'col-md-2']
-    ])->label(false)->dropDownList($items ?: [], [
-    	'prompt' => $model->getAttributeLabel('type_code')
-    ]);
-    ?>
+	    <?= $form->field($model, 'type_code', [
+	        'options' => ['class' => 'col-md-2']
+	    ])->label(false)->dropDownList($items ?: [], [
+	        'prompt' => $model->getAttributeLabel('type_code')
+	    ]);
+	    ?>
 
-    <?= $form->field($model, 'name', [
-    	'options' => ['class' => 'col-md-3']
-    ])->label(false)->textInput([
-    	'placeholder' => $model->getAttributeLabel('name')
-    ]);
-    ?>
+	    <?= $form->field($model, 'name', [
+	        'options' => ['class' => 'col-md-3']
+	    ])->label(false)->textInput([
+	        'placeholder' => $model->getAttributeLabel('name')
+	    ]);
+	    ?>
 
-    <?= $form->field($model, 'description', [
-    	'options' => ['class' => 'col-md-3']
-    ])->label(false)->textInput([
-    	'placeholder' => $model->getAttributeLabel('description')
-    ]);
-    ?>
-    <div class="col-md-2">
-        <?= Html::submitButton(Yii::t('cpanel', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('cpanel', 'Reset'), ['class' => 'btn btn-default pull-right']) ?>
-    </div>
+	    <?= $form->field($model, 'description', [
+	        'options' => ['class' => 'col-md-3']
+	    ])->label(false)->textInput([
+	        'placeholder' => $model->getAttributeLabel('description')
+	    ]);
+	    ?>
+
+	    <div class="col-md-2">
+	        <?= Html::submitButton(Yii::t('cpanel', 'Search'), ['class' => 'btn btn-primary']) ?>
+	        <?= Html::resetButton(Yii::t('cpanel', 'Reset'), ['class' => 'btn btn-default pull-right']) ?>
+	    </div>
+
 	</div>
     <?php ActiveForm::end(); ?>
 

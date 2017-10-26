@@ -12,30 +12,30 @@
 
 
 $models = $dataProvider->getModels();
-$letter = $models[0]->letter;
+$letter = null;
 
-?>
-<div class="container">
-	<h1 class="text-center"><?=$letter?></h1>
-	<dl><?php
+foreach($models as $item)
+{
+	if($letter != $item['letter'])
+	{
+		if(!empty($letter))
+			echo '</dl>';
+		$letter = $item['letter'];
+		?><h1 class="well well-sm text-center"><?=$letter?></h1><dl class="container"><?php
+	}
+	// else echo '<hr/>';
 
-		foreach($models as $idx => $item)
-		{
-			if($idx > 0)
-				echo '<hr/>';
+	?><dt class="h4">
+		<?=$item['name']?>
+		<button
+			type="button"
+			role="button"
+			data-field="type_code"
+			data-value="<?=$item['type_code']?>"
+			class="btn btn-link"
+		><?=$types[$item['type_code']]?></button>
+	</dt>
+	<dd class="mb-25"><?=$item['description']?></dd><?php
+}
 
-			?><dt class="lead">
-				<?=$item['name']?>
-				<button
-					type="button"
-					role="button"
-					data-field="type_code"
-					data-value="<?=$item['type_code']?>"
-					class="btn btn-link"
-				><?=$types[$item['type_code']]?></button>
-			</dt>
-			<dd><?=$item['description']?></dd><?php
-		}
-
-	?></dl>
-</div>
+?></dl>

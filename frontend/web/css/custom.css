@@ -37,15 +37,20 @@
 	text-overflow: ellipsis;
 }
 
-form.one-liner-search .help-block
+.mb-25
 {
-	display: none;
+	margin-bottom: 25px;
 }
 
 .panel .btn-link.active
 {
 	border: dotted 1px;
 	border-radius: 3px;
+}
+
+form.one-liner-search .help-block
+{
+	display: none;
 }
 
 ul
