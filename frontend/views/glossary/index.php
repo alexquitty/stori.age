@@ -1,11 +1,12 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\EntitySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $items */
 
 $this->title = Yii::t('website', 'Entities');
 $this->params['breadcrumbs'][] = $this->title;
@@ -23,6 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	echo $this->render('_search', [
 		'model' => $searchModel,
+		'items' => $items,
 	]);
 
     // echo GridView::widget([

@@ -10,6 +10,7 @@ namespace frontend\controllers;
 
 
 use common\models\EntitySearch;
+use common\models\EntityType;
 use yii\web\Controller;
 
 class GlossaryController extends Controller
@@ -25,9 +26,17 @@ class GlossaryController extends Controller
 			],
 		]);
 
+		$items = EntityType::find()
+			->select('name')
+			->indexBy('code')
+			->orderBy(['name' => SORT_ASC])
+			->asArray()
+			->column();
+
 		return $this->render('index', [
 			'searchModel' => $searchModel,
 			'dataProvider' => $dataProvider,
+			'items' => $items,
 		]);
 	}
 }

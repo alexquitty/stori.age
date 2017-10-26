@@ -37,6 +37,11 @@
 	text-overflow: ellipsis;
 }
 
+form.one-liner-search .help-block
+{
+	display: none;
+}
+
 ul
 {
 	padding-left: 1em;
