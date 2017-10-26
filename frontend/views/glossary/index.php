@@ -22,6 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
 		?><p><?=Html::a(Yii::t('cpanel', 'Create Entity'), ['create'], ['class' => 'btn btn-success'])?></p><?php
 	}
 
+	echo $this->render('_letterPanel', [
+		'items' => $letters,
+	]);
+
 	echo $this->render('_search', [
 		'model' => $searchModel,
 		'items' => $items,
