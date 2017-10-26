@@ -29,6 +29,10 @@ use yii\widgets\ActiveForm;
     ]);
     ?>
 
+	<?= $form->field($model, 'letter', [
+		'options' => ['class' => 'none']
+	])->label(false)->hiddenInput() ?>
+
     <?= $form->field($model, 'type_code', [
     	'options' => ['class' => 'col-md-2']
     ])->label(false)->dropDownList($items ?: [], [
