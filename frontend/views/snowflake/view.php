@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<?=$form
-					->field($bookModel, 'id', [
+					->field($model, 'id', [
 						'options' => ['class' => 'input-group w-100'],
 					])
 					->label('Просмотреть для книги:')
