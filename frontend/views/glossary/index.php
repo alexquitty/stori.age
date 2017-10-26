@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\LinkPager;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
@@ -35,6 +36,13 @@ $this->params['breadcrumbs'][] = $this->title;
 		'dataProvider' => $dataProvider,
 		'model' => $searchModel,
 		'types' => $types,
+	]);
+
+	echo LinkPager::widget([
+		'pagination' => $dataProvider->getPagination(),
+		'options' => [
+			'class' => 'pagination pull-right',
+		],
 	]);
 
 	Pjax::end();

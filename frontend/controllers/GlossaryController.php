@@ -26,6 +26,9 @@ class GlossaryController extends Controller
 				'name' => SORT_ASC,
 			],
 		]);
+		$dataProvider->setPagination([
+			// 'pageSize' => 2,
+		]);
 
 		$letters = Entity::find()
 			->select('letter')
