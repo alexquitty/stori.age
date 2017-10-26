@@ -25,4 +25,13 @@ class SnowflakeController extends Controller
 			'data' => $data,
 		]);
 	}
+
+	public function actionView($id)
+	{
+		$model = Snowflake::findOne(['id' => $id]);
+
+		return $this->render('view', [
+			'model' => $model,
+		]);
+	}
 }

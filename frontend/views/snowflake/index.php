@@ -18,7 +18,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	foreach($data as $item)
 	{
-		?><h2>Шаг <?=$item['id']?></h2>
+		?><h2>
+			Шаг <?=$item['id']?>
+			<a href="<?=\yii\helpers\Url::to(['snowflake/view', 'id' => $item['id']])?>" class="btn btn-default btn-sm">
+				<span class="glyphicon glyphicon-eye-open"></span>
+			</a>
+		</h2>
 		<div class="col-md-12 text-justify"><?=$item['description']?></div><?php
 	}
 ?></div>
