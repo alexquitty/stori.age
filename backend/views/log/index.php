@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'table_name',
             'item_key',
-            //'action',
+            // 'action',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

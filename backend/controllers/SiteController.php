@@ -4,7 +4,9 @@ namespace backend\controllers;
 
 
 use common\models\LoginForm;
+use Log;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 
@@ -55,7 +57,16 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+	    // add conditions that should always apply here
+	    $logProvider = new ActiveDataProvider([
+		    'query' => Log::find()
+			    ->orderBy(['date' => SORT_DESC])->limit(5)
+			    ->joinWith('user')
+	    ]);
+
+        return $this->render('index', [
+        	'logProvider' => $logProvider,
+        ]);
     }
 
 	/**
