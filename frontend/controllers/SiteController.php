@@ -108,6 +108,8 @@ class SiteController extends Controller
 	    	else
 	    		$entityId[] = $id;
 	    }
+	    sort($snowflakeId);
+
 	    if(false == empty($snowflakeId))
 	    	$snowflake = $snowflake
 			    ->where(['id' => $snowflakeId])
