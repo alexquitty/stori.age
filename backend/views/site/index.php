@@ -1,17 +1,36 @@
 <?php
 
+use common\classes\WordHelper;
+
 /* @var $this yii\web\View */
+/* @var $logProvider */
+/* @var $entityByType */
+
+function countEntity($data)
+{
+	$result = 0;
+
+	foreach($data as $item)
+		$result += $item['quantity'];
+
+	return $result;
+}
 
 ?>
 <div class="site-index">
 
-    <!--<div class="jumbotron">-->
-    <!--    <h1>Congratulations!</h1>-->
-    <!---->
-    <!--    <p class="lead">You have successfully created your Yii-powered application.</p>-->
-    <!---->
-    <!--    <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>-->
-    <!--</div>-->
+	<div class="jumbotron">
+
+		<h1>Уже добавлено <?= countEntity($entityByType) ?> сущностей!</h1>
+
+		<p class="lead">Из них: <?php
+			foreach($entityByType as $idx => $item)
+			{
+				?><?=$item['quantity'], ' ', WordHelper::wordCase($item['quantity'], $item['code_name'], true), ($idx + 1 < count($entityByType)  ? ', ' : '.')?><?php
+			}
+		?></p>
+
+	</div>
 
     <div class="body-content">
 

@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 
+use common\models\Entity;
 use common\models\LoginForm;
 use Log;
 use Yii;
@@ -57,6 +58,14 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+    	$entityByType = Entity::find()->alias('e')
+		    ->joinWith('typeCode AS et', false)
+		    ->select('COUNT(id) AS quantity, et.name AS code_name, e.type_code')
+		    ->groupBy(['e.type_code'])
+		    // ->indexBy('e.type_code')
+		    ->asArray()
+		    ->all();
+
 	    // add conditions that should always apply here
 	    $logProvider = new ActiveDataProvider([
 		    'query' => Log::find()
@@ -65,6 +74,7 @@ class SiteController extends Controller
 	    ]);
 
         return $this->render('index', [
+        	'entityByType' => $entityByType,
         	'logProvider' => $logProvider,
         ]);
     }
