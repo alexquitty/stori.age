@@ -15,7 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1><?php
 
 	Pjax::begin();
-	// echo $this->render('_search', ['model' => $searchModel]);
 
 	if(!\Yii::$app->user->isGuest)
 	{
@@ -37,27 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
 		'model' => $searchModel,
 		'types' => $types,
 	]);
-
-    // echo GridView::widget([
-    //     'dataProvider' => $dataProvider,
-    //     'filterModel' => $searchModel,
-    //     'layout' => "{items}{summary}\n{pager}",
-    //     'columns' => [
-    //         ['class' => 'yii\grid\SerialColumn'],
-    //
-    //         'id',
-    //         'letter',
-    //         'type_code',
-    //         'name',
-    //         [
-    //         	'attribute' => 'description',
-	 //            'contentOptions' => [ 'class' => 'trunc' ],
-    //         ],
-    //         // 'description:ntext',
-    //
-    //         ['class' => 'yii\grid\ActionColumn'],
-    //     ],
-    // ]);
 
 	Pjax::end();
 

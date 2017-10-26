@@ -23,7 +23,6 @@ foreach($models as $item)
 		$letter = $item['letter'];
 		?><h1 class="well well-sm text-center"><?=$letter?></h1><dl class="container"><?php
 	}
-	// else echo '<hr/>';
 
 	?><dt class="h4">
 		<?=$item['name']?>
