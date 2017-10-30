@@ -56,6 +56,37 @@ class Log extends \yii\db\ActiveRecord
         ];
     }
 
+	public function getActionAttributeAsIcon()
+	{
+		$prefix = '<span class="glyphicon glyphicon-';
+		$postfix = '"></span>';
+
+		$result = $prefix;
+
+		switch($this->action)
+		{
+			case 'create':
+				$result .= 'plus';
+				break;
+			case 'delete':
+				$result .= 'trash';
+				break;
+			case 'update':
+				$result .= 'pencil';
+				break;
+			case 'view':
+				$result .= 'eye-open';
+				break;
+			default:
+				$result = null;
+		}
+
+		if(isset($result))
+			$result .= $postfix;
+
+		return $result;
+	}
+
 	public function getContent()
 	{
 		return $this->hasOne(LogContent::className(), ['id' => 'log_id']);

@@ -41,6 +41,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'table_name',
             'item_key',
             // 'action',
+	        [
+		        'attribute' => 'action',
+		        'format' => 'html',
+		        'value' => function($model)
+		        {
+			        /* @var $model \Log */
+			        return $model->getActionAttributeAsIcon().' &nbsp;'.$model->action;
+		        }
+	        ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -69,8 +69,12 @@ class SiteController extends Controller
 	    // add conditions that should always apply here
 	    $logProvider = new ActiveDataProvider([
 		    'query' => Log::find()
-			    ->orderBy(['date' => SORT_DESC])->limit(5)
-			    ->joinWith('user')
+			    ->orderBy(['date' => SORT_DESC])
+			    // ->limit(5)
+			    ->joinWith('user'),
+		    'pagination' => [
+		    	'pageSize' => 5,
+		    ],
 	    ]);
 
         return $this->render('index', [

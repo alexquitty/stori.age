@@ -44,7 +44,7 @@ class LogContentController extends Controller
     {
     	return $this->__actionIndex([
     		'defaultOrder' => [
-    			'date' => SORT_DESC,
+    			'log_id' => SORT_DESC,
 		    ],
 	    ]);
     }

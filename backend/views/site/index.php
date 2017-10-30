@@ -35,6 +35,7 @@ function countEntity($data)
     <div class="body-content">
 
 	    <!--<div class="well">--><?php
+
 		 //    $item = 1;
 		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'дядя'), '<br/>';
 		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'тётя'), '<br/>';
@@ -91,7 +92,15 @@ function countEntity($data)
 
 			    'item_key',
 
-			    'action',
+			    [
+			    	'attribute' => 'action',
+				    'format' => 'html',
+				    'value' => function($model)
+				    {
+				    	/* @var $model \Log */
+				    	return $model->getActionAttributeAsIcon();
+				    }
+			    ],
 		    ],
 	    ]);?>
 
