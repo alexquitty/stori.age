@@ -33,7 +33,7 @@ use common\classes\WordHelper;
 			            echo WordHelper::truncate($item['description'], 300, [
 			            	'href' => empty($item['name'])
 					            ? ['snowflake/view', 'id' => $item['id']]
-					            : ['entity/view', 'id' => $item['id']],
+					            : ['glossary/index', 'EntitySearch[id]' => $item['id']],
 				            'text' => 'читать далее',
 			            ], null, true) ?: '<i>Нет описания.</i>';
 

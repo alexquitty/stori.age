@@ -15,7 +15,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'parent_code')->dropDownList($menuType ?: []) ?>
+    <?= $form->field($model, 'parent_code')->dropDownList($menuType ?: [], [
+    	'prompt' => 'Без родителя',
+    ]) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
