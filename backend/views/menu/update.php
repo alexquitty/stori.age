@@ -10,7 +10,7 @@ $this->title = Yii::t('cpanel', 'Update Menu: {nameAttribute}', [
     'nameAttribute' => $model->name,
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('cpanel', 'Menus'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->code]];
+$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('cpanel', 'Update');
 ?>
 <div class="menu-update">
