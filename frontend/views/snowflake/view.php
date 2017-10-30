@@ -6,7 +6,6 @@
  * Time: 18:28
  */
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
@@ -29,15 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
 	if(Yii::$app->user->can('author'))
 	{
 		Pjax::begin();
-
-		// $form = ActiveForm::begin([
-		// 	'layout' => 'horizontal',
-		// 	'action' => [ 'view' ],
-		// 	'method' => 'get',
-		// 	'options' => [
-		// 		'data-pjax' => 1,
-		// 	],
-		// ]);
 
 		echo Html::beginForm('view', 'get', [
 			'class' => 'form-horizontal',
@@ -63,9 +53,11 @@ $this->params['breadcrumbs'][] = $this->title;
 					?></div>
 				</div>
 			</div>
-			<div class="panel-body">
-				Для просмотра аннотации выберите книгу.
-			</div>
+			<div class="panel-body"><?php
+				echo empty($annotation->content)
+					? 'Для просмотра аннотации выберите книгу.'
+					: $annotation->content;
+			?></div>
 		</div><?
 
 		echo Html::endForm();
