@@ -167,13 +167,11 @@ trait CRUDTrait
 	{
 		$action = $this->module->requestedAction->id;
 
-		$key = null;
-
 		$logRecord = new \Log([
 			'user_id' => \Yii::$app->user->id,
 			'table_name' => $this->id,
 			'action' => $action,
-			'item_key' => $this->actionParams['id'] ?: (is_string($model) ? $model : null),
+			'item_key' => $this->actionParams['id'] ?: (is_string($model) || is_int($model) ? $model : null),
 		]);
 
 		if($logRecord->save())
