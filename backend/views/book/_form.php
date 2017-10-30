@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\Book */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $cycle array */
 ?>
 
 <div class="book-form">
@@ -14,7 +15,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'cycle_id')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'cycle_id')->dropDownList($cycle ?: [], [
+    	'prompt' => 'Без цикла',
+    ]) ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 

@@ -6,13 +6,16 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\Cycle */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $cycle array */
 ?>
 
 <div class="cycle-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'cycle_id')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'cycle_id')->dropDownList($cycle ?: [], [
+    	'prompt' => 'Без цикла',
+    ]) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

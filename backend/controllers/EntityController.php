@@ -25,10 +25,11 @@ class EntityController extends Controller
 	protected function __beforeActionChange(&$model, &$params)
 	{
 		$entityType = EntityType::find()
-			->select('name')
-			->indexBy('code')
-			->asArray()
-			->column();
+		->select('name')
+		->indexBy('code')
+		->asArray()
+		->column();
+
 		$this->viewParams = [
 			'entityType' => $entityType,
 		];

@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\traits\CRUDTrait;
+use common\models\EntityType;
 use yii\web\Controller;
 
 /**
@@ -15,4 +16,21 @@ class EntityTypeController extends Controller
 
 	public $model = 'EntityType';
 	public $searchModel = 'EntityTypeSearch';
+
+	/**
+	 * @param $model \yii\db\ActiveRecord
+	 * @param $params
+	 */
+	protected function __beforeActionChange(&$model, &$params)
+	{
+		$entityType = EntityType::find()
+			->select('name')
+			->indexBy('code')
+			->asArray()
+			->column();
+
+		$this->viewParams = [
+			'entityType' => $entityType,
+		];
+	}
 }
