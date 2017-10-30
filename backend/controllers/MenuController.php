@@ -28,11 +28,19 @@ class MenuController extends Controller
 			->select('code')
 			->indexBy('code')
 			->where([
-				'content' => 0,
-				'parent_code' => null,
+				'and',
+				['parent_code' => null],
+				[
+					'or',
+					[
+						'and',
+						['content' => 0],
+						['like', 'code', '\_%', false]
+					],
+					['content' => 1]
+				],
 			])
-			->andWhere(['like', 'code', '\_%', false])
-			->orderBy(['code' => SORT_ASC])
+			->orderBy(['content' => SORT_ASC, 'code' => SORT_ASC])
 			->asArray()
 			->column();
 
