@@ -43,10 +43,12 @@ trait CRUDTrait
 		$params = Yii::$app->request->post();
 		$this->__beforeActionChange($model, $params);
 
-		if($model->load($params) && $model->save() && $this->__afterModelSaved($mode, $params))
+		if($model->load($params) && $model->save() && $this->__afterModelSaved($model, $params))
 		{
 			$this->__logAction(); // save to log only info (content will in model itself)
 			$primaryKey = $model->primaryKey();
+
+			\DebugBot::send($primaryKey);
 
 			return $this->redirect([ 'view', 'id' => $model->$primaryKey ]);
 		}

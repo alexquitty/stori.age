@@ -36,7 +36,6 @@ class Menu extends \yii\db\ActiveRecord
             [['ord', 'content', 'access'], 'integer'],
             [['code', 'parent_code', 'icon'], 'string', 'max' => 150],
             [['name'], 'string', 'max' => 250],
-            [['code'], 'unique'],
             [['parent_code'], 'exist', 'skipOnError' => true, 'targetClass' => Menu::className(), 'targetAttribute' => ['parent_code' => 'code']],
 	        [['parent_code', 'icon'], 'default'],
 	        [['ord', 'content', 'access'], 'default', 'value' => 0],
@@ -49,6 +48,7 @@ class Menu extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+        	'id' => 'ID',
             'code' => 'Код меню',
             'parent_code' => 'Код родителя',
             'name' => 'Название',
