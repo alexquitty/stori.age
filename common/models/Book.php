@@ -33,11 +33,11 @@ class Book extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['cycle_id', 'ord'], 'integer'],
+            [['cycle_id', 'ord', 'hidden'], 'integer'],
             [['description'], 'string'],
             [['name'], 'string', 'max' => 150],
             [['cycle_id'], 'exist', 'skipOnError' => true, 'targetClass' => Cycle::className(), 'targetAttribute' => ['cycle_id' => 'id']],
-	        [['ord'], 'default', 'value' => 0],
+	        [['ord', 'hidden'], 'default', 'value' => 0],
         ];
     }
 
@@ -52,6 +52,7 @@ class Book extends \yii\db\ActiveRecord
             'cycle_id' => 'Цикл',
             'description' => 'Описание',
             'ord' => 'Порядок',
+	        'hidden' => 'Скрыть',
         ];
     }
 

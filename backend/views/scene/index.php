@@ -27,11 +27,19 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'chapter_id',
+            // 'chapter_id',
+	        [
+	        	'attribute' => 'chapter_id',
+		        'value' => 'chapter.name',
+	        ],
             'name',
-            'content:ntext',
+            // 'content:ntext',
             'ord',
-            //'hidden',
+	        //'hidden',
+            [
+            	'attribute' => 'hidden',
+	            'format' => 'boolean',
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

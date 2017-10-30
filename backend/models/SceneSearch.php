@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use backend\traits\CRUDSearchTrait;
+use common\models\Chapter;
 use common\models\Scene;
 
 /**
@@ -18,8 +19,8 @@ class SceneSearch extends Scene
     public function rules()
     {
         return [
-            [['id', 'chapter_id', 'ord', 'hidden'], 'integer'],
-            [['name', 'content'], 'safe'],
+            [['id', 'ord', 'hidden'], 'integer'],
+            [['name', 'chapter_id'], 'safe'],
         ];
     }
 
@@ -32,18 +33,18 @@ class SceneSearch extends Scene
      */
     public function search($params)
     {
-        $this->__search($params);
+        $this->__search($params, ['chapter']);
 
         // grid filtering conditions
         $this->query
 	        ->andFilterWhere([
 	            'id' => $this->id,
-	            'chapter_id' => $this->chapter_id,
+	            // 'chapter_id' => $this->chapter_id,
 	            'ord' => $this->ord,
 	            'hidden' => $this->hidden,
 	        ])
-	        ->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'content', $this->content]);
+	        ->andFilterWhere(['like', Chapter::tableName().'.name', $this->chapter_id])
+	        ->andFilterWhere(['like', 'name', $this->name]);
 
         return $this->dataProvider;
     }

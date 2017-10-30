@@ -34,7 +34,11 @@ $this->params['breadcrumbs'][] = $this->title;
 	        ],
             'name',
             'ord',
-            'hidden',
+            // 'hidden',
+	        [
+		        'attribute' => 'hidden',
+		        'format' => 'boolean',
+	        ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

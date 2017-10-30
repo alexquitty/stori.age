@@ -32,8 +32,8 @@ trait CRUDSearchTrait
 		if(empty($this->query))
 			$this->query = self::find();
 
-		foreach($joinWith as $item)
-			$this->query->joinWith($item);
+		foreach($joinWith as $key => $item)
+			$this->query->joinWith([$key => $item]);
 
 		// add conditions that should always apply here
 		$this->dataProvider = new ActiveDataProvider([

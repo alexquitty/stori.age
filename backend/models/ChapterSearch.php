@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use backend\traits\CRUDSearchTrait;
+use common\models\Bookpart;
 use common\models\Chapter;
 
 /**
@@ -18,8 +19,8 @@ class ChapterSearch extends Chapter
     public function rules()
     {
         return [
-            [['id', 'bookpart_id', 'ord', 'hidden'], 'integer'],
-            [['name'], 'safe'],
+            [['id', 'ord', 'hidden'], 'integer'],
+            [['name', 'bookpart_id'], 'safe'],
         ];
     }
 
@@ -32,16 +33,17 @@ class ChapterSearch extends Chapter
      */
     public function search($params)
     {
-        $this->__search($params);
+        $this->__search($params, ['bookpart']);
 
         // grid filtering conditions
         $this->query
 	        ->andFilterWhere([
 	            'id' => $this->id,
-	            'bookpart_id' => $this->bookpart_id,
+	            // 'bookpart_id' => $this->bookpart_id,
 	            'ord' => $this->ord,
 	            'hidden' => $this->hidden,
 	        ])
+	        ->andFilterWhere(['like', Bookpart::tableName().'.name', $this->bookpart_id])
 			->andFilterWhere(['like', 'name', $this->name]);
 
         return $this->dataProvider;

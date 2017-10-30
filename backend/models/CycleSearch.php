@@ -18,8 +18,8 @@ class CycleSearch extends Cycle
     public function rules()
     {
         return [
-            [['id', 'cycle_id', 'ord'], 'integer'],
-            [['name', 'description'], 'safe'],
+            [['id', 'ord'], 'integer'],
+            [['name', 'cycle_id', 'description'], 'safe'],
         ];
     }
 
@@ -32,15 +32,21 @@ class CycleSearch extends Cycle
      */
     public function search($params)
     {
-        $this->__search($params);
+        $this->__search($params, [
+        	'cycle' => function(\yii\db\ActiveQuery $query)
+	        {
+	        	$query->from(Cycle::tableName().' AS c2');
+	        },
+        ]);
 
         // grid filtering conditions
         $this->query
 	        ->andFilterWhere([
 	            'id' => $this->id,
-	            'cycle_id' => $this->cycle_id,
+	            // 'cycle_id' => $this->cycle_id,
 	            'ord' => $this->ord,
 	        ])
+	        ->andFilterWhere(['like', 'c2.name', $this->cycle_id])
 	        ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'description', $this->description]);
 

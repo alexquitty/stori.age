@@ -43,8 +43,8 @@ class AnnotationSearch extends Annotation
                 // 'book_id' => $this->book_id,
                 'snowflake_id' => $this->snowflake_id,
             ])
-	        ->andFilterWhere(['like', 'content', $this->content])
-	        ->andFilterWhere(['like', Book::tableName().'.name', $this->book_id]);
+	        ->andFilterWhere(['like', Book::tableName().'.name', $this->book_id])
+	        ->andFilterWhere(['like', 'content', $this->content]);
 
         return $this->dataProvider;
     }

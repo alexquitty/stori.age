@@ -19,8 +19,8 @@ class BookpartSearch extends Bookpart
     public function rules()
     {
         return [
-            [['id', 'book_id', 'ord', 'hidden'], 'integer'],
-            [['name'], 'safe'],
+            [['id', 'ord', 'hidden'], 'integer'],
+            [['name', 'book_id'], 'safe'],
         ];
     }
 
@@ -33,7 +33,7 @@ class BookpartSearch extends Bookpart
      */
     public function search($params)
     {
-        $this->__search($params);
+        $this->__search($params, ['book']);
 
         // grid filtering conditions
         $this->query

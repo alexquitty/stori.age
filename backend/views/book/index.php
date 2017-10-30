@@ -28,9 +28,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'cycle_id',
+            // 'cycle_id',
+	        [
+	        	'attribute' => 'cycle_id',
+		        'value' => 'cycle.name',
+	        ],
             'description:ntext',
             'ord',
+            [
+            	'attribute' => 'hidden',
+	            'format' => 'boolean',
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

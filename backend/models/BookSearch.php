@@ -4,6 +4,7 @@ namespace backend\models;
 
 use backend\traits\CRUDSearchTrait;
 use common\models\Book;
+use common\models\Cycle;
 
 /**
  * BookSearch represents the model behind the search form of `common\models\Book`.
@@ -18,8 +19,8 @@ class BookSearch extends Book
     public function rules()
     {
         return [
-            [['id', 'cycle_id', 'ord'], 'integer'],
-            [['name', 'description'], 'safe'],
+            [['id', 'ord', 'hidden'], 'integer'],
+            [['cycle_id', 'name', 'description'], 'safe'],
         ];
     }
 
@@ -38,9 +39,11 @@ class BookSearch extends Book
         $this->query->
 	        andFilterWhere([
 	            'id' => $this->id,
-	            'cycle_id' => $this->cycle_id,
+	            // 'cycle_id' => $this->cycle_id,
 	            'ord' => $this->ord,
+		        'hidden' => $this->hidden,
 	        ])
+	        ->andFilterWhere(['like', Cycle::tableName().'.name', $this->cycle_id])
             ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'description', $this->description]);
 
