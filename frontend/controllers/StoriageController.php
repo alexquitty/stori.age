@@ -21,7 +21,10 @@ class StoriageController extends Controller
 				'parent_code' => $this->id,
 				'content' => 1,
 			])
-			->orderBy(['ord' => SORT_ASC])
+			->orderBy([
+				'ord' => SORT_ASC,
+				'name' => SORT_ASC,
+			])
 			->asArray()
 			->all();
 

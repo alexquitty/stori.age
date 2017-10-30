@@ -47,7 +47,7 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Войти', 'url' => ['/site/login']];
     } else {
         $menuItems[] = '<li>'
-	        . '<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown">'.Yii::$app->user->identity->username.' ▼</a>'
+	        . '<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown">'.Yii::$app->user->identity->username.' <span class="caret"></span></a>'
 	        . '<ul class="dropdown-menu dropdown-usermenu pull-right"><li><a href="/cpanel/">Администрирование</a></li>'
 	        . '<li>'
             . Html::beginForm(['/site/logout'], 'post')

@@ -10,6 +10,7 @@ namespace frontend\classes;
 
 
 use common\models\Menu;
+use yii\db\ActiveQuery;
 
 class MenuList
 {
@@ -57,7 +58,15 @@ class MenuList
 		self::$contextId = $contextId;
 
 		$menu = Menu::find()->alias('m')
-			->joinWith('menus as m2')
+			->joinWith([
+				'menus AS m2' => function(ActiveQuery $query)
+				{
+					$query->orderBy([
+						'ord' => SORT_ASC,
+						'name' => SORT_ASC,
+					]);
+				},
+			])
 			->where([
 				'm.parent_code' => null,
 				'm.content' => 1,

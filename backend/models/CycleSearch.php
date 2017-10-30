@@ -32,12 +32,7 @@ class CycleSearch extends Cycle
      */
     public function search($params)
     {
-        $this->__search($params, [
-        	'cycle' => function(\yii\db\ActiveQuery $query)
-	        {
-	        	$query->from(Cycle::tableName().' AS c2');
-	        },
-        ]);
+	    $this->__search($params, ['cycle AS c2']);
 
         // grid filtering conditions
         $this->query

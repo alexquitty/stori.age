@@ -15,7 +15,9 @@ $this->title = Yii::t('website', 'Storiage');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?><div class="storiage-index">
-	<h1><?= Html::encode($this->title) ?></h1><?php
+	<div class="jumbotron">
+		<h1><?= Html::encode($this->title) ?></h1>
+	</div><?php
 
 	if(empty($menu))
 	{
@@ -25,16 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
 	}
 	else
 	{
-		?><div class="panel panel-default">
-			<div class="panel-body">
-				<ul><?php
-					foreach($menu as $item)
-					{
-						?><li><a href="/<?=$item['parent_code']?>/<?=$item['code']?>/"><?=$item['name']?></a></li><?php
-					}
-				?></ul>
-			</div>
-		</div><?php
+		?><div class="list-group"><?php
+			foreach($menu as $item)
+			{
+				?><a class="list-group-item list-group-item-action" href="/<?=$item['parent_code']?>/<?=$item['code']?>/"><?=$item['name']?></a><?php
+			}
+		?></div><?php
 	}
 
 	?>

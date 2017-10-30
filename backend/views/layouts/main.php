@@ -190,7 +190,7 @@ $this->beginPage();
 		                ?><ul class="nav navbar-nav navbar-right">
 			                <li>
 				                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					                <img src="<?=$url?>image/user-icon.png" alt=""><?=\Yii::$app->user->identity->username?> ▼
+					                <img src="<?=$url?>image/user-icon.png" alt=""><?=\Yii::$app->user->identity->username?> <span class="caret"></span>
 					                <!--<span class="fa fa-angle-down"></span>-->
 				                </a>
 				                <ul class="dropdown-menu dropdown-usermenu pull-right">
