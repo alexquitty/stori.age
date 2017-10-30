@@ -4,6 +4,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Bookpart */
+/* @var $book array */
 
 $this->title = Yii::t('cpanel', 'Update Bookpart: {nameAttribute}', [
     'nameAttribute' => $model->name,
@@ -18,6 +19,7 @@ $this->params['breadcrumbs'][] = Yii::t('cpanel', 'Update');
 
     <?= $this->render('_form', [
         'model' => $model,
+	    'book' => $book,
     ]) ?>
 
 </div>

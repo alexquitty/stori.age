@@ -6,13 +6,16 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\Bookpart */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $book array */
 ?>
 
 <div class="bookpart-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'book_id')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'book_id')->dropDownList($book ?: [], [
+    	'prompt' => 'Без книги',
+    ]) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

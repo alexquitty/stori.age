@@ -5,6 +5,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Bookpart */
+/* @var $book array */
 
 $this->title = Yii::t('cpanel', 'Create Bookpart');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('cpanel', 'Bookparts'), 'url' => ['index']];
@@ -16,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+	    'book' => $book,
     ]) ?>
 
 </div>

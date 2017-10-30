@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use backend\traits\CRUDSearchTrait;
+use common\models\Book;
 use common\models\Bookpart;
 
 /**
@@ -38,10 +39,11 @@ class BookpartSearch extends Bookpart
         $this->query
 	        ->andFilterWhere([
 	            'id' => $this->id,
-	            'book_id' => $this->book_id,
+	            // 'book_id' => $this->book_id,
 	            'ord' => $this->ord,
 	            'hidden' => $this->hidden,
 	        ])
+	        ->andFilterWhere(['like', Book::tableName().'.name', $this->book_id])
 	        ->andFilterWhere(['like', 'name', $this->name]);
 
         return $this->dataProvider;

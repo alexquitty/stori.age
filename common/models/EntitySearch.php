@@ -37,9 +37,7 @@ class EntitySearch extends Entity
 
         // grid filtering conditions
         $this->query
-	        ->andFilterWhere([
-	            'id' => $this->id,
-	        ])
+	        ->andFilterWhere(['id' => $this->id])
 	        ->andFilterWhere(['like', 'letter', $this->letter])
 	        ->andFilterWhere(['like', EntityType::tableName().'.name', $this->type_code])
             ->andFilterWhere(['like', 'name', $this->name])
