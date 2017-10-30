@@ -7,6 +7,7 @@ use yii\widgets\ActiveForm;
 /* @var $model common\models\Menu */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $menuType array */
+/* @var $content array */
 ?>
 
 <div class="menu-form">
@@ -25,7 +26,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'ord')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'content')->textInput() ?>
+    <?= $form->field($model, 'content')->dropDownList($content) ?>
 
     <?= $form->field($model, 'access')->textInput() ?>
 

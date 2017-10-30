@@ -4,6 +4,8 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Menu */
+/* @var $menuType array */
+/* @var $content array */
 
 $this->title = Yii::t('cpanel', 'Update Menu: {nameAttribute}', [
     'nameAttribute' => $model->name,
@@ -18,6 +20,8 @@ $this->params['breadcrumbs'][] = Yii::t('cpanel', 'Update');
 
     <?= $this->render('_form', [
         'model' => $model,
+	    'menuType' => $menuType,
+	    'content' => $content,
     ]) ?>
 
 </div>
