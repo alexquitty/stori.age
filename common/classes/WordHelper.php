@@ -80,32 +80,53 @@ class WordHelper extends StringHelper
 		$femaleSoft = ['ь', 'я'];
 		$maleSoft = ['ж'];
 		$maleMedium = ['ц'];
+		$medium = ['е'];
+
+		$preFemale = ['т', 'с'];
+		$preMale = ['д'];
+		$preMedium = ['м'];
 
 
 		$result = strval($string);
 		$lastSyllable = mb_substr($string, mb_strlen($string)-1, 1);
+		$preSyllable = mb_substr($string, mb_strlen($string)-2, 1);
 
 		switch($number)
 		{
 			case 1:
 				break;
 			case 2: case 3: case 4:
-			if(in_array($lastSyllable, $femaleSoft))
-				$result = mb_substr($result, 0, mb_strlen($result)-1).'и';
-			elseif(in_array($lastSyllable, $femaleHard))
-				$result = mb_substr($result, 0, mb_strlen($result)-1).'ы';
-			else
-				$result .= 'а';
-			break;
+				if(in_array($lastSyllable, $femaleSoft))
+					$result = in_array($preSyllable, $preMedium)
+						? mb_substr($result, 0, mb_strlen($result)-1).'ени'
+						: (
+							// in_array($preSyllable, $preMale)
+							// 	? mb_substr($result, 0, mb_strlen($result)-1).'ей'
+								/*:*/ mb_substr($result, 0, mb_strlen($result)-1).'и'
+						);
+				elseif(in_array($lastSyllable, $femaleHard))
+					$result = mb_substr($result, 0, mb_strlen($result)-1).'ы';
+				elseif(in_array($lastSyllable, $medium))
+					$result = mb_substr($result, 0, mb_strlen($result)-1).'я';
+				else
+					$result .= 'а';
+				break;
 			default:
 				if(in_array($lastSyllable, $femaleSoft))
-					$result .= mb_substr($result, 0, mb_strlen($result)-1).'и';
+					$result = in_array($preSyllable, $preMedium)
+						? mb_substr($result, 0, mb_strlen($result)-1).'ён'
+						: ( in_array($preSyllable, $preMale) || in_array($preSyllable, $preFemale)
+							? mb_substr($result, 0, mb_strlen($result)-1).'ей'
+							: mb_substr($result, 0, mb_strlen($result)-1).'й'
+						);
 				elseif(in_array($lastSyllable, $femaleHard))
 					$result = mb_substr($result, 0, mb_strlen($result)-1);
 				elseif(in_array($lastSyllable, $maleSoft))
 					$result .= 'ей';
 				elseif(in_array($lastSyllable, $maleMedium))
 					$result .= 'ев';
+				elseif(in_array($lastSyllable, $medium))
+					$result = mb_substr($result, 0, mb_strlen($result)-1).'й';
 				else
 					$result .= 'ов';
 		}
