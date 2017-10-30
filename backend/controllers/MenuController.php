@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 
 use backend\traits\CRUDTrait;
+use common\models\Menu;
 use yii\web\Controller;
 
 /**
@@ -16,6 +17,24 @@ class MenuController extends Controller
 
 	public $model = 'Menu';
 	public $searchModel = 'MenuSearch';
+
+	/**
+	 * @param $model \yii\db\ActiveRecord
+	 * @param $params
+	 */
+	protected function __beforeActionChange(&$model, &$params)
+	{
+		$menuType = Menu::find()
+			->select('code')
+			->indexBy('code')
+			->where(['content' => 0])
+			->asArray()
+			->column();
+
+		$this->viewParams = [
+			'menuType' => $menuType,
+		];
+	}
 
 	/**
      * Lists all Menu models.

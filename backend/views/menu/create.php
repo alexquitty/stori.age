@@ -5,6 +5,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Menu */
+/* @var $menuType array */
 
 $this->title = Yii::t('cpanel', 'Create Menu');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('cpanel', 'Menus'), 'url' => ['index']];
@@ -16,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+	    'menuType' => $menuType,
     ]) ?>
 
 </div>

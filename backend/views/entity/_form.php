@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'type_code')->dropDownList($entityType) ?>
+    <?= $form->field($model, 'type_code')->dropDownList($entityType ?: []) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

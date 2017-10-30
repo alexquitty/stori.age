@@ -47,8 +47,6 @@ trait CRUDTrait
 		{
 			$primaryKey = $model->primaryKey()[0];
 
-			\DebugBot::send($primaryKey);
-
 			$this->__logAction($model->$primaryKey); // save to log only info (content will in model itself)
 			// depends on is_string $model
 
