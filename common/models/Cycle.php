@@ -48,7 +48,7 @@ class Cycle extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'cycle_id' => 'Cycle ID',
+            'cycle_id' => 'ID цикла',
             'name' => 'Название',
             'description' => 'Описание',
             'ord' => 'Порядок',
