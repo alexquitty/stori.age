@@ -9,6 +9,8 @@
 namespace frontend\controllers;
 
 
+use common\models\Annotation;
+use common\models\Book;
 use common\models\Snowflake;
 use yii\web\Controller;
 
@@ -30,11 +32,25 @@ class SnowflakeController extends Controller
 	{
 		$model = Snowflake::findOne(['id' => $id]);
 
-		// $bookModel = Book::find();
+		$annotation = Annotation::find()
+			->where([
+				'snowflake_id' => $id,
+				'book_id' => \Yii::$app->request->get('book_id'),
+			])->one();
+
+		if(empty($annotation))
+			$annotation = new Annotation();
+
+		$book = Book::find()
+			->select('name')
+			->indexBy('id')
+			->asArray()
+			->column();
 
 		return $this->render('view', [
 			'model' => $model,
-			'bookModel' => $bookModel,
+			'annotation' => $annotation,
+			'book' => $book,
 		]);
 	}
 }

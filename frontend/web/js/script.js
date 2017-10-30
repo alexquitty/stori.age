@@ -8,7 +8,7 @@ $(document).on('click', '.entity-index button.btn-link', function()
 	obj.val(text == obj.val() ? '' : text).submit();
 });
 
-$(document).on('change', '.entity-search select', function()
+$(document).on('change', '.entity-search select, .snowflake-view select', function()
 {
 	$(this).submit();
 });

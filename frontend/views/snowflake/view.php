@@ -11,8 +11,8 @@ use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Snowflake */
-/* @var $bookModel */
-/* @var $books array */
+/* @var $annotation common\models\Annotation */
+/* @var $book array */
 
 $this->title = 'Шаг '.$model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('website', 'Snowflake'), 'url' => ['index']];
@@ -30,38 +30,45 @@ $this->params['breadcrumbs'][] = $this->title;
 	{
 		Pjax::begin();
 
-		$form = ActiveForm::begin([
-			'layout' => 'horizontal',
-			'action' => [ 'index' ],
-			'method' => 'get',
-			'options' => [
-				'data-pjax' => 1,
-			],
-			'fieldConfig' => [
-				'horizontalCssClasses' => [
-					'label' => 'pull-left',
-					'offset' => 'col-md-offset-1',
-					'wrapper' => 'col-md-3',
-				],
-			],
+		// $form = ActiveForm::begin([
+		// 	'layout' => 'horizontal',
+		// 	'action' => [ 'view' ],
+		// 	'method' => 'get',
+		// 	'options' => [
+		// 		'data-pjax' => 1,
+		// 	],
+		// ]);
+
+		echo Html::beginForm('view', 'get', [
+			'class' => 'form-horizontal',
+			'data-pjax' => 1,
 		]);
+
+		echo Html::hiddenInput('id', $model->id);
 
 		?>
 		<div class="panel panel-info">
 			<div class="panel-heading">
-				<?=$form
-					->field($model, 'id', [
-						'options' => ['class' => 'input-group w-100'],
-					])
-					->label('Просмотреть для книги:')
-					->dropDownList($books ?: [], ['prompt' => 'Выберите книгу'])?>
+				<div class="input-group w-100"><?php
+					echo Html::label('Просмотреть для книги:', 'book_id', [
+						'class' => 'control-label pull-left',
+					]);
+					?><div class="col-md-3"><?php
+						echo Html::dropDownList('book_id', $annotation->book_id, $book ?: [],
+							[
+								'class' => 'form-control',
+								'id' => 'book_id',
+								'prompt' => 'Выберите книгу',
+							]);
+					?></div>
+				</div>
 			</div>
 			<div class="panel-body">
 				Для просмотра аннотации выберите книгу.
 			</div>
 		</div><?
 
-		ActiveForm::end();
+		echo Html::endForm();
 
 		Pjax::end();
 	}
