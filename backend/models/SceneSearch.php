@@ -2,9 +2,7 @@
 
 namespace backend\models;
 
-use Yii;
-use yii\base\Model;
-use yii\data\ActiveDataProvider;
+use backend\traits\CRUDSearchTrait;
 use common\models\Scene;
 
 /**
@@ -12,6 +10,8 @@ use common\models\Scene;
  */
 class SceneSearch extends Scene
 {
+	use CRUDSearchTrait;
+
     /**
      * @inheritdoc
      */
@@ -24,50 +24,27 @@ class SceneSearch extends Scene
     }
 
     /**
-     * @inheritdoc
-     */
-    public function scenarios()
-    {
-        // bypass scenarios() implementation in the parent class
-        return Model::scenarios();
-    }
-
-    /**
      * Creates data provider instance with search query applied
      *
      * @param array $params
      *
-     * @return ActiveDataProvider
+     * @return \yii\data\ActiveDataProvider
      */
     public function search($params)
     {
-        $query = Scene::find();
-
-        // add conditions that should always apply here
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
-
-        $this->load($params);
-
-        if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
-            return $dataProvider;
-        }
+        $this->__search($params);
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'chapter_id' => $this->chapter_id,
-            'ord' => $this->ord,
-            'hidden' => $this->hidden,
-        ]);
-
-        $query->andFilterWhere(['like', 'name', $this->name])
+        $this->query
+	        ->andFilterWhere([
+	            'id' => $this->id,
+	            'chapter_id' => $this->chapter_id,
+	            'ord' => $this->ord,
+	            'hidden' => $this->hidden,
+	        ])
+	        ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'content', $this->content]);
 
-        return $dataProvider;
+        return $this->dataProvider;
     }
 }

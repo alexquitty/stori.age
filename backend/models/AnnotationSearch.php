@@ -3,9 +3,8 @@
 namespace backend\models;
 
 use backend\traits\CRUDSearchTrait;
-use common\models\Book;
-use yii\data\ActiveDataProvider;
 use common\models\Annotation;
+use common\models\Book;
 
 /**
  * AnnotationSearch represents the model behind the search form of `common\models\Annotation`.
@@ -31,7 +30,7 @@ class AnnotationSearch extends Annotation
      *
      * @param array $params
      *
-     * @return ActiveDataProvider
+     * @return \yii\data\ActiveDataProvider
      */
     public function search($params)
     {
