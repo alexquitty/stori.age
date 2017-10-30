@@ -45,10 +45,12 @@ trait CRUDTrait
 
 		if($model->load($params) && $model->save() && $this->__afterModelSaved($model, $params))
 		{
-			$this->__logAction(); // save to log only info (content will in model itself)
-			$primaryKey = $model->primaryKey();
+			$primaryKey = $model->primaryKey()[0];
 
 			\DebugBot::send($primaryKey);
+
+			$this->__logAction($model->$primaryKey); // save to log only info (content will in model itself)
+			// depends on is_string $model
 
 			return $this->redirect([ 'view', 'id' => $model->$primaryKey ]);
 		}
@@ -167,16 +169,18 @@ trait CRUDTrait
 	{
 		$action = $this->module->requestedAction->id;
 
+		$key = null;
+
 		$logRecord = new \Log([
 			'user_id' => \Yii::$app->user->id,
 			'table_name' => $this->id,
 			'action' => $action,
-			'item_key' => $this->actionParams['id'],
+			'item_key' => $this->actionParams['id'] ?: (is_string($model) ? $model : null),
 		]);
 
 		if($logRecord->save())
 		{
-			if(isset($model))
+			if(isset($model) && false == is_string($model))
 			{
 				$logContentRecord = new \LogContent([
 					'log_id' => $logRecord->id,

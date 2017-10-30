@@ -29,18 +29,19 @@ class TranslationController extends Controller
 	{
 		$result = false;
 
-		$model2 = $this->findModel2($model->id);
-		if(isset($model2))
-		{
-			$params[ucfirst($model2::tableName())]['id'] = $model->id;
+		/**
+		 * @var $model2 \common\models\Message
+		 */
+		$model2 = $this->findModel2($model->id) ?: new $this->model2();
 
-			if($model2->load($params) && $model2->save())
-			{
-				$this->viewParams = [
-					'model2' => $model2,
-				];
-				$result = true;
-			}
+		$params[ucfirst($model2::tableName())]['id'] = $model->id;
+
+		if($model2->load($params) && $model2->save())
+		{
+			$this->viewParams = [
+				'model2' => $model2,
+			];
+			$result = true;
 		}
 
 		return $result;
