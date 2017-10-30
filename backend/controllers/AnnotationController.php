@@ -26,7 +26,7 @@ class AnnotationController extends Controller
 			->column();
 
 		$snowflake = Snowflake::find()
-			->select('CONCAT("Шаг ", `id`) AS name')
+			->select('id')
 			->indexBy('id')
 			->asArray()
 			->column();

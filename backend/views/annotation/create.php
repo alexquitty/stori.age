@@ -11,6 +11,7 @@ use yii\helpers\Html;
 $this->title = Yii::t('cpanel', 'Create Annotation');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('cpanel', 'Annotations'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="annotation-create">
 

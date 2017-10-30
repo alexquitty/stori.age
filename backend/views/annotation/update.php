@@ -4,6 +4,9 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Annotation */
+/* @var $book array */
+/* @var $snowflake array */
+
 
 $this->title = Yii::t('cpanel', 'Update Annotation: {nameAttribute}', [
     'nameAttribute' => $model->id,
@@ -18,6 +21,8 @@ $this->params['breadcrumbs'][] = Yii::t('cpanel', 'Update');
 
     <?= $this->render('_form', [
         'model' => $model,
+	    'book' => $book,
+	    'snowflake' => $snowflake,
     ]) ?>
 
 </div>
