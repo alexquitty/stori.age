@@ -5,6 +5,8 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Annotation */
+/* @var $book array */
+/* @var $snowflake array */
 
 $this->title = Yii::t('cpanel', 'Create Annotation');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('cpanel', 'Annotations'), 'url' => ['index']];
@@ -16,6 +18,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+	    'book' => $book,
+	    'snowflake' => $snowflake,
     ]) ?>
 
 </div>

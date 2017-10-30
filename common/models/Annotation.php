@@ -45,9 +45,9 @@ class Annotation extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'book_id' => 'Book ID',
-            'snowflake_id' => 'Snowflake ID',
-            'content' => 'Content',
+            'book_id' => 'Книга',
+            'snowflake_id' => 'Шаг снежинки',
+            'content' => 'Текст',
         ];
     }
 

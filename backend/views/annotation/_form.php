@@ -6,15 +6,21 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\Annotation */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $book array */
+/* @var $snowflake array */
 ?>
 
 <div class="annotation-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'book_id')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'book_id')->dropDownList($book ?: [], [
+    	'prompt' => 'Без книги',
+    ]) ?>
 
-    <?= $form->field($model, 'snowflake_id')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'snowflake_id')->dropDownList($snowflake ?: [], [
+    	'prompt' => 'Без шага в «Снежинке»',
+    ]) ?>
 
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 

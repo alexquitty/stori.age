@@ -37,6 +37,7 @@ class Book extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['name'], 'string', 'max' => 150],
             [['cycle_id'], 'exist', 'skipOnError' => true, 'targetClass' => Cycle::className(), 'targetAttribute' => ['cycle_id' => 'id']],
+	        [['ord'], 'default', 'value' => 0],
         ];
     }
 

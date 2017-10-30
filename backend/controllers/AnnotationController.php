@@ -3,6 +3,8 @@
 namespace backend\controllers;
 
 use backend\traits\CRUDTrait;
+use common\models\Book;
+use common\models\Snowflake;
 use yii\web\Controller;
 
 /**
@@ -14,4 +16,24 @@ class AnnotationController extends Controller
 
 	public $model = 'Annotation';
 	public $searchModel = 'AnnotationSearch';
+
+	protected function __beforeActionChange(&$model, &$params)
+	{
+		$book = Book::find()
+			->select('name')
+			->indexBy('id')
+			->asArray()
+			->column();
+
+		$snowflake = Snowflake::find()
+			->select('CONCAT("Шаг ", `id`) AS name')
+			->indexBy('id')
+			->asArray()
+			->column();
+
+		$this->viewParams = [
+			'book' => $book,
+			'snowflake' => $snowflake,
+		];
+	}
 }
