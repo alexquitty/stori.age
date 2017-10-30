@@ -78,13 +78,15 @@ class WordHelper extends StringHelper
 	{
 		$femaleHard = ['а'];
 		$femaleSoft = ['ь', 'я'];
-		$maleSoft = ['ж'];
+		$maleSoft = ['ж', 'г'];
 		$maleMedium = ['ц'];
 		$medium = ['е'];
 
 		$preFemale = ['т', 'с'];
 		$preMale = ['д'];
 		$preMedium = ['м'];
+
+		$transcript = [ 'г' => 'з' ];
 
 
 		$result = strval($string);
@@ -100,9 +102,9 @@ class WordHelper extends StringHelper
 					$result = in_array($preSyllable, $preMedium)
 						? mb_substr($result, 0, mb_strlen($result)-1).'ени'
 						: (
-							// in_array($preSyllable, $preMale)
-							// 	? mb_substr($result, 0, mb_strlen($result)-1).'ей'
-								/*:*/ mb_substr($result, 0, mb_strlen($result)-1).'и'
+							/* in_array($preSyllable, $preMale)
+								? mb_substr($result, 0, mb_strlen($result)-1).'ей'
+								:*/ mb_substr($result, 0, mb_strlen($result)-1).'и'
 						);
 				elseif(in_array($lastSyllable, $femaleHard))
 					$result = mb_substr($result, 0, mb_strlen($result)-1).'ы';
@@ -122,7 +124,11 @@ class WordHelper extends StringHelper
 				elseif(in_array($lastSyllable, $femaleHard))
 					$result = mb_substr($result, 0, mb_strlen($result)-1);
 				elseif(in_array($lastSyllable, $maleSoft))
+				{
+					if(array_key_exists($lastSyllable, $transcript))
+						$result = mb_substr($result, 0, mb_strlen($result) - 1).$transcript[$lastSyllable];
 					$result .= 'ей';
+				}
 				elseif(in_array($lastSyllable, $maleMedium))
 					$result .= 'ев';
 				elseif(in_array($lastSyllable, $medium))

@@ -34,33 +34,39 @@ function countEntity($data)
 
     <div class="body-content">
 
-	    <div class="well"><?php
-		    $item = 1;
-		    echo $item, ' ', WordHelper::wordCaseEx($item, 'дядя'), '<br/>';
-		    echo $item, ' ', WordHelper::wordCaseEx($item, 'тётя'), '<br/>';
-		    echo $item, ' ', WordHelper::wordCaseEx($item, 'действие'), '<br/>';
-		    echo $item, ' ', WordHelper::wordCaseEx($item, 'традиция'), '<br/>';
-		    echo $item, ' ', WordHelper::wordCaseEx($item, 'время'), '<br/>';
-		    echo $item, ' ', WordHelper::wordCaseEx($item, 'запись'), '<br/>';
-		    echo '<br/>';
-
-		    $item = 2;
-		    echo $item, ' ', WordHelper::wordCaseEx($item, 'дядя'), '<br/>';
-		    echo $item, ' ', WordHelper::wordCaseEx($item, 'тётя'), '<br/>';
-		    echo $item, ' ', WordHelper::wordCaseEx($item, 'действие'), '<br/>';
-		    echo $item, ' ', WordHelper::wordCaseEx($item, 'традиция'), '<br/>';
-		    echo $item, ' ', WordHelper::wordCaseEx($item, 'время'), '<br/>';
-		    echo $item, ' ', WordHelper::wordCaseEx($item, 'запись'), '<br/>';
-		    echo '<br/>';
-
-			$item = 5;
-		    echo $item, ' ', WordHelper::wordCaseEx($item, 'дядя'), '<br/>';
-		    echo $item, ' ', WordHelper::wordCaseEx($item, 'тётя'), '<br/>';
-		    echo $item, ' ', WordHelper::wordCaseEx($item, 'действие'), '<br/>';
-		    echo $item, ' ', WordHelper::wordCaseEx($item, 'традиция'), '<br/>';
-		    echo $item, ' ', WordHelper::wordCaseEx($item, 'время'), '<br/>';
-		    echo $item, ' ', WordHelper::wordCaseEx($item, 'запись'), '<br/>';
-	    ?></div>
+	    <!--<div class="well">--><?php
+		 //    $item = 1;
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'дядя'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'тётя'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'действие'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'традиция'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'время'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'запись'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'друг'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'расписание'), '<br/>';
+		 //    echo '<br/>';
+	    //
+		 //    $item = 2;
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'дядя'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'тётя'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'действие'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'традиция'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'время'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'запись'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'друг'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'расписание'), '<br/>';
+		 //    echo '<br/>';
+	    //
+			// $item = 5;
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'дядя'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'тётя'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'действие'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'традиция'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'время'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'запись'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'друг'), '<br/>';
+		 //    echo $item, ' ', WordHelper::wordCaseEx($item, 'расписание'), '<br/>';
+	    // ?><!--</div>-->
 
 	    <hr/>
 
