@@ -2,8 +2,8 @@
 
 namespace backend\models;
 
-use Yii;
-use yii\base\Model;
+use backend\traits\CRUDSearchTrait;
+use common\models\Book;
 use yii\data\ActiveDataProvider;
 use common\models\Annotation;
 
@@ -12,6 +12,9 @@ use common\models\Annotation;
  */
 class AnnotationSearch extends Annotation
 {
+	use CRUDSearchTrait;
+
+
     /**
      * @inheritdoc
      */
@@ -24,15 +27,6 @@ class AnnotationSearch extends Annotation
     }
 
     /**
-     * @inheritdoc
-     */
-    public function scenarios()
-    {
-        // bypass scenarios() implementation in the parent class
-        return Model::scenarios();
-    }
-
-    /**
      * Creates data provider instance with search query applied
      *
      * @param array $params
@@ -41,31 +35,18 @@ class AnnotationSearch extends Annotation
      */
     public function search($params)
     {
-        $query = Annotation::find();
-
-        // add conditions that should always apply here
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
-
-        $this->load($params);
-
-        if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
-            return $dataProvider;
-        }
+        $this->__search($params, ['book']);
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'book_id' => $this->book_id,
-            'snowflake_id' => $this->snowflake_id,
-        ]);
+        $this->query
+	        ->andFilterWhere([
+                'id' => $this->id,
+                // 'book_id' => $this->book_id,
+                'snowflake_id' => $this->snowflake_id,
+            ])
+	        ->andFilterWhere(['like', 'content', $this->content])
+	        ->andFilterWhere(['like', Book::tableName().'.name', $this->book_id]);
 
-        $query->andFilterWhere(['like', 'content', $this->content]);
-
-        return $dataProvider;
+        return $this->dataProvider;
     }
 }

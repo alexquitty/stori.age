@@ -12,6 +12,7 @@ class EntitySearch extends Entity
 {
 	use CRUDSearchTrait;
 
+
     /**
      * @inheritdoc
      */
@@ -32,7 +33,7 @@ class EntitySearch extends Entity
      */
     public function search($params)
     {
-        $this->__search($params);
+        $this->__search($params, ['typeCode']);
 
         // grid filtering conditions
         $this->query
@@ -40,7 +41,7 @@ class EntitySearch extends Entity
 	            'id' => $this->id,
 	        ])
 	        ->andFilterWhere(['like', 'letter', $this->letter])
-	        ->andFilterWhere(['like', 'type_code', $this->type_code])
+	        ->andFilterWhere(['like', EntityType::tableName().'.name', $this->type_code])
             ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'description', $this->description]);
 

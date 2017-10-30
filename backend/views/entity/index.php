@@ -28,7 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'letter',
-            'type_code',
+            [
+                'attribute' => 'type_code',
+                'value' => 'typeCode.name',
+            ],
             'name',
             [
             	'attribute' => 'description',

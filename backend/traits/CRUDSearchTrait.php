@@ -14,19 +14,26 @@ use yii\data\ActiveDataProvider;
 
 trait CRUDSearchTrait
 {
+	/**
+	 * @var $query \yii\db\ActiveQuery
+	 */
 	private $query;
 	private $dataProvider;
 
 
 	/**
 	 * @param $params
+	 * @param array $joinWith
 	 *
 	 * @return ActiveDataProvider
 	 */
-	private function __search($params)
+	private function __search($params, $joinWith = [])
 	{
 		if(empty($this->query))
 			$this->query = self::find();
+
+		foreach($joinWith as $item)
+			$this->query->joinWith($item);
 
 		// add conditions that should always apply here
 		$this->dataProvider = new ActiveDataProvider([
@@ -41,6 +48,8 @@ trait CRUDSearchTrait
 			// $query->where('0=1');
 			return $this->dataProvider;
 		}
+
+		return null;
 	}
 
 	/**
