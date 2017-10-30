@@ -27,7 +27,7 @@ foreach($models as $item)
 
 	?><dt class="h4">
 
-		<?=$item['name']?>
+		<a href="/<?=$item['type_code']?>/?id=<?=$item['id']?>"><?=$item['name']?></a>
 
 		<button
 			type="button"
@@ -35,16 +35,11 @@ foreach($models as $item)
 			data-field="type_code"
 			data-value="<?=$item['type_code']?>"
 			class="btn btn-link"
-		><?=$types[$item['type_code']]?><span class="fa fa-filter"></span>
-		</button>
-
-		<a href="/<?=$item['type_code']?>/?id=<?=$item['id']?>" class="btn btn-xs btn-default">
-			<span class="glyphicon glyphicon-eye-open"></span>
-		</a><?php
+		><?=$types[$item['type_code']]?><span class="fa fa-filter"></span></button><?php
 
 		if(\Yii::$app->user->can('author'))
 		{
-			?><a href="/cpanel/entity/update?id=<?=$item['id']?>" class="btn btn-xs btn-default pull-right">
+			?><a href="/cpanel/entity/update?id=<?=$item['id']?>" class="btn btn-xs btn-default">
 				<span class="glyphicon glyphicon-pencil"></span>
 			</a><?php
 		}
