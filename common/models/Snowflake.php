@@ -28,6 +28,8 @@ class Snowflake extends \yii\db\ActiveRecord
         return [
             [['description'], 'required'],
             [['description'], 'string'],
+	        [['type'], 'string', 'max' => 10],
+	        [['type'], 'default'],
         ];
     }
 
@@ -39,6 +41,16 @@ class Snowflake extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'description' => 'Описание',
+	        'type' => 'Тип привязки',
         ];
     }
+
+	public static function getType()
+	{
+		return [
+			'annotation' => 'Аннотация',
+			'character' => 'Персонажи',
+			'scene' => 'Сцены',
+		];
+	}
 }

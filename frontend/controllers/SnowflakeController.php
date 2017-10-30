@@ -25,6 +25,7 @@ class SnowflakeController extends Controller
 
 		return $this->render('index', [
 			'data' => $data,
+			'type' => Snowflake::getType(),
 		]);
 	}
 

@@ -32,6 +32,14 @@ $this->params['breadcrumbs'][] = $this->title;
 		        'contentOptions' => [ 'class' => 'trunc' ],
 	        ],
             // 'description:ntext',
+	        [
+	        	'attribute' => 'type',
+                'value' => function($model)
+                {
+                	/* @var $model \common\models\Snowflake */
+                	return $model->getType()[$model->type];
+                },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

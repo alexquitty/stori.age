@@ -19,7 +19,7 @@ class SnowflakeSearch extends Snowflake
     {
         return [
             [['id'], 'integer'],
-            [['description'], 'safe'],
+            [['description', 'type'], 'safe'],
         ];
     }
 
@@ -37,7 +37,8 @@ class SnowflakeSearch extends Snowflake
         // grid filtering conditions
         $this->query
 	        ->andFilterWhere(['id' => $this->id])
-	        ->andFilterWhere(['like', 'description', $this->description]);
+	        ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'type', $this->type]);
 
         return $this->dataProvider;
     }

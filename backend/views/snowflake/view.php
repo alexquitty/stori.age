@@ -30,6 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'description:ntext',
+	        [
+	        	'attribute' => 'type',
+		        'value' => function($model)
+		        {
+		        	/* @var $model \common\models\Snowflake */
+		        	return $model->getType()[$model->type];
+		        },
+	        ],
         ],
     ]) ?>
 
