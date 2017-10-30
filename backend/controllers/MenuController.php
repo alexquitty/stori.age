@@ -27,7 +27,12 @@ class MenuController extends Controller
 		$menuType = Menu::find()
 			->select('code')
 			->indexBy('code')
-			->where(['content' => 0])
+			->where([
+				'content' => 0,
+				'parent_code' => null,
+			])
+			->andWhere(['like', 'code', '\_%', false])
+			->orderBy(['code' => SORT_ASC])
 			->asArray()
 			->column();
 

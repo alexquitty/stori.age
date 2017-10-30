@@ -171,7 +171,7 @@ trait CRUDTrait
 			'user_id' => \Yii::$app->user->id,
 			'table_name' => $this->id,
 			'action' => $action,
-			'item_key' => $this->actionParams['id'] ?: (is_string($model) || is_int($model) ? $model : null),
+			'item_key' => $this->actionParams['id'] ?: (is_string($model) || is_int($model) ? strval($model) : null),
 		]);
 
 		if($logRecord->save())
@@ -298,8 +298,8 @@ trait CRUDTrait
 		 */
 		$model = $this->findModel($id);
 
-		if(isset($model))
-			$this->__logAction(); // save to log only
+		// if(isset($model))
+		// 	$this->__logAction(); // save to log only
 
 		return $this->render('view', [
 			'model' => $model,
