@@ -46,10 +46,6 @@ class MenuController extends Controller
 
 		$this->viewParams = [
 			'menuType' => $menuType,
-			'content' => [
-				0 => 'Админка',
-				1 => 'На сайте',
-			],
 		];
 	}
 
