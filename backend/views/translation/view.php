@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title),($model->message ? ' <small>('.$model->message.')</small>' : '') ?></h1>
 
     <p>
+	    <?= Html::a(Yii::t('cpanel', 'Create Source Message'), ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a(Yii::t('cpanel', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('cpanel', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
