@@ -26,7 +26,7 @@ function countEntity($data)
 		<p class="lead">Из них: <?php
 			foreach($entityByType as $idx => $item)
 			{
-				?><?=$item['quantity'], ' ', WordHelper::wordCase($item['quantity'], $item['code_name'], true), ($idx + 1 < count($entityByType)  ? ', ' : '.')?><?php
+				?><?=$item['quantity'], ' ', WordHelper::wordCaseEx($item['quantity'], $item['code_name']), ($idx + 1 < count($entityByType)  ? ', ' : '.')?><?php
 			}
 		?></p>
 

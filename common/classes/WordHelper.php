@@ -14,45 +14,6 @@ use yii\helpers\Url;
 
 class WordHelper extends StringHelper
 {
-	private static function getProperCase($number, $string)
-	{
-		$femaleHard = ['а'];
-		$femaleSoft = ['ь', 'я'];
-		$maleSoft = ['ж'];
-		$maleMedium = ['ц'];
-
-
-		$result = strval($string);
-		$lastSyllable = mb_substr($string, mb_strlen($string)-1, 1);
-
-		switch($number)
-		{
-			case 1:
-				break;
-			case 2: case 3: case 4:
-				if(in_array($lastSyllable, $femaleSoft))
-					$result = mb_substr($result, 0, mb_strlen($result)-1).'и';
-				elseif(in_array($lastSyllable, $femaleHard))
-					$result = mb_substr($result, 0, mb_strlen($result)-1).'ы';
-				else
-					$result .= 'а';
-				break;
-			default:
-				if(in_array($lastSyllable, $femaleSoft))
-					$result .= mb_substr($result, 0, mb_strlen($result)-1).'и';
-				elseif(in_array($lastSyllable, $femaleHard))
-					$result = mb_substr($result, 0, mb_strlen($result)-1);
-				elseif(in_array($lastSyllable, $maleSoft))
-					$result .= 'ей';
-				elseif(in_array($lastSyllable, $maleMedium))
-					$result .= 'ев';
-				else
-					$result .= 'ов';
-		}
-
-		return $result;
-	}
-
 	/**
 	 * @param string $string
 	 * @param int $length
@@ -80,11 +41,11 @@ class WordHelper extends StringHelper
 	/**
 	 * @param $number
 	 * @param $arCase
-	 * @param $complex
+	 * @param $asArray
 	 *
 	 * @return string
 	 */
-	public static function wordCase($number, $arCase, $complex = false)
+	public static function wordCase($number, $arCase, $asArray = false)
 	{
 		$number = $number % 100;
 		if($number > 19)
@@ -93,15 +54,62 @@ class WordHelper extends StringHelper
 		switch($number)
 		{
 			case 1:
-				$result = boolval($complex) ? self::getProperCase($number, $arCase) : $arCase[0];
+				$result = $arCase[0];
 				break;
 			case 2: case 3: case 4:
-				$result = boolval($complex) ? self::getProperCase($number, $arCase) : $arCase[1];
+				$result = $arCase[1];
 				break;
 			default:
-				$result = boolval($complex) ? self::getProperCase($number, $arCase) : $arCase[2];
+				$result = $arCase[2];
 		}
 
-		return (string)$result;
+		return boolval($asArray)
+			? [$number => strval($result)]
+			: (string)$result;
+	}
+
+	/**
+	 * @param $number
+	 * @param $string
+	 *
+	 * @return string
+	 */
+	public static function wordCaseEx($number, $string)
+	{
+		$femaleHard = ['а'];
+		$femaleSoft = ['ь', 'я'];
+		$maleSoft = ['ж'];
+		$maleMedium = ['ц'];
+
+
+		$result = strval($string);
+		$lastSyllable = mb_substr($string, mb_strlen($string)-1, 1);
+
+		switch($number)
+		{
+			case 1:
+				break;
+			case 2: case 3: case 4:
+			if(in_array($lastSyllable, $femaleSoft))
+				$result = mb_substr($result, 0, mb_strlen($result)-1).'и';
+			elseif(in_array($lastSyllable, $femaleHard))
+				$result = mb_substr($result, 0, mb_strlen($result)-1).'ы';
+			else
+				$result .= 'а';
+			break;
+			default:
+				if(in_array($lastSyllable, $femaleSoft))
+					$result .= mb_substr($result, 0, mb_strlen($result)-1).'и';
+				elseif(in_array($lastSyllable, $femaleHard))
+					$result = mb_substr($result, 0, mb_strlen($result)-1);
+				elseif(in_array($lastSyllable, $maleSoft))
+					$result .= 'ей';
+				elseif(in_array($lastSyllable, $maleMedium))
+					$result .= 'ев';
+				else
+					$result .= 'ов';
+		}
+
+		return $result;
 	}
 }
