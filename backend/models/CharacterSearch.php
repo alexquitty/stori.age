@@ -3,10 +3,10 @@
 namespace backend\models;
 
 use backend\traits\CRUDSearchTrait;
-use Yii;
-use yii\base\Model;
-use yii\data\ActiveDataProvider;
+use common\models\Bookpart;
 use common\models\Character;
+use common\models\Entity;
+use yii\data\ActiveDataProvider;
 
 /**
  * CharacterSearch represents the model behind the search form of `common\models\Character`.
@@ -35,20 +35,25 @@ class CharacterSearch extends Character
      */
     public function search($params)
     {
-        $this->__search($params);
+        $this->__search($params, [
+        	'entity',
+	        'bookpart',
+        ]);
 
         // grid filtering conditions
         $this->query
 	        ->andFilterWhere([
 	            'id' => $this->id,
-	            'entity_id' => $this->entity_id,
-	            'bookpart_id' => $this->bookpart_id,
+	            // 'entity_id' => $this->entity_id,
+	            // 'bookpart_id' => $this->bookpart_id,
 	            'gender' => $this->gender,
 	            'age' => $this->age,
 	            'sex' => $this->sex,
 	            'ord' => $this->ord,
 	            'hidden' => $this->hidden,
 	        ])
+	        ->andFilterWhere(['like', Entity::tablename().'.name', $this->entity_id])
+	        ->andFilterWhere(['like', Bookpart::tableName().'.name', $this->bookpart_id])
 	        ->andFilterWhere(['like', 'firstname', $this->firstname])
             ->andFilterWhere(['like', 'middlename', $this->middlename])
             ->andFilterWhere(['like', 'lastname', $this->lastname])

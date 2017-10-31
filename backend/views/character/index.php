@@ -27,10 +27,16 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'entity_id',
-            'bookpart_id',
-            'firstname',
-            'middlename',
+            [
+                'attribute' => 'entity_id',
+                'value' => 'entity.name',
+            ],
+            [
+                'attribute' => 'bookpart_id',
+                'value' => 'bookpart.name',
+            ],
+            //'firstname',
+            //'middlename',
             //'lastname',
             //'gender',
             //'birthplace:ntext',
@@ -41,8 +47,11 @@ $this->params['breadcrumbs'][] = $this->title;
             //'profession:ntext',
             //'deathplace:ntext',
             //'deathdate:ntext',
-            //'ord',
-            //'hidden',
+            'ord',
+            [
+            	'attribute' => 'hidden',
+	            'format' => 'boolean',
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

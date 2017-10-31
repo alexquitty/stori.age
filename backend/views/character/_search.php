@@ -24,9 +24,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'bookpart_id') ?>
 
-    <?= $form->field($model, 'firstname') ?>
+    <?//= $form->field($model, 'firstname') ?>
 
-    <?= $form->field($model, 'middlename') ?>
+    <?//= $form->field($model, 'middlename') ?>
 
     <?php // echo $form->field($model, 'lastname') ?>
 
@@ -48,9 +48,9 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'deathdate') ?>
 
-    <?php // echo $form->field($model, 'ord') ?>
+    <?php  echo $form->field($model, 'ord') ?>
 
-    <?php // echo $form->field($model, 'hidden') ?>
+    <?php  echo $form->field($model, 'hidden')->checkbox() ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('cpanel', 'Search'), ['class' => 'btn btn-primary']) ?>
