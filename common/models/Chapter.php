@@ -52,6 +52,14 @@ class Chapter extends \yii\db\ActiveRecord
         ];
     }
 
+	/**
+	 * @return ChapterQuery
+	 */
+	public static function find()
+	{
+		return new ChapterQuery(get_called_class());
+	}
+
     /**
      * @return \yii\db\ActiveQuery
      */

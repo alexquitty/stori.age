@@ -12,6 +12,7 @@ namespace frontend\controllers;
 use common\models\Annotation;
 use common\models\Book;
 use common\models\Bookpart;
+use common\models\Chapter;
 use common\models\Character;
 use common\models\Scene;
 use common\models\Snowflake;
@@ -61,20 +62,23 @@ class SnowflakeController extends Controller
 		{
 			$character = Character::find()
 				->where([
-
-				])->one();
+					// 'snowflake_id' => $id,
+					'bookpart_id' => \Yii::$app->request->get('bookpart_id'),
+				])->all();
 			$bookpart = Bookpart::find()->prepareForSelect()->column();
 		}
 
 		/* *** */
 		$scene = [];
+		$chapter = [];
 		if($model->isScene())
 		{
 			$scene = Scene::find()
 				->where([
-
-				])->one();
-			$bookpart = Bookpart::find()->prepareForSelect()->column();
+					// 'snowflake_id' => $id,
+					'chapter_id' => \Yii::$app->request->get('chapter_id'),
+				])->all();
+			$chapter = Chapter::find()->prepareForSelect()->column();
 		}
 
 		return $this->render('view', [
@@ -82,6 +86,7 @@ class SnowflakeController extends Controller
 			'annotation' => $annotation,
 			'book' => $book,
 			'bookpart' => $bookpart,
+			'chapter' => $chapter,
 			'character' => $character,
 			'scene' => $scene,
 		]);
