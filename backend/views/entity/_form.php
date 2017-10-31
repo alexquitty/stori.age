@@ -8,8 +8,6 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 /* @var $entityType array */
 
-// \func::d($entityType);die();
-
 ?>
 <div class="entity-form">
 
