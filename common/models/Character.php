@@ -2,8 +2,6 @@
 
 namespace common\models;
 
-use Yii;
-
 /**
  * This is the model class for table "character".
  *
@@ -48,8 +46,12 @@ class Character extends \yii\db\ActiveRecord
             [['entity_id', 'bookpart_id', 'gender', 'age', 'sex', 'ord', 'hidden'], 'integer'],
             [['birthplace', 'birthdate', 'appearance', 'profession', 'deathplace', 'deathdate'], 'string'],
             [['firstname', 'middlename', 'lastname'], 'string', 'max' => 250],
+
             [['entity_id'], 'exist', 'skipOnError' => true, 'targetClass' => Entity::className(), 'targetAttribute' => ['entity_id' => 'id']],
             [['bookpart_id'], 'exist', 'skipOnError' => true, 'targetClass' => Bookpart::className(), 'targetAttribute' => ['bookpart_id' => 'id']],
+
+	        [['firstname', 'middlename', 'lastname', 'gender', 'birthplace', 'birthdate', 'age', 'appearance', 'sex', 'profession', 'deathplace', 'deathdate'], 'default'],
+	        [['ord', 'hidden'], 'default', 'value' => 0],
         ];
     }
 
