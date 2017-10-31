@@ -106,7 +106,7 @@ class Entity extends \yii\db\ActiveRecord
 		else
 		{
 			return self::find()
-				->joinWith(['typeCode'])
+				->selectTypeName()
 				->where(['id' => $condition])
 				->one();
 		}

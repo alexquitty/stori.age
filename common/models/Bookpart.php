@@ -2,7 +2,7 @@
 
 namespace common\models;
 
-use Yii;
+use common\traits\QueryTrait;
 
 /**
  * This is the model class for table "bookpart".
@@ -18,6 +18,8 @@ use Yii;
  */
 class Bookpart extends \yii\db\ActiveRecord
 {
+	use QueryTrait;
+
     /**
      * @inheritdoc
      */
@@ -52,6 +54,14 @@ class Bookpart extends \yii\db\ActiveRecord
             'hidden' => 'Не показывать',
         ];
     }
+
+	/**
+	 * @return BookpartQuery
+	 */
+	public static function find()
+	{
+		return new BookpartQuery(get_called_class());
+	}
 
     /**
      * @return \yii\db\ActiveQuery

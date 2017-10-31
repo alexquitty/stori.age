@@ -19,50 +19,22 @@ class CharacterController extends Controller
 	public $model = 'Character';
 	public $searchModel = 'CharacterSearch';
 
+	protected function __afterModelSaved(&$model, &$params)
+	{
+		return true;
+	}
+
 	/**
 	 * @param $model \yii\db\ActiveRecord
 	 * @param $params
 	 */
 	protected function __beforeActionChange(&$model, &$params)
 	{
-		$bookpart = Bookpart::find()
-			->select('name')
-			->indexBy('id')
-			->asArray()
-			->column();
-
-		$char = Entity::find()
-			->select('name')
-			->indexBy('id')
-			->where([
-				'cloned_id' => null,
-				'type_code' => 'character',
-			])
-			->asArray()
-			->column();
-
-		$gender = Gender::find()
-			->select('name')
-			->indexBy('id')
-			->where(['type' => 0])
-			->asArray()
-			->column();
-
-		$sex = Gender::find()
-			->select('name')
-			->indexBy('id')
-			->where(['type' => 1])
-			->asArray()
-			->column();
-
-		$race = Entity::find()
-			->select('name')
-			->indexBy('id')
-			->where([
-				'type_code' => 'race',
-			])
-			->asArray()
-			->column();
+		$bookpart = Bookpart::find()->prepareForSelect()->column();
+		$char = Entity::find()->character(true)->column();
+		$gender = Gender::find()->gender(true)->column();
+		$sex = Gender::find()->sex(true)->column();
+		$race = Entity::find()->race(true)->column();
 
 		$this->viewParams = [
 			'bookpart' => $bookpart,

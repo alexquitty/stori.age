@@ -2,6 +2,9 @@
 
 namespace common\models;
 
+
+use common\traits\QueryTrait;
+
 /**
  * This is the ActiveQuery class for [[Entity]].
  *
@@ -9,28 +12,33 @@ namespace common\models;
  */
 class EntityQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
-    {
-        return $this->andWhere('[[status]]=1');
-    }*/
+	use QueryTrait;
 
-    /**
-     * @inheritdoc
-     * @return Entity[]|array
-     */
-    public function all($db = null)
+	/**
+	 * @param bool $forSelect
+	 *
+	 * @return $this
+	 */
+    public function character($forSelect = false)
     {
-        return parent::all($db);
+	    if($forSelect)
+		    $this->prepareForSelect();
+
+	    return $this->andWhere(['type_code' => 'character', 'cloned_id' => null]);
     }
 
-    /**
-     * @inheritdoc
-     * @return Entity|array|null
-     */
-    public function one($db = null)
-    {
-        return parent::one($db);
-    }
+	/**
+	 * @param bool $forSelect
+	 *
+	 * @return $this
+	 */
+	public function race($forSelect = false)
+	{
+		if($forSelect)
+			$this->prepareForSelect();
+
+		return $this->andWhere(['type_code' => 'race']);
+	}
 
 	/**
 	 * @param null $as

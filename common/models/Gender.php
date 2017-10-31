@@ -2,8 +2,6 @@
 
 namespace common\models;
 
-use Yii;
-
 /**
  * This is the model class for table "gender".
  *
@@ -56,10 +54,24 @@ class Gender extends \yii\db\ActiveRecord
         ];
     }
 
+	/**
+	 * @param null $type
+	 *
+	 * @return array|mixed
+	 */
 	public static function getTypeLabel($type = null)
 	{
 		return isset($type)
 			? self::TYPE_LABEL[$type]
 			: self::TYPE_LABEL;
+	}
+
+	/**
+	 * @inheritdoc
+	 * @return GenderQuery the active query used by this AR class.
+	 */
+	public static function find()
+	{
+		return new GenderQuery(get_called_class());
 	}
 }
