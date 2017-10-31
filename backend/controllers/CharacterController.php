@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\traits\CRUDTrait;
 use common\models\Bookpart;
+use common\models\CharacterRace;
 use common\models\Entity;
 use common\models\Gender;
 use yii\web\Controller;
@@ -21,7 +22,38 @@ class CharacterController extends Controller
 
 	protected function __afterModelSaved(&$model, &$params)
 	{
-		return true;
+		$result = true;
+
+		$races = $params['race'];
+		$raceModel = CharacterRace::find()
+			->where([ 'character_id' => $model->id ])
+			->indexBy('race_id')
+			->all();
+
+		$raceToRemove = array_keys($raceModel);
+
+		foreach($races as $race)
+		{
+			if(!empty($key = array_search($race, $raceToRemove)))
+				unset($raceToRemove[$key]);
+			else
+			{
+				$newRace = new CharacterRace();
+				$newRace->setAttributes([
+					'character_id' => $model->id,
+					'race_id' => $race,
+				]);
+				if(!$newRace->save())
+				{
+					$result = false;
+					\func::d($newRace->errors);
+				}
+			}
+		}
+		foreach($raceToRemove as $race)
+			$raceModel[$race]->delete();
+
+		return $result;
 	}
 
 	/**

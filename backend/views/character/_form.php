@@ -42,8 +42,7 @@ use yii\widgets\ActiveForm;
 		<?= Html::dropDownList('race', null /*$model->race*/, $race ?: [], [
 			'class' => 'form-control',
 			'id' => 'race_id',
-			'multiselect' => true,
-			'prompt' => 'Без расы',
+			'multiple' => true,
 		]) ?>
 	</div>
 
