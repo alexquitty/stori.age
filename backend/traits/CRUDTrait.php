@@ -238,13 +238,14 @@ trait CRUDTrait
 	 * Finds the Menu model based on its primary key value.
 	 * If the model is not found, a 404 HTTP exception will be thrown.
 	 * @param string $id
+	 * @param $param
 	 * @return \yii\base\Model the loaded model
 	 * @throws \yii\web\NotFoundHttpException if the model cannot be found
 	 */
-	protected function findModel($id)
+	protected function findModel($id, $param = null)
 	{
 		$modelName = $this->model;
-		if(($model = $modelName::findOne($id)) !== null)
+		if(($model = $modelName::findOne($id, $param)) !== null)
 			return $model;
 
 		throw new NotFoundHttpException(Yii::t('cpanel', 'The requested page does not exist.'));
@@ -296,7 +297,7 @@ trait CRUDTrait
 		/**
 		 * @var $model \yii\db\ActiveRecord
 		 */
-		$model = $this->findModel($id);
+		$model = $this->findModel($id, 'view');
 
 		// if(isset($model))
 		// 	$this->__logAction(); // save to log only

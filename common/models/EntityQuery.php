@@ -31,4 +31,14 @@ class EntityQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+	/**
+	 * @param null $as
+	 *
+	 * @return $this
+	 */
+	public function selectTypeName($as = null)
+	{
+		return $this->joinWith(['typeCode'.(empty($as) ? '' : ' AS '.$as)]);
+	}
 }

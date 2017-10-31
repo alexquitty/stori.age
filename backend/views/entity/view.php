@@ -30,7 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'type_code',
+            [
+            	'attribute' => 'type_code',
+	            'value' => function($model)
+                {
+	                return $model->typeCode->name;
+				},
+            ],
             'name',
             'description:ntext',
         ],
