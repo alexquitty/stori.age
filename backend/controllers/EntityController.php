@@ -35,6 +35,7 @@ class EntityController extends Controller
 		];
 
 		$className = ucfirst($model::tableName());
-		$params[$className]['letter'] = mb_substr($params[$className]['name'], 0, 1);
+		if(false == empty($params[$className]['name']))
+			$params[$className]['letter'] = mb_substr($params[$className]['name'], 0, 1);
 	}
 }

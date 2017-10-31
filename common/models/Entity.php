@@ -28,6 +28,7 @@ class Entity extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+        	[['name'], 'required'],
             [['letter', 'description'], 'string'],
 	        [['letter'], 'string', 'max' => 1],
             [['type_code'], 'string', 'max' => 150],
