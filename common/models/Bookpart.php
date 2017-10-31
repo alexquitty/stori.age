@@ -38,6 +38,7 @@ class Bookpart extends \yii\db\ActiveRecord
             [['name'], 'required'],
             [['name'], 'string', 'max' => 150],
             [['book_id'], 'exist', 'skipOnError' => true, 'targetClass' => Book::className(), 'targetAttribute' => ['book_id' => 'id']],
+	        [['ord', 'hidden'], 'default', 'value' => 0],
         ];
     }
 

@@ -34,7 +34,7 @@ class CharacterController extends Controller
 
 		foreach($races as $race)
 		{
-			if(!empty($key = array_search($race, $raceToRemove)))
+			if(false !== ($key = array_search($race, $raceToRemove)))
 				unset($raceToRemove[$key]);
 			else
 			{
