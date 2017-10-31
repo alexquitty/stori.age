@@ -24,13 +24,7 @@ class EntityController extends Controller
 	 */
 	protected function __beforeActionChange(&$model, &$params)
 	{
-		$entityType = EntityType::find()
-			->select('name')
-			->indexBy('code')
-			->orderBy(['name' => SORT_ASC])
-			->asArray()
-			->column();
-
+		$entityType = EntityType::find()->prepareForSelect('name', 'code')->column();
 		$this->viewParams = [
 			'entityType' => $entityType,
 		];

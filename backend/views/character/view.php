@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="character-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title) ?> <small>(<?=$model->entity->name?>)</small></h1>
 
     <p>
 	    <?= Html::a(Yii::t('cpanel', 'Create Character'), ['create'], ['class' => 'btn btn-success']) ?>
@@ -30,22 +30,49 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'entity_id',
-            'bookpart_id',
+            [
+            	'attribute' => 'entity_id',
+	            'value' => function($model)
+	            {
+	            	return $model->entity->name;
+	            },
+            ],
+            [
+            	'attribute' => 'bookpart_id',
+	            'value' => function($model)
+	            {
+	            	return $model->bookpart->name;
+	            },
+            ],
             'firstname',
             'middlename',
             'lastname',
-            'gender',
+            [
+            	'attribute' => 'gender',
+	            'value' => function($model)
+	            {
+	            	return $model->gender->name;
+	            },
+            ],
             'birthplace:ntext',
             'birthdate:ntext',
             'age',
             'appearance:ntext',
-            'sex',
+	        [
+	        	'attribute' => 'sex',
+		        'value' => function($model)
+		        {
+		        	return $model->sex->name;
+		        },
+	        ],
             'profession:ntext',
             'deathplace:ntext',
             'deathdate:ntext',
             'ord',
-            'hidden',
+	        [
+                'attribute' => 'hidden',
+		        'format' => 'boolean',
+	        ],
         ],
     ]) ?>
 

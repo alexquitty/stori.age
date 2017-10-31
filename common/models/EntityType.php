@@ -50,6 +50,11 @@ class EntityType extends \yii\db\ActiveRecord
         ];
     }
 
+	public static function find()
+	{
+		return new EntityTypeQuery(get_called_class());
+	}
+
     /**
      * @return \yii\db\ActiveQuery
      */

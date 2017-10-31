@@ -100,6 +100,14 @@ class Character extends \yii\db\ActiveRecord
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
+	public function getGender()
+	{
+		return $this->hasOne(Gender::className(), ['id' => 'gender']);
+	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
 	public function getRaces()
 	{
 		return $this->hasMany(CharacterRace::className(), ['character_id' => 'id']);
@@ -112,4 +120,12 @@ class Character extends \yii\db\ActiveRecord
     {
         return $this->hasMany(CharacterCharacter::className(), ['character_id' => 'id']);
     }
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getSex()
+	{
+		return $this->hasOne(Gender::className(), ['id' => 'sex']);
+	}
 }
