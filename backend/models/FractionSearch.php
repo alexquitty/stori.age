@@ -2,16 +2,17 @@
 
 namespace backend\models;
 
-use Yii;
-use yii\base\Model;
-use yii\data\ActiveDataProvider;
+use backend\traits\CRUDSearchTrait;
 use common\models\Fraction;
+use yii\data\ActiveDataProvider;
 
 /**
  * FractionSearch represents the model behind the search form of `common\models\Fraction`.
  */
 class FractionSearch extends Fraction
 {
+	use CRUDSearchTrait;
+
     /**
      * @inheritdoc
      */
@@ -23,15 +24,6 @@ class FractionSearch extends Fraction
     }
 
     /**
-     * @inheritdoc
-     */
-    public function scenarios()
-    {
-        // bypass scenarios() implementation in the parent class
-        return Model::scenarios();
-    }
-
-    /**
      * Creates data provider instance with search query applied
      *
      * @param array $params
@@ -40,31 +32,18 @@ class FractionSearch extends Fraction
      */
     public function search($params)
     {
-        $query = Fraction::find();
-
-        // add conditions that should always apply here
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
-
-        $this->load($params);
-
-        if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
-            return $dataProvider;
-        }
+        $this->__search($params);
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'fraction_id' => $this->fraction_id,
-            'entity_id' => $this->entity_id,
-            'bookpart_id' => $this->bookpart_id,
-            'hidden' => $this->hidden,
-        ]);
+        $this->query
+	        ->andFilterWhere([
+	            'id' => $this->id,
+	            'fraction_id' => $this->fraction_id,
+	            'entity_id' => $this->entity_id,
+	            'bookpart_id' => $this->bookpart_id,
+	            'hidden' => $this->hidden,
+	        ]);
 
-        return $dataProvider;
+        return $this->dataProvider;
     }
 }
