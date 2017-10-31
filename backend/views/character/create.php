@@ -8,6 +8,7 @@ use yii\helpers\Html;
 /* @var $bookpart */
 /* @var $entity */
 /* @var $gender */
+/* @var $race */
 /* @var $sex */
 
 $this->title = Yii::t('cpanel', 'Create Character');
@@ -23,6 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	    'bookpart' => $bookpart,
 	    'entity' => $entity,
 	    'gender' => $gender,
+	    'race' => $race,
 	    'sex' => $sex,
     ]) ?>
 

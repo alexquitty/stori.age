@@ -9,6 +9,7 @@ use yii\widgets\ActiveForm;
 /* @var $bookpart */
 /* @var $entity */
 /* @var $gender */
+/* @var $race */
 /* @var $sex */
 ?>
 
@@ -33,6 +34,18 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'gender')->dropDownList($gender ?: [], [
     	'prompt' => 'Без указания пола',
     ]) ?>
+
+	<div class="form-group">
+		<?= Html::label('Принадлежит к слудеющим расам', 'race_id', [
+			'class' => 'control-label',
+		]) ?>
+		<?= Html::dropDownList('race', null /*$model->race*/, $race ?: [], [
+			'class' => 'form-control',
+			'id' => 'race_id',
+			'multiselect' => true,
+			'prompt' => 'Без расы',
+		]) ?>
+	</div>
 
     <?= $form->field($model, 'birthplace')->textarea(['rows' => 6]) ?>
 

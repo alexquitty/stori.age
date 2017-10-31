@@ -7,6 +7,7 @@ use yii\helpers\Html;
 /* @var $bookpart */
 /* @var $entity */
 /* @var $gender */
+/* @var $race */
 /* @var $sex */
 
 $this->title = Yii::t('cpanel', 'Update Character: {nameAttribute}', [
@@ -25,6 +26,7 @@ $this->params['breadcrumbs'][] = Yii::t('cpanel', 'Update');
 	    'bookpart' => $bookpart,
 	    'entity' => $entity,
 	    'gender' => $gender,
+	    'race' => $race,
 	    'sex' => $sex,
     ]) ?>
 
