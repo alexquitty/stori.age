@@ -11,6 +11,9 @@ use yii\helpers\Html;
 /* @var $model common\models\Snowflake */
 /* @var $annotation common\models\Annotation */
 /* @var $book array */
+/* @var $bookpart array */
+/* @var $character common\models\Character */
+/* @var $scene common\models\Scene */
 
 $this->title = 'Шаг '.$model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('website', 'Snowflake'), 'url' => ['index']];
@@ -36,9 +39,18 @@ $this->params['breadcrumbs'][] = $this->title;
 				]);
 				break;
 			case 'character':
+				echo $this->render('_character', [
+					'model' => $model,
+					'character' => $character,
+					'bookpart' => $bookpart,
+				]);
 				break;
 			case 'scene':
-				break;
+				echo $this->render('_scene', [
+					'model' => $model,
+					'scene' => $scene,
+					'bookpart' => $bookpart,
+				]);
 		}
 	}
 

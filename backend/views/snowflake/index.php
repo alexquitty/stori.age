@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function($model)
                 {
                 	/* @var $model \common\models\Snowflake */
-                	return $model->getType()[$model->type];
+                	return $model->getType($model->type);
                 },
             ],
 

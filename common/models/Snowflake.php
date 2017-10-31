@@ -45,12 +45,45 @@ class Snowflake extends \yii\db\ActiveRecord
         ];
     }
 
-	public static function getType()
+	/**
+	 * @param null $type
+	 *
+	 * @return array|mixed
+	 */
+	public static function getType($type = null)
 	{
-		return [
+		$result = [
 			'annotation' => 'Аннотация',
 			'character' => 'Персонажи',
 			'scene' => 'Сцены',
 		];
+
+		return empty($type)
+			? $result
+			: $result[$type];
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isAnnotation()
+	{
+		return 'annotation' == $this->type;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isCharacter()
+	{
+		return 'character' == $this->type;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isScene()
+	{
+		return 'scene' == $this->type;
 	}
 }

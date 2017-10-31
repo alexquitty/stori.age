@@ -29,7 +29,7 @@ echo Html::hiddenInput('id', $model->id);
 				'class' => 'control-label pull-left',
 			]);
 			?><div class="col-md-3"><?php
-				echo Html::dropDownList('book_id', $annotation->book_id, $book ?: [],
+				echo Html::dropDownList('book_id', isset($annotation) ? $annotation->book_id : null, $book ?: [],
 					[
 						'class' => 'form-control',
 						'id' => 'book_id',
@@ -39,7 +39,7 @@ echo Html::hiddenInput('id', $model->id);
 		</div>
 	</div>
 	<div class="panel-body"><?php
-		echo empty($annotation->content)
+		echo !isset($annotation) || empty($annotation->content)
 			? 'Для просмотра аннотации выберите книгу.'
 			: $annotation->content;
 	?></div>
