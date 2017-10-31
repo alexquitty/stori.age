@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Character */
 /* @var $bookpart */
-/* @var $entity */
+/* @var $char */
 /* @var $gender */
 /* @var $race */
 /* @var $sex */
@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $this->render('_form', [
         'model' => $model,
 	    'bookpart' => $bookpart,
-	    'entity' => $entity,
+	    'char' => $char,
 	    'gender' => $gender,
 	    'race' => $race,
 	    'sex' => $sex,

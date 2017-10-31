@@ -6,7 +6,6 @@ use backend\traits\CRUDTrait;
 use common\models\Bookpart;
 use common\models\Entity;
 use common\models\Gender;
-use common\models\Race;
 use yii\web\Controller;
 
 /**
@@ -32,7 +31,7 @@ class CharacterController extends Controller
 			->asArray()
 			->column();
 
-		$entity = Entity::find()
+		$char = Entity::find()
 			->select('name')
 			->indexBy('id')
 			->where([
@@ -67,7 +66,7 @@ class CharacterController extends Controller
 
 		$this->viewParams = [
 			'bookpart' => $bookpart,
-			'entity' => $entity,
+			'char' => $char,
 			'gender' => $gender,
 			'race' => $race,
 			'sex' => $sex,

@@ -7,7 +7,7 @@ use yii\widgets\ActiveForm;
 /* @var $model common\models\Character */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $bookpart */
-/* @var $entity */
+/* @var $char */
 /* @var $gender */
 /* @var $race */
 /* @var $sex */
@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'entity_id')->dropDownList($entity ?: [], [
+    <?= $form->field($model, 'entity_id')->dropDownList($char ?: [], [
     	'prompt' => 'Выберите сущность',
     ]) ?>
 
@@ -47,23 +47,23 @@ use yii\widgets\ActiveForm;
 		]) ?>
 	</div>
 
-    <?= $form->field($model, 'birthplace')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'birthplace')->textarea(['rows' => 1]) ?>
 
-    <?= $form->field($model, 'birthdate')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'birthdate')->textarea(['rows' => 1]) ?>
 
     <?= $form->field($model, 'age')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'appearance')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'appearance')->textarea(['rows' => 3]) ?>
 
     <?= $form->field($model, 'sex')->dropDownList($sex ?: [], [
     	'prompt' => 'Без указания ориентации',
     ]) ?>
 
-    <?= $form->field($model, 'profession')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'profession')->textarea(['rows' => 2]) ?>
 
-    <?= $form->field($model, 'deathplace')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'deathplace')->textarea(['rows' => 1]) ?>
 
-    <?= $form->field($model, 'deathdate')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'deathdate')->textarea(['rows' => 1]) ?>
 
     <?= $form->field($model, 'ord')->textInput(['maxlength' => true]) ?>
 
