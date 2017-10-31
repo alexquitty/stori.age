@@ -5,6 +5,10 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Character */
+/* @var $bookpart */
+/* @var $entity */
+/* @var $gender */
+/* @var $sex */
 
 $this->title = Yii::t('cpanel', 'Create Character');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('cpanel', 'Characters'), 'url' => ['index']];
@@ -16,6 +20,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+	    'bookpart' => $bookpart,
+	    'entity' => $entity,
+	    'gender' => $gender,
+	    'sex' => $sex,
     ]) ?>
 
 </div>

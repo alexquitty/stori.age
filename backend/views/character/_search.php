@@ -50,7 +50,7 @@ use yii\widgets\ActiveForm;
 
     <?php  echo $form->field($model, 'ord') ?>
 
-    <?php  echo $form->field($model, 'hidden')->checkbox() ?>
+    <?php  echo $form->field($model, 'hidden') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('cpanel', 'Search'), ['class' => 'btn btn-primary']) ?>
