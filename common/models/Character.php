@@ -43,14 +43,16 @@ class Character extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['entity_id', 'bookpart_id', 'gender', 'age', 'sex', 'ord', 'hidden'], 'integer'],
+            [['entity_id', 'bookpart_id', 'gender_id', 'age', 'sex_id', 'ord', 'hidden'], 'integer'],
             [['birthplace', 'birthdate', 'appearance', 'profession', 'deathplace', 'deathdate'], 'string'],
             [['firstname', 'middlename', 'lastname'], 'string', 'max' => 250],
 
             [['entity_id'], 'exist', 'skipOnError' => true, 'targetClass' => Entity::className(), 'targetAttribute' => ['entity_id' => 'id']],
             [['bookpart_id'], 'exist', 'skipOnError' => true, 'targetClass' => Bookpart::className(), 'targetAttribute' => ['bookpart_id' => 'id']],
+	        [['gender_id'], 'exist', 'skipOnError' => true, 'targetClass' => Gender::className(), 'targetAttribute' => ['gender_id' => 'id']],
+	        [['sex_id'], 'exist', 'skipOnError' => true, 'targetClass' => Gender::className(), 'targetAttribute' => ['sex_id' => 'id']],
 
-	        [['firstname', 'middlename', 'lastname', 'gender', 'birthplace', 'birthdate', 'age', 'appearance', 'sex', 'profession', 'deathplace', 'deathdate'], 'default'],
+	        [['firstname', 'middlename', 'lastname', 'gender_id', 'birthplace', 'birthdate', 'age', 'appearance', 'sex_id', 'profession', 'deathplace', 'deathdate'], 'default'],
 	        [['ord', 'hidden'], 'default', 'value' => 0],
         ];
     }
@@ -67,12 +69,12 @@ class Character extends \yii\db\ActiveRecord
             'firstname' => 'Имя',
             'middlename' => 'Дополнительные имена',
             'lastname' => 'Фамилия',
-            'gender' => 'Пол',
+            'gender_id' => 'Пол',
             'birthplace' => 'Место рождения',
             'birthdate' => 'Дата рождения',
             'age' => 'Возраст',
             'appearance' => 'Внешность',
-            'sex' => 'Сексуальные предпочтения',
+            'sex_id' => 'Сексуальные предпочтения',
             'profession' => 'Род деятельности',
             'deathplace' => 'Место смерти',
             'deathdate' => 'Дата смерти',
@@ -102,7 +104,7 @@ class Character extends \yii\db\ActiveRecord
 	 */
 	public function getGender()
 	{
-		return $this->hasOne(Gender::className(), ['id' => 'gender']);
+		return $this->hasOne(Gender::className(), ['id' => 'gender_id']);
 	}
 
 	/**
@@ -126,6 +128,6 @@ class Character extends \yii\db\ActiveRecord
 	 */
 	public function getSex()
 	{
-		return $this->hasOne(Gender::className(), ['id' => 'sex']);
+		return $this->hasOne(Gender::className(), ['id' => 'sex_id']);
 	}
 }

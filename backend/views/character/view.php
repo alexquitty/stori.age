@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'middlename',
             'lastname',
             [
-            	'attribute' => 'gender',
+            	'attribute' => 'gender_id',
 	            'value' => function($model)
 	            {
 	            	return $model->gender->name;
@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'age',
             'appearance:ntext',
 	        [
-	        	'attribute' => 'sex',
+	        	'attribute' => 'sex_id',
 		        'value' => function($model)
 		        {
 		        	return $model->sex->name;

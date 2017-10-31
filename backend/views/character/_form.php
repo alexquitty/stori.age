@@ -37,7 +37,7 @@ foreach($model->races as $r)
 
     <?= $form->field($model, 'lastname')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'gender')->dropDownList($gender ?: [], [
+    <?= $form->field($model, 'gender_id')->dropDownList($gender ?: [], [
     	'prompt' => 'Без указания пола',
     ]) ?>
 
@@ -60,7 +60,7 @@ foreach($model->races as $r)
 
     <?= $form->field($model, 'appearance')->textarea(['rows' => 3]) ?>
 
-    <?= $form->field($model, 'sex')->dropDownList($sex ?: [], [
+    <?= $form->field($model, 'sex_id')->dropDownList($sex ?: [], [
     	'prompt' => 'Без указания ориентации',
     ]) ?>
 
