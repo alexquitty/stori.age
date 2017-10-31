@@ -4,18 +4,17 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Menu */
+/* @var $model common\models\Gender */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('cpanel', 'Menus'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('cpanel', 'Genders'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="menu-view">
+<div class="gender-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-		<?= Html::a(Yii::t('cpanel', 'Create Menu'), ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a(Yii::t('cpanel', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('cpanel', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -29,13 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
+            'id',
             'code',
-            'parent_code',
             'name',
-            'icon',
             'ord',
-            'content',
-            'access',
+            'type',
         ],
     ]) ?>
 
