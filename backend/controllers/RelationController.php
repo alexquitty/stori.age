@@ -15,4 +15,15 @@ class RelationController extends Controller
 
 	public $model = 'Relation';
 	public $searchModel = 'RelationSearch';
+
+	public function actionIndex()
+	{
+		return $this->__actionIndex([
+			'defaultOrder' => [
+				'cognate' => SORT_DESC,
+				'name' => SORT_ASC,
+				'negative' => SORT_ASC,
+			],
+		]);
+	}
 }

@@ -22,6 +22,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name') ?>
 
+	<?= $form->field($model, 'oneway') ?>
+
     <?= $form->field($model, 'cognate') ?>
 
     <?= $form->field($model, 'negative') ?>

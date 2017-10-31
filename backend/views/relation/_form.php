@@ -16,6 +16,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
+	<?= $form->field($model, 'oneway')->checkbox() ?>
+
     <?= $form->field($model, 'cognate')->checkbox() ?>
 
     <?= $form->field($model, 'negative')->checkbox() ?>

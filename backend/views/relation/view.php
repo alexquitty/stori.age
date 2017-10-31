@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
+	    <?= Html::a(Yii::t('cpanel', 'Create Relation'), ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a(Yii::t('cpanel', 'Update'), ['update', 'id' => $model->code], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('cpanel', 'Delete'), ['delete', 'id' => $model->code], [
             'class' => 'btn btn-danger',
@@ -30,8 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'code',
             'name',
-            'cognate',
-            'negative',
+            [
+            	'attribute' => 'cognate',
+                'format' => 'boolean',
+            ],
+            [
+            	'attribute' => 'negative',
+	            'format' => 'boolean',
+            ],
         ],
     ]) ?>
 

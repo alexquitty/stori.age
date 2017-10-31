@@ -28,12 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'code',
             'name',
-            // 'cognate',
+	        [
+		        'attribute' => 'oneway',
+		        'format' => 'boolean',
+	        ],
 	        [
 	        	'attribute' => 'cognate',
 		        'format' => 'boolean',
 	        ],
-            // 'negative',
 	        [
 	        	'attribute' => 'negative',
 		        'format' => 'boolean',

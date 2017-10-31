@@ -20,7 +20,7 @@ class RelationSearch extends Relation
     {
         return [
             [['code', 'name'], 'safe'],
-            [['cognate', 'negative'], 'integer'],
+            [['oneway', 'cognate', 'negative'], 'integer'],
         ];
     }
 
@@ -38,6 +38,7 @@ class RelationSearch extends Relation
         // grid filtering conditions
         $this->query
 	        ->andFilterWhere([
+	        	'oneway' => $this->oneway,
 	            'cognate' => $this->cognate,
 	            'negative' => $this->negative,
 	        ])
