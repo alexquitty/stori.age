@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use backend\traits\CRUDSearchTrait;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -12,6 +13,8 @@ use common\models\Character;
  */
 class CharacterSearch extends Character
 {
+	use CRUDSearchTrait;
+
     /**
      * @inheritdoc
      */
@@ -24,15 +27,6 @@ class CharacterSearch extends Character
     }
 
     /**
-     * @inheritdoc
-     */
-    public function scenarios()
-    {
-        // bypass scenarios() implementation in the parent class
-        return Model::scenarios();
-    }
-
-    /**
      * Creates data provider instance with search query applied
      *
      * @param array $params
@@ -41,35 +35,21 @@ class CharacterSearch extends Character
      */
     public function search($params)
     {
-        $query = Character::find();
-
-        // add conditions that should always apply here
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
-
-        $this->load($params);
-
-        if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
-            return $dataProvider;
-        }
+        $this->__search($params);
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'entity_id' => $this->entity_id,
-            'bookpart_id' => $this->bookpart_id,
-            'gender' => $this->gender,
-            'age' => $this->age,
-            'sex' => $this->sex,
-            'ord' => $this->ord,
-            'hidden' => $this->hidden,
-        ]);
-
-        $query->andFilterWhere(['like', 'firstname', $this->firstname])
+        $this->query
+	        ->andFilterWhere([
+	            'id' => $this->id,
+	            'entity_id' => $this->entity_id,
+	            'bookpart_id' => $this->bookpart_id,
+	            'gender' => $this->gender,
+	            'age' => $this->age,
+	            'sex' => $this->sex,
+	            'ord' => $this->ord,
+	            'hidden' => $this->hidden,
+	        ])
+	        ->andFilterWhere(['like', 'firstname', $this->firstname])
             ->andFilterWhere(['like', 'middlename', $this->middlename])
             ->andFilterWhere(['like', 'lastname', $this->lastname])
             ->andFilterWhere(['like', 'birthplace', $this->birthplace])
@@ -79,6 +59,6 @@ class CharacterSearch extends Character
             ->andFilterWhere(['like', 'deathplace', $this->deathplace])
             ->andFilterWhere(['like', 'deathdate', $this->deathdate]);
 
-        return $dataProvider;
+        return $this->dataProvider;
     }
 }
