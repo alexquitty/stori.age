@@ -24,13 +24,21 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            // ['class' => 'yii\grid\SerialColumn'],
 
             'id',
             'code',
             'name',
             'ord',
-            'type',
+            [
+            	'attribute' => 'type',
+	            'value' => function($model)
+	            {
+	            	/* @var $model backend\models\GenderSearch */
+	            	return $model->getTypeLabel($model->type);
+	            },
+            ],
+            // 'type',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

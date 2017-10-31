@@ -15,6 +15,11 @@ use Yii;
  */
 class Gender extends \yii\db\ActiveRecord
 {
+	const TYPE_LABEL = [
+		0 => 'Пол',
+		1 => 'Предпочтения',
+	];
+
     /**
      * @inheritdoc
      */
@@ -50,4 +55,11 @@ class Gender extends \yii\db\ActiveRecord
             'type' => 'Тип',
         ];
     }
+
+	public static function getTypeLabel($type = null)
+	{
+		return isset($type)
+			? self::TYPE_LABEL[$type]
+			: self::TYPE_LABEL;
+	}
 }
