@@ -16,9 +16,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'cognate')->textInput() ?>
+    <?= $form->field($model, 'cognate')->checkbox() ?>
 
-    <?= $form->field($model, 'negative')->textInput() ?>
+    <?= $form->field($model, 'negative')->checkbox() ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('cpanel', 'Save'), ['class' => 'btn btn-success']) ?>

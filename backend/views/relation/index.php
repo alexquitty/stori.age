@@ -28,8 +28,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'code',
             'name',
-            'cognate',
-            'negative',
+            // 'cognate',
+	        [
+	        	'attribute' => 'cognate',
+		        'format' => 'boolean',
+	        ],
+            // 'negative',
+	        [
+	        	'attribute' => 'negative',
+		        'format' => 'boolean',
+	        ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
