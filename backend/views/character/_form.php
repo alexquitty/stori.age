@@ -11,6 +11,12 @@ use yii\widgets\ActiveForm;
 /* @var $gender */
 /* @var $race */
 /* @var $sex */
+
+$races = [];
+
+foreach($model->races as $r)
+	$races[] = $r->race_id;
+
 ?>
 
 <div class="character-form">
@@ -39,7 +45,7 @@ use yii\widgets\ActiveForm;
 		<?= Html::label('Принадлежит к слудеющим расам', 'race_id', [
 			'class' => 'control-label',
 		]) ?>
-		<?= Html::dropDownList('race', null /*$model->race*/, $race ?: [], [
+		<?= Html::dropDownList('race', $races, $race ?: [], [
 			'class' => 'form-control',
 			'id' => 'race_id',
 			'multiple' => true,

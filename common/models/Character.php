@@ -97,6 +97,14 @@ class Character extends \yii\db\ActiveRecord
         return $this->hasOne(Bookpart::className(), ['id' => 'bookpart_id']);
     }
 
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getRaces()
+	{
+		return $this->hasMany(CharacterRace::className(), ['character_id' => 'id']);
+	}
+
     /**
      * @return \yii\db\ActiveQuery
      */
