@@ -27,6 +27,7 @@ class EntityController extends Controller
 		$entityType = EntityType::find()
 			->select('name')
 			->indexBy('code')
+			->orderBy(['name' => SORT_ASC])
 			->asArray()
 			->column();
 
