@@ -30,7 +30,7 @@ echo Html::hiddenInput('id', $model->id);
 				'class' => 'control-label pull-left',
 			]);
 			?><div class="col-md-3"><?php
-				echo Html::dropDownList('bookpart_id', isset($character) ? $character[0]->bookpart_id : null, $bookpart ?: [],
+				echo Html::dropDownList('bookpart_id', isset($character) ? $character[0]['bookpart_id'] : null, $bookpart ?: [],
 					[
 						'class' => 'form-control',
 						'id' => 'bookpart_id',
