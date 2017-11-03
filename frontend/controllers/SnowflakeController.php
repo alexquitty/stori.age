@@ -65,7 +65,7 @@ class SnowflakeController extends Controller
 					// 'snowflake_id' => $id,
 					'bookpart_id' => \Yii::$app->request->get('bookpart_id'),
 				])->all();
-			$bookpart = Bookpart::find()->prepareForSelect()->column();
+			$bookpart = Bookpart::find()->published()->prepareForSelect()->column();
 		}
 
 		/* *** */
@@ -73,12 +73,12 @@ class SnowflakeController extends Controller
 		$chapter = [];
 		if($model->isScene())
 		{
-			$scene = Scene::find()
+			$scene = Scene::find()->published()
 				->where([
 					// 'snowflake_id' => $id,
 					'chapter_id' => \Yii::$app->request->get('chapter_id'),
 				])->all();
-			$chapter = Chapter::find()->prepareForSelect()->column();
+			$chapter = Chapter::find()->published()->prepareForSelect()->column();
 		}
 
 		return $this->render('view', [
