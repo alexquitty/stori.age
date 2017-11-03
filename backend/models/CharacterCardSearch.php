@@ -21,8 +21,8 @@ class CharacterCardSearch extends CharacterCard
     public function rules()
     {
         return [
-            [['id', 'entity_id', 'bookpart_id', 'ord', 'hidden'], 'integer'],
-            [['name', 'story', 'motivation', 'aim', 'conflict', 'clarification', 'events'], 'safe'],
+            [['id', 'snowflake_id', 'ord', 'hidden'], 'integer'],
+            [['entity_id', 'bookpart_id', 'name', 'story', 'motivation', 'aim', 'conflict', 'clarification', 'events'], 'safe'],
         ];
     }
 
@@ -41,8 +41,7 @@ class CharacterCardSearch extends CharacterCard
         $this->query
 	        ->andFilterWhere([
 	            'id' => $this->id,
-	            // 'entity_id' => $this->entity_id,
-	            // 'bookpart_id' => $this->bookpart_id,
+		        'snowflake_id' => $this->snowflake_id,
 	            'ord' => $this->ord,
 	            'hidden' => $this->hidden,
 	        ])

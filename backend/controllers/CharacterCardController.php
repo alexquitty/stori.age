@@ -3,6 +3,9 @@
 namespace backend\controllers;
 
 use backend\traits\CRUDTrait;
+use common\models\Bookpart;
+use common\models\Entity;
+use common\models\Snowflake;
 use yii\web\Controller;
 
 /**
@@ -22,6 +25,18 @@ class CharacterCardController extends Controller
 	 */
 	protected function __beforeActionChange(&$model, &$params)
 	{
-		// $bookpart = Bookpart::find()->prepareForSelect()->column();
+		$bookpart = Bookpart::find()->prepareForSelect()->column();
+		$entity = Entity::find()->character()->prepareForSelect()->column();
+		$snowflake = Snowflake::find()
+			->select('id')
+			->indexBy('id')
+			->where(['type' => 'character'])
+			->asArray()
+			->all();
+
+		$this->viewParams = [
+			'bookpart' => $bookpart,
+			'entity' => $entity,
+		];
 	}
 }

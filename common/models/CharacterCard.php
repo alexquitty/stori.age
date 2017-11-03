@@ -37,11 +37,12 @@ class CharacterCard extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['entity_id', 'bookpart_id', 'ord', 'hidden'], 'integer'],
+            [['entity_id', 'bookpart_id', 'snowflake_id', 'ord', 'hidden'], 'integer'],
             [['story', 'motivation', 'aim', 'conflict', 'clarification', 'events'], 'string'],
             [['name'], 'string', 'max' => 150],
             [['entity_id'], 'exist', 'skipOnError' => true, 'targetClass' => Entity::className(), 'targetAttribute' => ['entity_id' => 'id']],
             [['bookpart_id'], 'exist', 'skipOnError' => true, 'targetClass' => Bookpart::className(), 'targetAttribute' => ['bookpart_id' => 'id']],
+	        [['snowflake_id'], 'exist', 'skipOnError' => true, 'targetClass' => Snowflake::className(), 'targetAttribute' => ['snowflake_id' => 'id']],
         ];
     }
 
@@ -54,6 +55,7 @@ class CharacterCard extends \yii\db\ActiveRecord
             'id' => 'ID',
             'entity_id' => 'Сущность',
             'bookpart_id' => 'Часть книги',
+	        'snowflake_id' => 'Шаг снежинки',
             'name' => 'Имя',
             'story' => 'История жизни',
             'motivation' => 'Мотивация',
@@ -89,4 +91,12 @@ class CharacterCard extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Bookpart::className(), ['id' => 'bookpart_id']);
     }
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getSnowflake()
+	{
+		return $this->hasOne(Snowflake::className(), ['id' => 'snowflake_id']);
+	}
 }
