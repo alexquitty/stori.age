@@ -65,7 +65,8 @@ echo Html::hiddenInput('id', $model->id);
 		?><div class="panel-body"><?php
 			foreach($scene as $item)
 			{
-				?><h4><?=$item->name?></h4><?= $item->content;
+				?><h4><?=$item->name?></h4>
+				<div class="author-text"><?=$item->content?></div><?php
 			}
 		?></div><?php
 	}
