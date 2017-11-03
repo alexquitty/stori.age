@@ -12,7 +12,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'chapter_id')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'chapter_id')->dropDownList($chapter ?: [], [
+    	'prompt' => 'Без привязки к главе',
+    ]) ?>
+
+	<?= $form->field($model, 'snowflake_id')->dropDownList($snowflake ?: [], [
+		'prompt' => 'Без привязки к шагу снежинки',
+	]) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

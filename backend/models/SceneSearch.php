@@ -19,7 +19,7 @@ class SceneSearch extends Scene
     public function rules()
     {
         return [
-            [['id', 'ord', 'hidden'], 'integer'],
+            [['id', 'snowflake_id', 'ord', 'hidden'], 'integer'],
             [['name', 'chapter_id'], 'safe'],
         ];
     }
@@ -33,13 +33,13 @@ class SceneSearch extends Scene
      */
     public function search($params)
     {
-        $this->__search($params, ['chapter']);
+        $this->__search($params, ['chapter', 'snowflake']);
 
         // grid filtering conditions
         $this->query
 	        ->andFilterWhere([
 	            'id' => $this->id,
-	            // 'chapter_id' => $this->chapter_id,
+	            'snowflake_id' => $this->snowflake_id,
 	            'ord' => $this->ord,
 	            'hidden' => $this->hidden,
 	        ])

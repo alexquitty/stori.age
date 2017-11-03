@@ -3,6 +3,8 @@
 namespace backend\controllers;
 
 use backend\traits\CRUDTrait;
+use common\models\Chapter;
+use common\models\Snowflake;
 use yii\web\Controller;
 
 /**
@@ -15,4 +17,19 @@ class SceneController extends Controller
 
 	public $model = 'Scene';
 	public $searchModel = 'SceneSearch';
+
+	protected function __beforeActionChange(&$model, &$params)
+	{
+		$snowflake = Snowflake::find()
+			->select('id')
+			->where(['type' => 'scene'])
+			->indexBy('id')
+			->asArray()
+			->column();
+
+		$this->viewParams = [
+			'snowflake' => $snowflake,
+			'chapter' => Chapter::find()->published()->prepareForSelect()->column(),
+		];
+	}
 }

@@ -27,11 +27,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            // 'chapter_id',
 	        [
 	        	'attribute' => 'chapter_id',
 		        'value' => 'chapter.name',
 	        ],
+            'snowflake_id',
             'name',
             // 'content:ntext',
             'ord',

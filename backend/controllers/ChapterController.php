@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use backend\traits\CRUDTrait;
-use common\models\Snowflake;
+use common\models\Bookpart;
 use yii\web\Controller;
 
 /**
@@ -19,14 +19,8 @@ class ChapterController extends Controller
 
 	protected function __beforeActionChange(&$model, &$params)
 	{
-		$snowflake = Snowflake::find()
-			->select('id')
-			->indexBy('id')
-			->orderBy(['id' => SORT_ASC])
-			->column();
-
 		$this->viewParams = [
-			'snowflake' => $snowflake,
+			'bookpart' => Bookpart::find()->published()->prepareForSelect()->column(),
 		];
 	}
 }

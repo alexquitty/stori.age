@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = Yii::t('cpanel', 'Update');
 
     <?= $this->render('_form', [
         'model' => $model,
-	    'snowflake' => $snowflake,
+	    'bookpart' => $bookpart,
     ]) ?>
 
 </div>

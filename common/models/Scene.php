@@ -32,10 +32,11 @@ class Scene extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['chapter_id', 'ord', 'hidden'], 'integer'],
+            [['chapter_id', 'snowflake_id', 'ord', 'hidden'], 'integer'],
             [['content'], 'string'],
             [['name'], 'string', 'max' => 150],
             [['chapter_id'], 'exist', 'skipOnError' => true, 'targetClass' => Chapter::className(), 'targetAttribute' => ['chapter_id' => 'id']],
+	        [['snowflake_id'], 'exist', 'skipOnError' => true, 'targetClass' => Snowflake::className(), 'targetAttribute' => ['snowflake_id' => 'id']],
         ];
     }
 
@@ -47,6 +48,7 @@ class Scene extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'chapter_id' => 'Глава книги',
+	        'snowflake_id' => 'Шаг снежинки',
             'name' => 'Название',
             'content' => 'Текст',
             'ord' => 'Порядок',
@@ -69,4 +71,12 @@ class Scene extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Chapter::className(), ['id' => 'chapter_id']);
     }
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getSnowflake()
+	{
+		return $this->hasOne(Snowflake::className(), ['id' => 'snowflake_id']);
+	}
 }

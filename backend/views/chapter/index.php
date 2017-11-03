@@ -31,7 +31,6 @@ $this->params['breadcrumbs'][] = $this->title;
 	        	'attribute' => 'bookpart_id',
 		        'value' => 'bookpart.name',
 	        ],
-            'snowflake_id',
             'name',
             'ord',
 	        [

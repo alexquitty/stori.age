@@ -35,7 +35,6 @@ class Chapter extends \yii\db\ActiveRecord
             [['bookpart_id', 'ord', 'hidden'], 'integer'],
             [['name'], 'string', 'max' => 150],
             [['bookpart_id'], 'exist', 'skipOnError' => true, 'targetClass' => Bookpart::className(), 'targetAttribute' => ['bookpart_id' => 'id']],
-	        [['snowflake_id'], 'exist', 'skipOnError' => true, 'targetClass' => Snowflake::className(), 'targetAttribute' => ['snowflake_id' => 'id']],
         ];
     }
 
@@ -47,7 +46,6 @@ class Chapter extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'bookpart_id' => 'Часть книги',
-	        'snowflake_id' => 'Шаг снежинки',
             'name' => 'Название',
             'ord' => 'Порядок',
             'hidden' => 'Не показывать',
@@ -77,12 +75,4 @@ class Chapter extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Scene::className(), ['chapter_id' => 'id']);
     }
-
-	/**
-	 * @return \yii\db\ActiveQuery
-	 */
-	public function getSnowflake()
-	{
-		return $this->hasOne(Snowflake::className(), ['id' => 'snowflake_id']);
-	}
 }

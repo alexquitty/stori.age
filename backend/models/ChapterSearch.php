@@ -19,7 +19,7 @@ class ChapterSearch extends Chapter
     public function rules()
     {
         return [
-            [['id', 'ord', 'snowflake_id', 'hidden'], 'integer'],
+            [['id', 'ord', 'hidden'], 'integer'],
             [['name', 'bookpart_id'], 'safe'],
         ];
     }
@@ -39,7 +39,6 @@ class ChapterSearch extends Chapter
         $this->query
 	        ->andFilterWhere([
 	            'id' => $this->id,
-	            'snowflake_id' => $this->snowflake_id,
 	            'ord' => $this->ord,
 	            'hidden' => $this->hidden,
 	        ])

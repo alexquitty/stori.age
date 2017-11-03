@@ -16,10 +16,6 @@ use yii\widgets\ActiveForm;
     	'prompt' => 'Без привязки к части книги',
     ]) ?>
 
-	<?= $form->field($model, 'snowflake_id')->dropDownList($snowflake ?: [], [
-		'prompt' => 'Без привязки к шагу снежинки',
-	]) ?>
-
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'ord')->textInput(['maxlength' => true]) ?>
