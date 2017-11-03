@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\traits\CRUDTrait;
+use common\models\Snowflake;
 use yii\web\Controller;
 
 /**
@@ -15,4 +16,17 @@ class ChapterController extends Controller
 
 	public $model = 'Chapter';
 	public $searchModel = 'ChapterSearch';
+
+	protected function __beforeActionChange(&$model, &$params)
+	{
+		$snowflake = Snowflake::find()
+			->select('id')
+			->indexBy('id')
+			->orderBy(['id' => SORT_ASC])
+			->column();
+
+		$this->viewParams = [
+			'snowflake' => $snowflake,
+		];
+	}
 }

@@ -80,11 +80,15 @@ class SnowflakeController extends Controller
 		{
 			$scene = Scene::find()->published()
 				->where([
-					// 'snowflake_id' => $id,
+					'snowflake_id' => $id,
 					'chapter_id' => \Yii::$app->request->get('chapter_id'),
 				])->all();
+			$bookpart = empty($scene) ? []
+				: Bookpart::find()->published()->prepareForSelect()->column();
 			$chapter = empty($scene) ? []
-				: Chapter::find()->published()->prepareForSelect()->column();
+				: Chapter::find()->published()
+					->where(['bookpart_id' => \Yii::$app->request->get('bookpart_id')])
+					->prepareForSelect()->column();
 		}
 
 		return $this->render('view', [
