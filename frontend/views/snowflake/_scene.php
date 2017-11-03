@@ -51,20 +51,25 @@ echo Html::hiddenInput('id', $model->id);
 			?></div>
 
 		</div>
-	</div>
-	<div class="panel-body"><?php
-		if(empty($scene[0]))
+	</div><?php
+	if(empty($scene[0]))
+	{
+		?><div class="panel-body"><?php
 			echo empty($chapter_id)
 				? 'Для просмотра сцен выберите главу.'
 				: '<span class="alert-warning">Для этой главый сцены пока отсутсвуют.</span>';
-
-		foreach($scene as $item)
-		{
-			?><?php
-		}
-	?></div>
-</div><?
-
+		?></div><?php
+	}
+	else
+	{
+		?><div class="panel-body"><?php
+			foreach($scene as $item)
+			{
+				?><h4><?=$item->name?></h4><?= $item->content;
+			}
+		?></div><?php
+	}
+?></div><?php
 echo Html::endForm();
 
 Pjax::end();

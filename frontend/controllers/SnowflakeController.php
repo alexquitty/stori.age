@@ -51,7 +51,8 @@ class SnowflakeController extends Controller
 				->where([
 					'snowflake_id' => $id,
 					'book_id' => \Yii::$app->request->get('book_id'),
-				])->one();
+				])
+				->one();
 
 			$book = Book::find()->published()->prepareForSelect()->column();
 		}
@@ -67,7 +68,13 @@ class SnowflakeController extends Controller
 				->where([
 					'snowflake_id' => $id,
 					'bookpart_id' => \Yii::$app->request->get('bookpart_id'),
-				])->asArray()->all();
+				])
+				->orderBy([
+					'bookpart_id' => SORT_ASC,
+					'ord' => SORT_ASC,
+				])
+				->asArray()
+				->all();
 			$bookpart = Bookpart::find()->published()->prepareForSelect()->column();
 		}
 
@@ -84,12 +91,18 @@ class SnowflakeController extends Controller
 					->where([
 						'snowflake_id' => $id,
 						'chapter_id' => $chapter_id,
-					])->all();
+					])
+					->orderBy(['ord' => SORT_ASC])
+					->all();
 
 			$bookpart = Bookpart::find()->published()->prepareForSelect()->column();
 			$bookpart_id = \Yii::$app->request->get('bookpart_id');
 			$chapter = Chapter::find()->published()
 				->where(['bookpart_id' => $bookpart_id])
+				->orderBy([
+					'bookpart_id' => SORT_ASC,
+					'ord' => SORT_ASC,
+				])
 				->prepareForSelect()->column();
 		}
 
