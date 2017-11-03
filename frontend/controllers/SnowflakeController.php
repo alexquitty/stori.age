@@ -53,8 +53,7 @@ class SnowflakeController extends Controller
 					'book_id' => \Yii::$app->request->get('book_id'),
 				])->one();
 
-			$book = empty($annotation) ? []
-				: Book::find()->published()->prepareForSelect()->column();
+			$book = Book::find()->published()->prepareForSelect()->column();
 		}
 
 		/* *** */
@@ -69,26 +68,29 @@ class SnowflakeController extends Controller
 					'snowflake_id' => $id,
 					'bookpart_id' => \Yii::$app->request->get('bookpart_id'),
 				])->asArray()->all();
-			$bookpart = empty($character) ? []
-				: Bookpart::find()->published()->prepareForSelect()->column();
+			$bookpart = Bookpart::find()->published()->prepareForSelect()->column();
 		}
 
 		/* *** */
 		$scene = [];
 		$chapter = [];
+		$bookpart_id = null;
+		$chapter_id = null;
 		if($model->isScene())
 		{
-			$scene = Scene::find()->published()
-				->where([
-					'snowflake_id' => $id,
-					'chapter_id' => \Yii::$app->request->get('chapter_id'),
-				])->all();
-			$bookpart = empty($scene) ? []
-				: Bookpart::find()->published()->prepareForSelect()->column();
-			$chapter = empty($scene) ? []
-				: Chapter::find()->published()
-					->where(['bookpart_id' => \Yii::$app->request->get('bookpart_id')])
-					->prepareForSelect()->column();
+			$chapter_id = \Yii::$app->request->get('chapter_id');
+			if(isset($chapter_id))
+				$scene = Scene::find()->published()
+					->where([
+						'snowflake_id' => $id,
+						'chapter_id' => $chapter_id,
+					])->all();
+
+			$bookpart = Bookpart::find()->published()->prepareForSelect()->column();
+			$bookpart_id = \Yii::$app->request->get('bookpart_id');
+			$chapter = Chapter::find()->published()
+				->where(['bookpart_id' => $bookpart_id])
+				->prepareForSelect()->column();
 		}
 
 		return $this->render('view', [
@@ -96,7 +98,9 @@ class SnowflakeController extends Controller
 			'annotation' => $annotation,
 			'book' => $book,
 			'bookpart' => $bookpart,
+			'bookpart_id' => $bookpart_id,
 			'chapter' => $chapter,
+			'chapter_id' => $chapter_id,
 			'card' => $card,
 			'character' => $character,
 			'scene' => $scene,

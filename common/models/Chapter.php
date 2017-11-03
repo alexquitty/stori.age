@@ -35,6 +35,7 @@ class Chapter extends \yii\db\ActiveRecord
             [['bookpart_id', 'ord', 'hidden'], 'integer'],
             [['name'], 'string', 'max' => 150],
             [['bookpart_id'], 'exist', 'skipOnError' => true, 'targetClass' => Bookpart::className(), 'targetAttribute' => ['bookpart_id' => 'id']],
+	        [['ord', 'hidden'], 'default', 'value' => 0],
         ];
     }
 

@@ -37,6 +37,7 @@ class Scene extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 150],
             [['chapter_id'], 'exist', 'skipOnError' => true, 'targetClass' => Chapter::className(), 'targetAttribute' => ['chapter_id' => 'id']],
 	        [['snowflake_id'], 'exist', 'skipOnError' => true, 'targetClass' => Snowflake::className(), 'targetAttribute' => ['snowflake_id' => 'id']],
+	        [['ord', 'hidden'], 'default', 'value' => 0],
         ];
     }
 

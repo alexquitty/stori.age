@@ -52,6 +52,9 @@ $this->params['breadcrumbs'][] = $this->title;
 					'model' => $model,
 					'scene' => $scene,
 					'bookpart' => $bookpart,
+					'bookpart_id' => $bookpart_id,
+					'chapter' => $chapter,
+					'chapter_id' => $chapter_id,
 				]);
 		}
 	}
