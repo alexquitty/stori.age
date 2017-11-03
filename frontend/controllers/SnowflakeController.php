@@ -13,7 +13,7 @@ use common\models\Annotation;
 use common\models\Book;
 use common\models\Bookpart;
 use common\models\Chapter;
-use common\models\Character;
+use common\models\CharacterCard;
 use common\models\Scene;
 use common\models\Snowflake;
 use yii\web\Controller;
@@ -56,15 +56,17 @@ class SnowflakeController extends Controller
 		}
 
 		/* *** */
+		$card = null;
 		$character = [];
 		$bookpart = [];
 		if($model->isCharacter())
 		{
-			$character = Character::find()->published()
+			$card = new CharacterCard();
+			$character = CharacterCard::find()->published()
 				->where([
-					// 'snowflake_id' => $id,
+					'snowflake_id' => $id,
 					'bookpart_id' => \Yii::$app->request->get('bookpart_id'),
-				])->all();
+				])->asArray()->all();
 			$bookpart = Bookpart::find()->published()->prepareForSelect()->column();
 		}
 
@@ -87,6 +89,7 @@ class SnowflakeController extends Controller
 			'book' => $book,
 			'bookpart' => $bookpart,
 			'chapter' => $chapter,
+			'card' => $card,
 			'character' => $character,
 			'scene' => $scene,
 		]);

@@ -10,6 +10,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Snowflake */
 /* @var $annotation common\models\Annotation */
+/* @var $card */
 /* @var $book array */
 /* @var $bookpart array */
 /* @var $character common\models\Character */
@@ -41,6 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			case 'character':
 				echo $this->render('_character', [
 					'model' => $model,
+					'card' => $card,
 					'character' => $character,
 					'bookpart' => $bookpart,
 				]);

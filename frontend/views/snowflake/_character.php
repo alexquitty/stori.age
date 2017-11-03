@@ -10,6 +10,7 @@ use yii\helpers\Html;
 use yii\widgets\Pjax;
 
 /* @var $model common\models\Snowflake */
+/* @var $card common\models\CharacterCard */
 /* @var $character array of common\models\Character */
 /* @var $bookpart array */
 
@@ -42,10 +43,20 @@ echo Html::hiddenInput('id', $model->id);
 		if(empty($character))
 			echo 'Для просмотра анкет выберите часть книги.';
 
-		foreach($character as $item)
+		else
 		{
-			echo $item->lastname;
-			?><?php
+			foreach($character as $char)
+			{
+				?><h4><?=$char['name']?></h4><?php
+				?><dl class="row"><?php
+					foreach($char as $key => $item)
+						if('name' != $key && false === strpos($key, 'id'))
+						{
+							?><dt class="col-sm-3"><?=$card->getAttributeLabel($key)?></dt>
+							<dd class="col-sm-9"><?=$item ?: '<i>(Не указано)</i>'?></dd><?php
+						}
+				?></dl><?php
+			}
 		}
 	?></div>
 </div><?
