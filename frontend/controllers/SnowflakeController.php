@@ -47,8 +47,8 @@ class SnowflakeController extends Controller
 		$book = [];
 		if($model->isAnnotation())
 		{
-			$book = Book::find()->prepareForSelect()->column();
-			$annotation = Annotation::find()
+			$book = Book::find()->published()->prepareForSelect()->column();
+			$annotation = Annotation::find()->published()
 				->where([
 					'snowflake_id' => $id,
 					'book_id' => \Yii::$app->request->get('book_id'),
@@ -60,7 +60,7 @@ class SnowflakeController extends Controller
 		$bookpart = [];
 		if($model->isCharacter())
 		{
-			$character = Character::find()
+			$character = Character::find()->published()
 				->where([
 					// 'snowflake_id' => $id,
 					'bookpart_id' => \Yii::$app->request->get('bookpart_id'),

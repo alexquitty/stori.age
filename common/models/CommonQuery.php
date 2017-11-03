@@ -10,7 +10,7 @@ use common\traits\QueryTrait;
  *
  * @see Entity
  */
-class BookQuery extends \yii\db\ActiveQuery
+class CommonQuery extends \yii\db\ActiveQuery
 {
 	use QueryTrait;
 }

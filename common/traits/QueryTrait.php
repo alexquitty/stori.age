@@ -21,4 +21,11 @@ trait QueryTrait
 
 		return $this;
 	}
+
+	public function published()
+	{
+		$this->andWhere(['hidden' => 0]);
+
+		return $this;
+	}
 }

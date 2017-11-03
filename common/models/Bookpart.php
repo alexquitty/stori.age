@@ -57,11 +57,11 @@ class Bookpart extends \yii\db\ActiveRecord
     }
 
 	/**
-	 * @return BookpartQuery
+	 * @return CommonQuery
 	 */
 	public static function find()
 	{
-		return new BookpartQuery(get_called_class());
+		return new CommonQuery(get_called_class());
 	}
 
     /**

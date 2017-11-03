@@ -51,6 +51,14 @@ class Annotation extends \yii\db\ActiveRecord
         ];
     }
 
+	/**
+	 * @return CommonQuery
+	 */
+	public static function find()
+	{
+		return new CommonQuery(get_called_class());
+	}
+
     /**
      * @return \yii\db\ActiveQuery
      */

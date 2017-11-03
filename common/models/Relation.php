@@ -49,4 +49,12 @@ class Relation extends \yii\db\ActiveRecord
             'negative' => 'Негативное отношение',
         ];
     }
+
+	/**
+	 * @return CommonQuery
+	 */
+	public static function find()
+	{
+		return new CommonQuery(get_called_class());
+	}
 }

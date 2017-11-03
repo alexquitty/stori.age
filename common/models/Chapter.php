@@ -53,11 +53,11 @@ class Chapter extends \yii\db\ActiveRecord
     }
 
 	/**
-	 * @return ChapterQuery
+	 * @return CommonQuery
 	 */
 	public static function find()
 	{
-		return new ChapterQuery(get_called_class());
+		return new CommonQuery(get_called_class());
 	}
 
     /**

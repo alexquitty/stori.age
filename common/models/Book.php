@@ -57,11 +57,11 @@ class Book extends \yii\db\ActiveRecord
     }
 
 	/**
-	 * @return BookQuery
+	 * @return CommonQuery
 	 */
 	public static function find()
 	{
-		return new BookQuery(get_called_class());
+		return new CommonQuery(get_called_class());
 	}
 
     /**
