@@ -32,7 +32,12 @@ class CharacterCardController extends Controller
 			->indexBy('id')
 			->where(['type' => 'character'])
 			->asArray()
-			->all();
+			->column();
+
+		$snowflake = array_map(function($item)
+		{
+			return 'Шаг '.$item;
+		}, $snowflake);
 
 		$this->viewParams = [
 			'bookpart' => $bookpart,
