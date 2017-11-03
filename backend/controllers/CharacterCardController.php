@@ -37,6 +37,7 @@ class CharacterCardController extends Controller
 		$this->viewParams = [
 			'bookpart' => $bookpart,
 			'entity' => $entity,
+			'snowflake' => $snowflake,
 		];
 	}
 }

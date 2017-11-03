@@ -6,15 +6,24 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\CharacterCard */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $bookpart */
+/* @var $entity */
+/* @var $snowflake */
 ?>
 
 <div class="character-card-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'entity_id')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'entity_id')->dropDownList($entity ?: []) ?>
 
-    <?= $form->field($model, 'bookpart_id')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'bookpart_id')->dropDownList($bookpart ?: [], [
+    	'prompt' => 'Без привязки к части',
+    ]) ?>
+
+	<?= $form->field($model, 'snowflake_id')->dropDownList($snowflake ?: [], [
+		'prompt' => 'Без привязки к шагу',
+	]) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
