@@ -47,12 +47,14 @@ class SnowflakeController extends Controller
 		$book = [];
 		if($model->isAnnotation())
 		{
-			$book = Book::find()->published()->prepareForSelect()->column();
 			$annotation = Annotation::find()->published()
 				->where([
 					'snowflake_id' => $id,
 					'book_id' => \Yii::$app->request->get('book_id'),
 				])->one();
+
+			$book = empty($annotation) ? []
+				: Book::find()->published()->prepareForSelect()->column();
 		}
 
 		/* *** */
@@ -67,7 +69,8 @@ class SnowflakeController extends Controller
 					'snowflake_id' => $id,
 					'bookpart_id' => \Yii::$app->request->get('bookpart_id'),
 				])->asArray()->all();
-			$bookpart = Bookpart::find()->published()->prepareForSelect()->column();
+			$bookpart = empty($character) ? []
+				: Bookpart::find()->published()->prepareForSelect()->column();
 		}
 
 		/* *** */
@@ -80,7 +83,8 @@ class SnowflakeController extends Controller
 					// 'snowflake_id' => $id,
 					'chapter_id' => \Yii::$app->request->get('chapter_id'),
 				])->all();
-			$chapter = Chapter::find()->published()->prepareForSelect()->column();
+			$chapter = empty($scene) ? []
+				: Chapter::find()->published()->prepareForSelect()->column();
 		}
 
 		return $this->render('view', [
