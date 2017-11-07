@@ -3,6 +3,16 @@
 	clear: both;
 }
 
+.grid-view tr td:last-child
+{
+	min-width: 65px;
+}
+
+.nowrap
+{
+	white-space: nowrap;
+}
+
 .trunc {
 	max-width: 900px !important;
 	overflow: hidden;
@@ -28,11 +38,6 @@
 .top_nav .navbar-right
 {
 	width: 30%;
-}
-
-.grid-view tr td:last-child
-{
-	min-width: 65px;
 }
 
 select.form-control
