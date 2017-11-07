@@ -12,7 +12,7 @@
 if(!empty($items))
 {
 	?><div class="panel panel-default">
-		<div class="panel-body"><?php
+		<div class="panel-body text-center"><?php
 
 			foreach($items as $id => $item)
 			{
