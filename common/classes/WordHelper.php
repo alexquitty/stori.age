@@ -81,6 +81,7 @@ class WordHelper extends StringHelper
 		$maleSoft = ['ж', 'г'];
 		$maleMedium = ['ц'];
 		$medium = ['е'];
+		$middle = ['о'];
 
 		$preFemale = ['т', 'с'];
 		$preMale = ['д'];
@@ -110,6 +111,8 @@ class WordHelper extends StringHelper
 					$result = mb_substr($result, 0, mb_strlen($result)-1).'ы';
 				elseif(in_array($lastSyllable, $medium))
 					$result = mb_substr($result, 0, mb_strlen($result)-1).'я';
+				elseif(in_array($lastSyllable, $middle))
+					$result = mb_substr($result, 0, mb_strlen($result)-1).'а';
 				else
 					$result .= 'а';
 				break;
@@ -133,6 +136,8 @@ class WordHelper extends StringHelper
 					$result .= 'ев';
 				elseif(in_array($lastSyllable, $medium))
 					$result = mb_substr($result, 0, mb_strlen($result)-1).'й';
+				elseif(in_array($lastSyllable, $middle))
+					$result = mb_substr($result, 0, mb_strlen($result)-1);
 				else
 					$result .= 'ов';
 		}
