@@ -42,4 +42,9 @@ class WowRace2class extends \yii\db\ActiveRecord
             'race_code' => 'Race Code',
         ];
     }
+
+	public function getRace()
+	{
+		return $this->hasOne(WowRace::className(), ['code' => 'race_code']);
+	}
 }

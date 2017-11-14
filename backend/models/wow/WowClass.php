@@ -46,4 +46,12 @@ class WowClass extends \yii\db\ActiveRecord
             'color' => 'Color',
         ];
     }
+
+	public function getAvailableRaces()
+	{
+		return $this->hasMany(WowRace2class::className(), ['class_code' => 'code'])->joinWith(['race'])->orderBy([
+			WowRace::tableName().'.alliance' => SORT_ASC,
+			WowRace::tableName().'.name' => SORT_ASC,
+		]);
+	}
 }

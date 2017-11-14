@@ -96,8 +96,20 @@ trait CRUDTrait
 		 * @var $dataProvider ActiveDataProvider
 		 */
 		$dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
-		if(isset($params))
-			$dataProvider->setSort($params);
+		if(isset($params) && is_array($params))
+		{
+			if(isset($params['defaultOrder']))
+				$dataProvider->setSort(array_filter($params, function($key)
+				{
+					return 'defaultOrder' == $key;
+				}, ARRAY_FILTER_USE_KEY));
+
+			if(isset($params['pageSize']))
+				$dataProvider->setPagination(array_filter($params, function($key)
+				{
+					return 'pageSize' == $key;
+				}, ARRAY_FILTER_USE_KEY));
+		}
 
 		return $this->render('index', [
 			'searchModel' => $searchModel,

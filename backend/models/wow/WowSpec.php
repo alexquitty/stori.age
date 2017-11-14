@@ -55,4 +55,9 @@ class WowSpec extends \yii\db\ActiveRecord
 	{
 		return $this->hasOne(WowClass::className(), ['code' => 'class_code']);
 	}
+
+	public function getChar()
+	{
+		return $this->hasOne(WowChar::className(), ['spec_code' => 'code']);
+	}
 }
