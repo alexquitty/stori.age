@@ -32,6 +32,6 @@ class WowRaceGender extends \yii\db\ActiveRecord
 
 	public function getRace()
 	{
-		return $this->hasOne(WowRace::className(), ['code' => 'race_code']);
+		return $this->hasOne(WowRace::className(), ['code' => 'race_code'])->orderBy([WowRace::tableName().'.alliance' => SORT_ASC]);
 	}
 }
