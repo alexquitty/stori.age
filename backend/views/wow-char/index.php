@@ -26,13 +26,22 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            // 'id',
+            // [
+		     //    'attribute' => 'alliance',
+		     //    'format' => 'html',
+		     //    'value' => function($model)
+		     //    {
+			 //        return '<img height="30" src="https://worldofwarcraft.akamaized.net/static/components/Logo/Logo-'.(0 == $model->race->race->alliance ? 'horde' : 'alliance').'.png"/>';
+		     //    },
+            // ],
             [
                 'attribute' => 'name',
                 'format' => 'html',
 	            'value' => function($model)
 	            {
-	            	return '<strong style="color: '.$model->spec->class->color.'">'.$model->name.'</strong>';
+	            	return '<img height="30" src="https://worldofwarcraft.akamaized.net/static/components/Logo/Logo-'.(0 == $model->race->race->alliance ? 'horde' : 'alliance').'.png"/>&nbsp;'.
+			            '<span style="color: '.$model->spec->class->color.'">'.$model->name.'</span>';
 	            },
             ],
             [
@@ -40,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'format' => 'html',
 				'value' => function($model)
 				{
-	            	return '<img height="30" src="'.$model->spec->image.'" alt="'.$model->spec->name.'"/>';
+	            	return '<img height="30" src="'.$model->spec->class->image.'"/>&nbsp;<img height="30" src="'.$model->spec->image.'"/> '.$model->spec->name;
 				},
             ],
             [
@@ -48,16 +57,8 @@ $this->params['breadcrumbs'][] = $this->title;
 	            'format' => 'html',
                 'value' => function($model)
                 {
-	                return '<img height="30" src="'.$model->race->image.'" alt="'.$model->race->race->name.'"/>';
+	                return '<img height="30" src="'.$model->race->image.'"/> '.$model->race->race->name;
                 },
-            ],
-            [
-            	'attribute' => 'alliance',
-	            'format' => 'html',
-				'value' => function($model)
-				{
-    	            return '<img height="30" src="https://worldofwarcraft.akamaized.net/static/components/Logo/Logo-'.(0 == $model->race->race->alliance ? 'horde' : 'alliance').'.png"/>';
-				},
             ],
             [
             	'attribute' => 'prof1_code',
