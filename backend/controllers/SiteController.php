@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 
+use backend\models\wow\WowRace2class;
 use common\models\Entity;
 use common\models\LoginForm;
 use Log;
@@ -30,7 +31,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'wow'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
