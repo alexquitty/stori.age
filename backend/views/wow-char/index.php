@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'html',
 	            'value' => function($model)
 	            {
-	            	return '<img height="30" src="https://worldofwarcraft.akamaized.net/static/components/Logo/Logo-'.(0 == $model->race->race->alliance ? 'horde' : 'alliance').'.png"/>&nbsp;'.
+	            	return \backend\models\wow\WowLib::fraction($model->race->race->alliance).'&nbsp;'.
 			            '<span style="color: '.$model->spec->class->color.'">'.$model->name.'</span>';
 	            },
             ],

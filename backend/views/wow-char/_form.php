@@ -16,6 +16,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
+	<?= $form->field($model, 'gender')->checkbox() ?>
+
     <?= $form->field($model, 'spec_code')->dropDownList($specs ?: []) ?>
 
     <?= $form->field($model, 'race_code')->dropDownList($races ?: []) ?>

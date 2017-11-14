@@ -61,4 +61,11 @@ class WowCharController extends Controller
 			'profs' => $profs,
 		];
 	}
+
+	public function actionIndex()
+	{
+		return $this->__actionIndex([
+			'pageSize' => 40,
+		]);
+	}
 }

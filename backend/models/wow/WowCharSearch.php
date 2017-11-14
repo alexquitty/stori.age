@@ -43,7 +43,11 @@ class WowCharSearch extends WowChar
             ->andFilterWhere(['like', 'spec_code', $this->spec_code])
             ->andFilterWhere(['like', 'race_code', $this->race_code])
             ->andFilterWhere(['like', 'prof1_code', $this->prof1_code])
-            ->andFilterWhere(['like', 'prof2_code', $this->prof2_code]);
+            ->andFilterWhere(['like', 'prof2_code', $this->prof2_code])
+	        ->orderBy([
+	        	WowRace::tableName().'.alliance' => SORT_ASC,
+		        WowChar::tableName().'.name' => SORT_ASC,
+	        ]);
 
         return $this->dataProvider;
     }
