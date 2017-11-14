@@ -1,5 +1,6 @@
 <?php
 
+use backend\models\wow\WowLib;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
@@ -30,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'class_code',
             // 'name',
 	        [
+	        	'contentOptions' => ['style' => 'width: 250px'],
 		        'attribute' => 'name',
 		        'format' => 'html',
 		        'value' => function($model)
@@ -38,25 +40,27 @@ $this->params['breadcrumbs'][] = $this->title;
 		        },
 	        ],
 	        [
-	        	'attribute' => 'available',
-		        'format' => 'raw',
-		        'value' => function($model)
-		        {
-	                $result = '<span onclick="$(this).next().toggle()">...</span><div style="display: none">';
-
-			        $races = $model->class->availableRaces;
-		        	foreach($races as $race)
-		        		$result .= (empty($result)?'':'<br/>').$race->race->name.' <img height="16" src="https://worldofwarcraft.akamaized.net/static/components/Logo/Logo-'.(0 == $race->race->alliance ? 'horde' : 'alliance').'.png" alt="'.(0 == $race->race->alliance ? 'Horde' : 'Alliance').'"/>';
-
-		        	return $result.'</div>';
-		        },
-	        ],
-	        [
 	        	'attribute' => 'character',
 		        'format' => 'html',
 		        'value' => function($model)
 		        {
-		        	return $model->char->name;
+		        	$alliance = $model->char->race->race->alliance;
+		        	return (isset($alliance) ? WowLib::fraction($alliance).'&nbsp;' : '').'<img height="30" src="'.$model->char->race->image.'"/>&nbsp;'
+				        .'<span style="color: '.$model->class->color.'">'.$model->char->name.'</span>';
+		        },
+	        ],
+	        [
+		        'attribute' => 'available',
+		        'format' => 'raw',
+		        'value' => function($model)
+		        {
+			        $result = '<span onclick="$(this).next().toggle()">...</span><div style="display: none">';
+
+			        $races = $model->class->availableRaces;
+			        foreach($races as $race)
+				        $result .= (empty($result)?'':'<br/>').$race->race->name.' '.WowLib::fraction($race->race->alliance, 16);
+
+			        return $result.'</div>';
 		        },
 	        ],
             // [
@@ -75,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	         //    },
             // ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            // ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
     <?php Pjax::end(); ?>
