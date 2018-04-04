@@ -4,6 +4,7 @@
 /* @var $question */
 /* @var $answers */
 /* @var $index */
+/* @var $score */
 
 $this->title = 'Learning Japanese Alphabet';
 
@@ -12,6 +13,7 @@ $this->title = 'Learning Japanese Alphabet';
 
 	<h2><?=$question?></h2>
 
+	<?= isset($msg) ? '<h3>'.$msg.'</h3>' : '' ?>
 
 	<form method="post">
 		<div style="font-size: 24px; line-height: 50px"><?php
@@ -25,7 +27,13 @@ $this->title = 'Learning Japanese Alphabet';
 				?></div><?php
 			}
 		?></div>
+		<input type="hidden" name="score" value="<?=$score?>"/>
 		<input type="hidden" name="index" value="<?=$index?>"/>
 		<button type="submit" style="font-size: 26px; padding: 5px 15px">Check!</button>
 	</form>
+
+	<hr/>
+	<div style="margin-top: 20px">
+		You score is <?=$score?>
+	</div>
 </div>

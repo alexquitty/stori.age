@@ -6,6 +6,7 @@ class JapaneseController extends \yii\web\Controller
 	const PROPOSAL_LIMIT = 5;
 
 	private $_answerAbc;
+	private $_score = 0;
 
 	public $enableCsrfValidation = false;
 
@@ -61,9 +62,29 @@ class JapaneseController extends \yii\web\Controller
 		$left = $params['0'];
 		$right = $params['1'];
 
-		\DebugBot::send($index);
-		\DebugBot::send($left);
-		\DebugBot::send($right);
+		if($left == $index)
+		{
+			if($right == $index)
+			{
+				$msg = 'Absolutely right!';
+				$this->_score++;
+			}
+			else
+			{
+				$msg = 'Right part was wrong!';
+			}
+		}
+		elseif($right == $index)
+		{
+			$msg = 'Left part was wrong!';
+		}
+		else
+		{
+			$msg = 'Both parts were wrong!';
+			$this->_score--;
+		}
+
+		return $msg;
 	}
 
 	private function __formQuestion()
@@ -133,11 +154,15 @@ class JapaneseController extends \yii\web\Controller
 
     public function actionIndex()
     {
-    	\DebugBot::send(\Yii::$app->request->post());
-    	if(\Yii::$app->request->get('check'))
-    		$this->__checkAnswer(\Yii::$app->request->post());
+    	$params = \Yii::$app->request->post();
+    	if(isset($params['index']))
+    		$msg = $this->__checkAnswer($params);
 
 	    $data = $this->__formQuestion();
+	    if(isset($msg))
+	        $data['msg'] = $msg;
+
+	    $data['score'] = $this->_score;
 
     	return $this->render('index', $data);
     }
