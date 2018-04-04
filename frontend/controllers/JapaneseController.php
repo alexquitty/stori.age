@@ -3,7 +3,7 @@ namespace frontend\controllers;
 
 class JapaneseController extends \yii\web\Controller
 {
-	const PROPOSAL_LIMIT = 5;
+	const PROPOSAL_LIMIT = 10;
 
 	private $_answerAbc;
 	private $_score = 0;
@@ -21,7 +21,7 @@ class JapaneseController extends \yii\web\Controller
 		'wa', 'wo', 'n',
 		'ga', 'gi', 'gu', 'ge', 'go', 'gya', 'gyu', 'gyo',
 		'za', 'dzi', 'zu', 'ze', 'zo', 'zya', 'zyu', 'zyo',
-		'da', 'dji', 'dzu', 'dze', 'dzo', 'dzya', 'dzyu', 'dzyo',
+		'da', 'dji', 'dzu', 'de', 'do', 'dya', 'dyu', 'dyo',
 		'ba', 'bi', 'bu', 'be', 'bo', 'bya', 'byu', 'byo',
 		'pa', 'pi', 'pu', 'pe', 'po', 'pya', 'pyu', 'pyo',
 	];
@@ -61,6 +61,7 @@ class JapaneseController extends \yii\web\Controller
 		$index = $params['index'];
 		$left = $params['0'];
 		$right = $params['1'];
+		$this->_score = intval($params['score']);
 
 		if($left == $index)
 		{
@@ -102,23 +103,26 @@ class JapaneseController extends \yii\web\Controller
 
 			// filling array with randoms
 			$answers[$k] = [];
+			$indices = [];
 			while(count($answers[$k]) < self::PROPOSAL_LIMIT)
 			{
 				do
 					$idx = rand(0, count($realAB) - 1);
-				while(in_array($idx, array_keys($answers[$k])));
+				while(in_array($idx, $indices));
 
 				$answers[$k][] = [
 					'glyph' => $realAB[$idx],
 					'index' => $idx,
 				];
+				$indices[] = $idx;
 			}
 
-			// rewriting random with the right answer
-			$answers[$k][rand(0, self::PROPOSAL_LIMIT - 1)] = [
-				'glyph' => $realAB[$index],
-				'index' => $index,
-			];
+			// rewriting random with the right answer if we haven't got it randomly
+			if(false == in_array($index, $indices))
+				$answers[$k][rand(0, self::PROPOSAL_LIMIT - 1)] = [
+					'glyph' => $realAB[$index],
+					'index' => $index,
+				];
 		}
 
 		return [
@@ -155,7 +159,7 @@ class JapaneseController extends \yii\web\Controller
     public function actionIndex()
     {
     	$params = \Yii::$app->request->post();
-    	if(isset($params['index']))
+    	if(isset($params['0']))
     		$msg = $this->__checkAnswer($params);
 
 	    $data = $this->__formQuestion();
