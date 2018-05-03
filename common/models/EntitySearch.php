@@ -33,7 +33,7 @@ class EntitySearch extends Entity
      */
     public function search($params)
     {
-        $this->__search($params, ['typeCode']);
+        $this->__search($params/*, ['typeCode']*/);
 
         // grid filtering conditions
         $this->query
