@@ -11,7 +11,7 @@ use yii\widgets\Pjax;
 /* @var $types */
 /* @var $letters */
 $this->title = Yii::t('website', 'Entities');
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['index']];
 
 ?><div class="entity-index">
     <h1><?= Html::encode($this->title) ?></h1><?php

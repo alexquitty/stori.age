@@ -50,16 +50,17 @@ foreach($models as $item)
 
 
 		$relation = EntityRelation::find()
-			->select('r.type_code, rd.name AS relation, r.name')
+			->select('r.type_code, rd.name AS relation, r.name, r.id')
 			->joinWith(['relationData rd'])
 			->joinWith(['receiver r'])
 			->where(['source_id' => $item['id']])
+			->orderBy(['cognate' => SORT_DESC, 'relation_code' => SORT_ASC])
 			->asArray()
 			->all();
 
 		foreach($relation as $rel)
 		{
-			?><a class="label label-info" data-custom href="/<?=$rel['type_code']?>/?id=<?=$rel['source_id']?>"><?=$rel['relation'], ': ', $rel['name']?></a><?
+			?><a class="label label-info" data-custom href="?EntitySearch[id]=<?=$rel['id']?>"><?=$rel['relation'], empty($rel['relation']) ? '' : ' ', $rel['name']?></a><?
 		}
 
 	?></dt>
