@@ -52,7 +52,18 @@ class DebugBot
 
 			$chatId = self::getChatId($to);
 			if(isset($chatId))
-				return file_get_contents('https://api.telegram.org/bot264498281:AAGpVqga9RQBKp7umUEcZsxENMYp3Oj2RQw/sendMessage?chat_id='.$chatId.'&text='.$json_text);
+			{
+				$context = stream_context_create(
+					['ssl' =>
+						[
+							"allow_self_signed"=>true,
+							"verify_peer"=>false,
+							"verify_peer_name"=> false
+						]
+					]);
+
+				return file_get_contents('https://px1.vozovoz.ru/bot264498281:AAGpVqga9RQBKp7umUEcZsxENMYp3Oj2RQw/sendMessage?chat_id=' . $chatId . '&text=' . $json_text, false, $context);
+			}
 		}
 
 		return null;

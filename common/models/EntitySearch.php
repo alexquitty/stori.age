@@ -39,9 +39,12 @@ class EntitySearch extends Entity
         $this->query
 	        ->andFilterWhere(['id' => $this->id])
 	        ->andFilterWhere(['like', 'letter', $this->letter])
-	        ->andFilterWhere(['like', EntityType::tableName().'.name', $this->type_code])
+	        ->andFilterWhere(['type_code' => $this->type_code])
+	        // ->andFilterWhere(['like', EntityType::tableName().'.name', $this->type_code])
             ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'description', $this->description]);
+
+        \DebugBot::send($this->query->createCommand()->getRawSql(), 'aq');
 
         return $this->dataProvider;
     }
