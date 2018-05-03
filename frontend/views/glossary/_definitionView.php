@@ -6,8 +6,12 @@
  * Time: 14:56
  */
 
+use common\classes\WordHelper;
+use common\models\EntityRelation;
+
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $model common\models\EntitySearch */
+/* @var $relation array */
 /* @var $types array */
 
 
@@ -27,7 +31,7 @@ foreach($models as $item)
 
 	?><dt class="h4">
 
-		<a href="/<?=$item['type_code']?>/?id=<?=$item['id']?>"><?=$item['name']?></a>
+		<a href="/<?=$item['type_code']?>/?id=<?=$item['id']?>"><?= WordHelper::stress($item['name_stressed'], 'span class="stress"', '_', 'span class="stress upper"') ?: $item['name'] ?></a>
 
 		<button
 			type="button"
@@ -42,6 +46,20 @@ foreach($models as $item)
 			?><a href="/cpanel/entity/update?id=<?=$item['id']?>" class="btn btn-xs btn-default">
 				<span class="glyphicon glyphicon-pencil"></span>
 			</a><?php
+		}
+
+
+		$relation = EntityRelation::find()
+			->select('r.type_code, rd.name AS relation, r.name')
+			->joinWith(['relationData rd'])
+			->joinWith(['receiver r'])
+			->where(['source_id' => $item['id']])
+			->asArray()
+			->all();
+
+		foreach($relation as $rel)
+		{
+			?><a class="label label-info" data-custom href="/<?=$rel['type_code']?>/?id=<?=$rel['source_id']?>"><?=$rel['relation'], ': ', $rel['name']?></a><?
 		}
 
 	?></dt>

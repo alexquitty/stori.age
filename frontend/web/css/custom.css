@@ -35,6 +35,12 @@
 	text-decoration: none;
 }
 
+.label.label-info[data-custom]
+{
+	font-weight: normal;
+	margin-right: 10px;
+}
+
 .navbar-brand i.fa
 {
 	border: 1px solid #EAEAEA;
@@ -54,6 +60,17 @@
 {
 	border: dotted 1px;
 	border-radius: 3px;
+}
+
+.stress:before
+{
+	content: '`';
+	position: absolute;
+	margin: 5px 0 0 3px;
+}
+.stress.upper:before
+{
+	margin-top: 2px;
 }
 
 .w-100

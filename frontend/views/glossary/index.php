@@ -7,6 +7,7 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\EntitySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $relation */
 /* @var $types */
 /* @var $letters */
 $this->title = Yii::t('website', 'Entities');

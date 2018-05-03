@@ -14,6 +14,30 @@ use yii\helpers\Url;
 
 class WordHelper extends StringHelper
 {
+	public static function stress($string, $wrapTag = 'b', $stressSymbol = '_', $wrapTagUpperCase = null)
+	{
+		// compiling $wrapTag
+		$wrapTagArr = explode(' ', $wrapTag);
+		$wrapTagEnd = reset($wrapTagArr);
+
+		if(!empty($wrapTagUpperCase))
+		{
+			$wrapTagArr = explode(' ', $wrapTagUpperCase);
+			$wrapTagUpperCaseEnd = reset($wrapTagArr);
+		}
+		else
+		{
+			$wrapTagUpperCase = $wrapTag;
+			$wrapTagUpperCaseEnd = $wrapTagEnd;
+		}
+
+		// for UTF symbols it's 2 symbols
+		$string = preg_replace('/('.$stressSymbol.'([аеиоуыэюя]{2}))/', '<'.$wrapTag.'>$2</'.$wrapTagEnd.'>', $string);
+		$string = preg_replace('/('.$stressSymbol.'([АЕИОУЫЭЮЯ]{2}))/', '<'.$wrapTagUpperCase.'>$2</'.$wrapTagUpperCaseEnd.'>', $string);
+
+		return $string;
+	}
+
 	/**
 	 * @param string $string
 	 * @param int $length

@@ -29,7 +29,7 @@ class Relation extends \yii\db\ActiveRecord
     {
         return [
             [['code'], 'required'],
-            [['cognate', 'negative', 'oneway'], 'integer'],
+            [['cognate', 'negative'], 'integer'],
             [['code'], 'string', 'max' => 150],
             [['name'], 'string', 'max' => 250],
             [['code'], 'unique'],
@@ -44,7 +44,6 @@ class Relation extends \yii\db\ActiveRecord
         return [
             'code' => 'Код',
             'name' => 'Название',
-	        'oneway' => 'Однонаправленное',
             'cognate' => 'Кровная связь',
             'negative' => 'Негативное отношение',
         ];

@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => 'typeCode.name',
             ],
             'name',
+            'name_stressed',
             [
             	'attribute' => 'description',
 	            'contentOptions' => [ 'class' => 'trunc' ],

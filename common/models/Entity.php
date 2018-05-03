@@ -14,7 +14,6 @@ namespace common\models;
  *
  * @property Character[] $characters
  * @property EntityType $typeCode
- * @property Entity $cloned
  * @property Entity[] $entities
  */
 class Entity extends \yii\db\ActiveRecord
@@ -33,11 +32,10 @@ class Entity extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cloned_id'], 'integer'],
             [['description'], 'string'],
             [['letter'], 'string', 'max' => 1],
             [['type_code'], 'string', 'max' => 150],
-            [['name'], 'string', 'max' => 250],
+            [['name', 'name_stressed'], 'string', 'max' => 250],
             [['type_code'], 'exist', 'skipOnError' => true, 'targetClass' => EntityType::className(), 'targetAttribute' => ['type_code' => 'code']],
             [['cloned_id'], 'exist', 'skipOnError' => true, 'targetClass' => Entity::className(), 'targetAttribute' => ['cloned_id' => 'id']],
         ];
@@ -50,10 +48,10 @@ class Entity extends \yii\db\ActiveRecord
     {
         return [
 			'id' => 'ID',
-			'cloned_id' => 'Ссылается на',
 			'letter' => 'Буква',
 			'type_code' => 'Тип сущности',
 			'name' => 'Название',
+	        'name_stressed' => 'С ударением',
 			'description' => 'Описание',
         ];
     }
@@ -65,22 +63,6 @@ class Entity extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Character::className(), ['entity_id' => 'id']);
     }
-
-	/**
-	 * @return \yii\db\ActiveQuery
-	 */
-	public function getClones()
-	{
-		return $this->hasMany(Entity::className(), ['cloned_id' => 'id']);
-	}
-
-	/**
-	 * @return \yii\db\ActiveQuery
-	 */
-	public function getOriginal()
-	{
-		return $this->hasOne(Entity::className(), ['id' => 'cloned_id']);
-	}
 
     /**
      * @return \yii\db\ActiveQuery
