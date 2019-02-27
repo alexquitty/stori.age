@@ -15,11 +15,11 @@ class CharacterController extends Controller
 {
 	public function actionIndex()
 	{
-
+		return '';
 	}
 
 	public function actionView($id)
 	{
-
+		return '';
 	}
 }
